@@ -28,11 +28,11 @@ internal fun Context.sendEmail(email: String) {
  * @param label Метка, которая будет присвоена тексту в буфере обмена.
  * @param text Текст, который будет скопирован в буфер обмена.
  */
-internal fun Context.copyTextToClipBoard(label: String, text: String) {
+internal fun Context.copyTextToClipBoard(label: String?, text: String?) {
     val clipboard =
         getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clip = ClipData.newPlainText(label, text)
-    if (text.isNotEmpty()) clipboard.setPrimaryClip(clip)
+    if (text?.isNotEmpty() == true || label?.isNotEmpty() == true) clipboard.setPrimaryClip(clip)
 }
 
 /**

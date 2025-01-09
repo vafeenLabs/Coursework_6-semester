@@ -14,14 +14,15 @@ internal fun RowDTO.toLesson(): LessonEntity? = this.cells.map {
 }.let {
     try {
         LessonEntity(
-            dayOfWeek = it[0]?.toDayOfWeek(), // Преобразуем первый элемент в день недели
-            name = it[1].makeNullIfNull(), // Получаем название урока
+            dayOfWeek = it.getOrNull(0)?.toDayOfWeek(), // Преобразуем первый элемент в день недели
+            name = it.getOrNull(1).makeNullIfNull(), // Получаем название урока
             startTime = "${it[2]}".toTimeOfLessonAsLocalTime(), // Преобразуем время начала урока
             endTime = "${it[3]}".toTimeOfLessonAsLocalTime(), // Преобразуем время окончания урока
-            classroom = it[4].makeNullIfNull(), // Получаем информацию о классе
-            teacher = it[5].makeNullIfNull(), // Получаем информацию о преподавателе
-            subGroup = it[6].makeNullIfNull()?.normalizeCase(), // Получаем информацию о подгруппе
-            frequency = it[7].makeNullIfNull()?.toFrequencyString() // Получаем частоту урока
+            classroom = it.getOrNull(4).makeNullIfNull(), // Получаем информацию о классе
+            teacher = it.getOrNull(5).makeNullIfNull(), // Получаем информацию о преподавателе
+            subGroup = it.getOrNull(6).makeNullIfNull()?.normalizeCase(), // Получаем информацию о подгруппе
+            frequency = it.getOrNull(7).makeNullIfNull()?.toFrequencyString(), // Получаем частоту урока
+            linkToCourse = it.getOrNull(8).makeNullIfNull(), // Получаем ссылку на курс в мудле
         )
     } catch (e: Exception) {
         null // Возвращаем null в случае ошибки преобразования

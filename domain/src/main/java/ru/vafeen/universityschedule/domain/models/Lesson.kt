@@ -32,7 +32,8 @@ data class Lesson(
     val frequency: Frequency? = null,
     val idOfReminderBeforeLesson: Int? = null,
     val idOfReminderAfterBeginningLesson: Int? = null,
-    val note: String? = null
+    val note: String? = null,
+    val linkToCourse: String? = null
 ) : Comparable<Lesson> {
 
     /**
@@ -42,7 +43,7 @@ data class Lesson(
      * аудитории, преподавателе, подгруппе и частоте.
      */
     override fun toString(): String {
-        return "\n dayOfWeek=${dayOfWeek ?: "\"is null\""} name=${name ?: "\"is null\""} st=${startTime}-et=${endTime} classroom=${classroom ?: "\"is null\""} tchr=${teacher ?: "\"is null\""} sbgr=${subGroup ?: "\"is null\""} fr=${frequency ?: "\"is null\""}"
+        return "\n dayOfWeek=${dayOfWeek ?: "\"is null\""} name=${name ?: "\"is null\""} st=${startTime}-et=${endTime} classroom=${classroom ?: "\"is null\""} tchr=${teacher ?: "\"is null\""} sbgr=${subGroup ?: "\"is null\""} fr=${frequency ?: "\"is null\""} linkToCourse=${linkToCourse ?: "\"is null\""}"
     }
 
     /**

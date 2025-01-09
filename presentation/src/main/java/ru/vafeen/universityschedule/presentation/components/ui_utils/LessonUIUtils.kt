@@ -1,6 +1,8 @@
 package ru.vafeen.universityschedule.presentation.components.ui_utils
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -48,14 +50,17 @@ import ru.vafeen.universityschedule.presentation.components.viewModels.MainScree
 import ru.vafeen.universityschedule.presentation.theme.FontSize
 import ru.vafeen.universityschedule.presentation.theme.Theme
 import ru.vafeen.universityschedule.presentation.utils.NotificationAboutLessonsSettings
+import ru.vafeen.universityschedule.presentation.utils.copyTextToClipBoard
 import ru.vafeen.universityschedule.presentation.utils.createReminderAfterStartingLessonForBeCheckedAtThisLesson
 import ru.vafeen.universityschedule.presentation.utils.createReminderBefore15MinutesOfLesson
 import ru.vafeen.universityschedule.presentation.utils.getLessonTimeString
+import ru.vafeen.universityschedule.presentation.utils.openLink
 import ru.vafeen.universityschedule.presentation.utils.suitableColor
 import ru.vafeen.universityschedule.resources.R
 import java.time.LocalDate
 import java.time.LocalDateTime
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun Lesson.StringForSchedule(
     paddingValues: PaddingValues = PaddingValues(vertical = 10.dp),
@@ -141,7 +146,7 @@ internal fun Lesson.StringForSchedule(
                         fontSize = FontSize.small17
                     )
                 }
-                if (settings.notesAboutLesson || settings.notificationsAboutLesson) {
+                if (settings.notesAboutLesson || settings.notificationsAboutLesson || linkToCourse != null) {
                     Row(
                         modifier = Modifier.weight(1f),
                         horizontalArrangement = Arrangement.End
@@ -150,6 +155,11 @@ internal fun Lesson.StringForSchedule(
                             if (idOfReminderBeforeLesson == null || idOfReminderAfterBeginningLesson == null || note?.isNotEmpty() != true) Icon(
                                 painter = painterResource(id = R.drawable.add),
                                 contentDescription = stringResource(R.string.edit_notifications_about_this_lesson),
+                                tint = suitableColor
+                            )
+                            if (linkToCourse?.isNotEmpty() == true) Icon(
+                                painter = painterResource(id = R.drawable.link),
+                                contentDescription = stringResource(R.string.moodle_course_link),
                                 tint = suitableColor
                             )
                             if (note?.isNotEmpty() == true) Icon(
@@ -219,6 +229,30 @@ internal fun Lesson.StringForSchedule(
                     maxLines = 3
                 )
             }
+            if (isAdditionalInfoExpanded) linkToCourse?.let { link ->
+                if (link.isNotEmpty()) {
+                    Row(
+                        modifier = Modifier.combinedClickable(onClick = { context.openLink(link) },
+                            onLongClick = {
+                                context.copyTextToClipBoard(text = link, label = null)
+                            }).padding(vertical = 5.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(R.string.moodle_course_link),
+                            fontSize = FontSize.small17,
+                            color = Theme.colors.linkColor
+                        )
+                        Spacer(modifier = Modifier.width(3.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.link),
+                            contentDescription = stringResource(R.string.moodle_course_link),
+                            tint = Theme.colors.linkColor
+                        )
+                    }
+                }
+            }
+
             if (!isAdditionalInfoExpanded && text.isNotEmpty())
                 Text(text = text, fontSize = FontSize.micro14, color = suitableColor)
 

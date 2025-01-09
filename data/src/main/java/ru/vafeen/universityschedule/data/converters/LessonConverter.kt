@@ -30,7 +30,8 @@ internal class LessonConverter : BaseConverter<LessonEntity, Lesson> {
         frequency = a.frequency?.let { Frequency.valueOf(it) },
         idOfReminderBeforeLesson = a.idOfReminderBeforeLesson,
         idOfReminderAfterBeginningLesson = a.idOfReminderAfterBeginningLesson,
-        note = a.note
+        note = a.note,
+        linkToCourse = a.linkToCourse
     )
 
     /**
@@ -51,6 +52,7 @@ internal class LessonConverter : BaseConverter<LessonEntity, Lesson> {
         frequency = b.frequency?.toString(),
         idOfReminderBeforeLesson = b.idOfReminderBeforeLesson,
         idOfReminderAfterBeginningLesson = b.idOfReminderAfterBeginningLesson,
-        note = b.note
+        note = b.note,
+        linkToCourse = b.linkToCourse
     )
 }
