@@ -9,7 +9,7 @@
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/vafeen/UniversitySchedule/release.yml)](#)
 [![GitHub Tag](https://img.shields.io/github/v/tag/vafeen/UniversitySchedule)](https://github.com/vafeen/UniversitySchedule/releases/latest/)
 
-<img alt="app icon" height="256" src="icons/icon.png"/>
+<img alt="app icon" height="256" src="icons/icon-CW.jpg"/>
 
 </div>
 
@@ -19,20 +19,25 @@
 * [Getting Started](#getting-started)
 
 ## Installation
+
 Follow these simple steps:
 1. Download the `.apk` file from [releases](https://github.com/vafeen/UniversitySchedule/releases) (or just click [this](https://github.com/vafeen/UniversitySchedule/releases/latest/download/app-release.apk))
 2. Approve the installation of the software on your device
 3. Have fun!
 
-
 ## Features
+
 - Supported languages: **English**, **Russian**
 - Supported themes: **Dark**, **Light**
 - Works by creating a connection between **Google Sheets** and the **App** itself.
 - Notifications 15 mins before a class for a week in advance
 - Notes about lesson (enable it in **settings**)
+- Role: teacher or student
+- Choosing group for student role
+- Links of courses in Moodle
 
 ### Main screen
+
 - Shows you all of the classes for each day
 - Indicates what class is going on right now and what will be the next one
 - If you’ve chosen a subgroup in **settings**, it will show you only this subgroup's classes; otherwise — all classes
