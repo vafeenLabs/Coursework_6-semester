@@ -35,6 +35,7 @@ internal data class LessonEntity(
     val idOfReminderBeforeLesson: Int? = null,
     val idOfReminderAfterBeginningLesson: Int? = null,
     val note: String? = null,
+    val linkToCourse: String? = null
 ) : Comparable<LessonEntity> {
 
     /**

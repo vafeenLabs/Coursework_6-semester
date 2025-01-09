@@ -32,7 +32,8 @@ data class Lesson(
     val frequency: Frequency? = null,
     val idOfReminderBeforeLesson: Int? = null,
     val idOfReminderAfterBeginningLesson: Int? = null,
-    val note: String? = null
+    val note: String? = null,
+    val linkToCourse: String? = null
 ) : Comparable<Lesson> {
 
     /**

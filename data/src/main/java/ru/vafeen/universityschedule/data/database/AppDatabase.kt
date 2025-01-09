@@ -19,7 +19,7 @@ import ru.vafeen.universityschedule.data.database.entity.ReminderEntity
 @Database(
     exportSchema = true,
     entities = [LessonEntity::class, ReminderEntity::class],
-    version = 6,
+    version = 7,
 )
 @TypeConverters(TimeConverter::class, DateTimeConverter::class)
 internal abstract class AppDatabase : RoomDatabase() {
