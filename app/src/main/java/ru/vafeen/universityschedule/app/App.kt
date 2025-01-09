@@ -21,7 +21,7 @@ import ru.vafeen.universityschedule.presentation.di.main.mainPresentationModule
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-
+//
         startKoin {
             androidContext(this@App)
             modules(
