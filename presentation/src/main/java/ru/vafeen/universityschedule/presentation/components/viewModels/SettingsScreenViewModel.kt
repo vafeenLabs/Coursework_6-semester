@@ -1,5 +1,6 @@
 package ru.vafeen.universityschedule.presentation.components.viewModels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +62,7 @@ internal class SettingsScreenViewModel(
         // Инициализируем поток для отслеживания изменений в настройках
         viewModelScope.launch(Dispatchers.IO) {
             settings.collect {
+                Log.d("settings", "collect in voewModel")
                 val link = it.link
                 when {
                     link.isNullOrEmpty() -> {
