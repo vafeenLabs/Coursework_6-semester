@@ -68,6 +68,7 @@
     <string name="copy">Скопировать</string>
     <string name="clear">Очистить</string>
     <string name="this_is_user_subgroup">Это подгруппа пользователя</string>
+    <string name="this_is_user_role">Это роль пользователя</string>
     <string name="icon_teacher">Иконка преподавателя</string>
     <string name="icon_subgroup">Иконка подгруппы</string>
     <string name="change_color_of_interface">Изменить увет интерфейса</string>
@@ -80,4 +81,6 @@
     <string name="mb">МБ</string>
     <string name="moodle_course_link">Ссылка на курс в Moodle</string>
     <string name="role">Роль</string>
+    <string name="teacher">Преподаватель</string>
+    <string name="student">Студент</string>
 </resources>
