@@ -79,4 +79,5 @@
     <string name="update_app">Update application</string>
     <string name="mb">MB</string>
     <string name="moodle_course_link">Link to the course in Moodle</string>
+    <string name="role">Role</string>
 </resources>
