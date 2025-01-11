@@ -33,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
+import ru.vafeen.universityschedule.domain.models.model_additions.Role
 import ru.vafeen.universityschedule.domain.utils.getMainColorForThisTheme
 import ru.vafeen.universityschedule.domain.utils.getVersionName
 import ru.vafeen.universityschedule.presentation.components.ui_utils.CardOfSettings
@@ -66,7 +67,7 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
     var isFeaturesEditable by remember { mutableStateOf(false) }
     var isSubGroupChanging by remember { mutableStateOf(false) }
     var catsOnUIIsChanging by remember { mutableStateOf(false) }
-
+    var isRoleChanging by remember { mutableStateOf(false) }
     val subGroupLazyRowState = rememberLazyListState()
     val networkState by viewModel.gSheetsServiceRequestStatusFlow.collectAsState()
 
@@ -179,8 +180,60 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                 )
             }
 
+            // Роль
+            CardOfSettings(
+                text = stringResource(R.string.role),
+                icon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.role),
+                        contentDescription = stringResource(R.string.role),
+                        tint = it.suitableColor()
+                    )
+                },
+                onClick = {
+                    isRoleChanging = !isRoleChanging
+                },
+                additionalContentIsVisible = isRoleChanging,
+                additionalContent = {
+                    LazyRow(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = it)
+                    ) {
+                        items(Role.entries) { role ->
+                            AssistChip(
+                                leadingIcon = {
+                                    if (role == settings.role) {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.done),
+                                            contentDescription = stringResource(R.string.this_is_user_role),
+                                            tint = Theme.colors.oppositeTheme
+                                        )
+                                    }
+                                },
+                                modifier = Modifier.padding(horizontal = 3.dp),
+                                onClick = {
+                                    viewModel.saveSettingsToSharedPreferences { settings ->
+                                        settings.copy(
+                                            role = if (settings.role != role) role else null
+                                        ).let { s ->
+                                            if (role == Role.Teacher) s.copy(
+                                                subgroup = null
+                                                // TODO(Add removing group this)
+                                            ) else s
+                                        }
+                                    }
+                                },
+                                label = { TextForThisTheme(text = stringResource(role.resourceName)) }
+                            )
+                        }
+
+                    }
+                }
+            )
+
             // Подгруппа
-            if (subgroupList.isNotEmpty()) {
+            if (subgroupList.isNotEmpty() && settings.role == Role.Student) {
                 CardOfSettings(
                     text = stringResource(R.string.subgroup),
                     icon = {
@@ -350,13 +403,13 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                 text = stringResource(R.string.report_a_bug),
                 icon = {
                     Icon(
-                    painter = painterResource(id = R.drawable.bug_report),
-                    contentDescription = stringResource(R.string.report_a_bug),
+                        painter = painterResource(id = R.drawable.bug_report),
+                        contentDescription = stringResource(R.string.report_a_bug),
                         tint = it.suitableColor()
                     )
-            }, onClick = {
-                context.sendEmail(email = Link.EMAIL)
-            })
+                }, onClick = {
+                    context.sendEmail(email = Link.EMAIL)
+                })
             // version
             TextForThisTheme(
                 modifier = Modifier

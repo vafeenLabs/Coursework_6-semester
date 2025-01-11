@@ -68,6 +68,7 @@
     <string name="copy">copy</string>
     <string name="clear">clear</string>
     <string name="this_is_user_subgroup">this is user subgroup</string>
+    <string name="this_is_user_role">this is user role</string>
     <string name="icon_teacher">Icon teacher</string>
     <string name="icon_subgroup">Icon subgroup</string>
     <string name="change_color_of_interface">change color of interface</string>
@@ -79,4 +80,7 @@
     <string name="update_app">Update application</string>
     <string name="mb">MB</string>
     <string name="moodle_course_link">Link to the course in Moodle</string>
+    <string name="role">Role</string>
+    <string name="teacher">Teacher</string>
+    <string name="student">Student</string>
 </resources>
