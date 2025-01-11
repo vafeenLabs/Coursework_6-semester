@@ -35,7 +35,7 @@ data class Settings(
     var releaseBody: String = "",
     var isMigrationFromAlarmManagerToWorkManagerSuccessful: Boolean = false,
     var isRemindersRebootedForVersion6_1_15: Boolean = false,
-    val role: Role = Role.Student
+    val role: Role? = null
 ) {
     /**
      * Преобразует объект [Settings] в строку формата JSON.
