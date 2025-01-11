@@ -2,6 +2,7 @@ package ru.vafeen.universityschedule.domain.models
 
 import androidx.compose.ui.graphics.Color
 import com.google.gson.Gson
+import ru.vafeen.universityschedule.domain.models.model_additions.Role
 
 /**
  * Класс, представляющий локальные настройки приложения.
@@ -34,6 +35,7 @@ data class Settings(
     var releaseBody: String = "",
     var isMigrationFromAlarmManagerToWorkManagerSuccessful: Boolean = false,
     var isRemindersRebootedForVersion6_1_15: Boolean = false,
+    val role: Role = Role.Student
 ) {
     /**
      * Преобразует объект [Settings] в строку формата JSON.
