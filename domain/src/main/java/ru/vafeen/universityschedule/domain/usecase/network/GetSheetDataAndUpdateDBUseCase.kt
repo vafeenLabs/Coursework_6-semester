@@ -6,12 +6,12 @@ import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 import ru.vafeen.universityschedule.domain.usecase.db.CleverUpdatingLessonsUseCase
 
 /**
- * UseCase для получения данных из Google Sheets и обновления базы данных.
+ * UseCase для получения данных и обновления базы данных.
  *
- * Этот класс отвечает за выполнение операции получения данных из указанной таблицы Google Sheets
+ * Этот класс отвечает за выполнение операции получения данных
  * и обновления базы данных на основе полученных данных.
  *
- * @property getSheetDataUseCase UseCase для получения данных из Google Sheets.
+ * @property getSheetDataUseCase UseCase для получения данных
  * @property cleverUpdatingLessonsUseCase UseCase для интеллектуального обновления пар.
  */
 class GetSheetDataAndUpdateDBUseCase(
@@ -20,9 +20,9 @@ class GetSheetDataAndUpdateDBUseCase(
 ) : UseCase {
 
     /**
-     * Получает данные из Google Sheets и обновляет базу данных.
+     * Получает данные  и обновляет базу данных.
      *
-     * @param link Ссылка на таблицу Google Sheets, откуда нужно получить данные.
+     * @param link Ссылка откуда нужно получить данные.
      * @param updateRequestStatus Функция обратного вызова для обновления статуса запроса (по умолчанию null).
      */
     suspend fun invoke(
