@@ -1,8 +1,8 @@
 package ru.vafeen.universityschedule.data.impl.network.repository
 
-import ru.vafeen.universityschedule.data.converters.LessonConverter
+import android.util.Log
+import ru.vafeen.universityschedule.data.converters.JsonStringTemplateConverter
 import ru.vafeen.universityschedule.data.network.service.GoogleSheetsService
-import ru.vafeen.universityschedule.data.utils.getLessonsListFromGSheetsTable
 import ru.vafeen.universityschedule.domain.models.Lesson
 import ru.vafeen.universityschedule.domain.network.repository.SheetDataRepository
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
@@ -17,7 +17,7 @@ import java.net.UnknownHostException
  */
 internal class SheetDataRepositoryImpl(
     private val googleSheetsService: GoogleSheetsService,
-    private val lessonConverter: LessonConverter
+    private val jsonStringTemplateConverter: JsonStringTemplateConverter,
 ) : SheetDataRepository {
 
     /**
@@ -33,9 +33,10 @@ internal class SheetDataRepositoryImpl(
             val body = response.body()
             // Проверяем успешность ответа и наличие тела
             if (response.isSuccessful && body != null) {
-                val lessons =
-                    lessonConverter.convertABList(body.string().getLessonsListFromGSheetsTable())
-                ResponseResult.Success(lessons) // Возвращаем успешный результат
+                ResponseResult.Success(
+                    jsonStringTemplateConverter.convert<List<Lesson>>(body.string())
+                        ?: throw Exception("Unable to convert data to lessons")
+                ) // Возвращаем успешный результат
             } else {
                 // Обработка HTTP ошибки, если статус не успешен
                 ResponseResult.Error(Exception("Ошибка сервера: ${response.code()}"))
