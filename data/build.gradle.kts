@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":backendDTO"))
     implementation(libs.material)
     testImplementation(libs.junit.junit)
     androidTestImplementation(libs.androidx.junit)
