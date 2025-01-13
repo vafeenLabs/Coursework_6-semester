@@ -7,7 +7,7 @@ import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 /**
  * Интерфейс репозитория для работы с данными таблиц Google Sheets.
  */
-interface SheetDataRepository {
+interface LessonDataRepository {
 
     /**
      * Получает список уроков из таблицы Google Sheets по указанному URL.

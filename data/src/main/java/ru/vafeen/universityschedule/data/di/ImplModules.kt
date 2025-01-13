@@ -13,7 +13,7 @@ import ru.vafeen.universityschedule.data.impl.database.ReminderRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.end_points.DownloadServiceLink
 import ru.vafeen.universityschedule.data.impl.network.end_points.GitHubDataServiceLink
 import ru.vafeen.universityschedule.data.impl.network.repository.ReleaseRepositoryImpl
-import ru.vafeen.universityschedule.data.impl.network.repository.SheetDataRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.network.repository.LessonDataRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.service.RefresherImpl
 import ru.vafeen.universityschedule.data.impl.network.service.SettingsManagerImpl
 import ru.vafeen.universityschedule.data.impl.notifications.NotificationBuilderImpl
@@ -22,11 +22,11 @@ import ru.vafeen.universityschedule.data.impl.scheduler.SchedulerAPIMigrationMan
 import ru.vafeen.universityschedule.data.impl.scheduler.SchedulerImpl
 import ru.vafeen.universityschedule.data.network.service.DownloadService
 import ru.vafeen.universityschedule.data.network.service.GitHubDataService
-import ru.vafeen.universityschedule.data.network.service.GoogleSheetsService
+import ru.vafeen.universityschedule.data.network.service.LessonDataService
 import ru.vafeen.universityschedule.domain.database.LessonRepository
 import ru.vafeen.universityschedule.domain.database.ReminderRepository
 import ru.vafeen.universityschedule.domain.network.GoogleSheetsServiceLink
-import ru.vafeen.universityschedule.domain.network.repository.SheetDataRepository
+import ru.vafeen.universityschedule.domain.network.repository.LessonDataRepository
 import ru.vafeen.universityschedule.domain.network.service.Refresher
 import ru.vafeen.universityschedule.domain.network.service.ReleaseRepository
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
@@ -50,8 +50,8 @@ internal val databaseModuleImpl = module {
 }
 
 internal val networkRepositoryModuleImpl = module {
-    singleOf(::SheetDataRepositoryImpl) {
-        bind<SheetDataRepository>()
+    singleOf(::LessonDataRepositoryImpl) {
+        bind<LessonDataRepository>()
     }
     singleOf(::ReleaseRepositoryImpl) {
         bind<ReleaseRepository>()
@@ -70,10 +70,10 @@ internal val networkServiceModuleImpl = module {
             .baseUrl(DownloadServiceLink.BASE_LINK)
             .build().create(DownloadService::class.java)
     }
-    single<GoogleSheetsService> {
+    single<LessonDataService> {
         Retrofit.Builder()
             .baseUrl(GoogleSheetsServiceLink.BASE_URL)
-            .build().create(GoogleSheetsService::class.java)
+            .build().create(LessonDataService::class.java)
     }
 }
 

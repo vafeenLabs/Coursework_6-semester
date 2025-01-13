@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.domain.usecase.network
 
 import ru.vafeen.universityschedule.domain.models.Lesson
-import ru.vafeen.universityschedule.domain.network.repository.SheetDataRepository
+import ru.vafeen.universityschedule.domain.network.repository.LessonDataRepository
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 
@@ -10,9 +10,9 @@ import ru.vafeen.universityschedule.domain.usecase.base.UseCase
  *
  * Этот класс отвечает за выполнение операции получения списка пар.
  *
- * @property sheetDataRepository Репозиторий, используемый для взаимодействия с данными.
+ * @property lessonDataRepository Репозиторий, используемый для взаимодействия с данными.
  */
-class GetSheetDataUseCase(private val sheetDataRepository: SheetDataRepository) : UseCase {
+class GetSheetDataUseCase(private val lessonDataRepository: LessonDataRepository) : UseCase {
 
     /**
      * Получает список пар из таблицы Google Sheets по указанной ссылке.
@@ -21,5 +21,5 @@ class GetSheetDataUseCase(private val sheetDataRepository: SheetDataRepository) 
      * @return [ResponseResult] с списком пар [Lesson] или ошибкой, если произошла ошибка при получении данных.
      */
     suspend fun invoke(link: String): ResponseResult<List<Lesson>> =
-        sheetDataRepository.getLessonsListFromGSheetsTable(link)
+        lessonDataRepository.getLessonsListFromGSheetsTable(link)
 }
