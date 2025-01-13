@@ -13,8 +13,8 @@ kotlin {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.0.0")
-    implementation("io.ktor:ktor-server-core:1.0.0")
-    implementation("io.ktor:ktor-server-netty:1.0.0")
-    implementation("ch.qos.logback:logback-classic:1.0.0")
+    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(libs.ktor.server.core)
+    implementation(libs.ktor.server.netty)
+    implementation(libs.logback.classic)
 }
