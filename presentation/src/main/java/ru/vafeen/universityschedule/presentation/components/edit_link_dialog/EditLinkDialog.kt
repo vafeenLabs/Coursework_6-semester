@@ -129,7 +129,7 @@ internal fun EditLinkDialog(
                     }
                     IconButton(onClick = {
                         context.pasteText()?.let {
-                            val contains = it.contains("docs.google.com/spreadsheets/")
+                            val contains = true//it.contains("docs.google.com/spreadsheets/")
                             if (contains) {
                                 viewModel.saveSettingsToSharedPreferences { s ->
                                     s.copy(
