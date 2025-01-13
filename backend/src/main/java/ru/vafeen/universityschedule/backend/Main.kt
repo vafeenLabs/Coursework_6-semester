@@ -15,6 +15,13 @@ fun main() {
             get("/") {
                 call.respondText("Hello, world!")
             }
+            get("/groups") {
+                call.respondText {
+                    converter.convert(lessons.map {
+                        it.group
+                    }.distinct()).toString()
+                }
+            }
             get("/{group}") {
                 val group = call.parameters["group"]
                 call.respondText {
