@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.data.converters
 
 import ru.vafeen.universityschedule.data.network.dto.github_service.ReleaseDTO
-import ru.vafeen.universityschedule.domain.converter.BaseConverter
+import ru.vafeen.universityschedule.domain.converter.TwoWayBaseConverter
 import ru.vafeen.universityschedule.domain.models.Release
 
 /**
@@ -11,7 +11,7 @@ import ru.vafeen.universityschedule.domain.models.Release
  * полученных с сервера, в доменную модель, используемую в приложении.
  * Обратное преобразование не реализовано, так как это не предусмотрено логикой приложения.
  */
-internal class ReleaseConverter : BaseConverter<ReleaseDTO?, Release?> {
+internal class ReleaseConverter : TwoWayBaseConverter<ReleaseDTO?, Release?> {
 
     /**
      * Преобразует [ReleaseDTO] в [Release].

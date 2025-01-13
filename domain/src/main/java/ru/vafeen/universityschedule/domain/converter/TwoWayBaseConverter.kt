@@ -6,7 +6,7 @@ package ru.vafeen.universityschedule.domain.converter
  * @param A Тип исходного объекта.
  * @param B Тип целевого объекта.
  */
-interface BaseConverter<A, B> {
+interface TwoWayBaseConverter<A, B> {
 
     /**
      * Преобразует объект типа A в объект типа B.

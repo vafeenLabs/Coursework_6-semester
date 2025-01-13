@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.data.converters
 
 import androidx.room.TypeConverter
-import ru.vafeen.universityschedule.domain.converter.BaseConverter
+import ru.vafeen.universityschedule.domain.converter.TwoWayBaseConverter
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -10,7 +10,7 @@ import java.time.ZoneId
  * Конвертер для преобразования [LocalDateTime] в [Long] и обратно.
  * Используется для хранения объектов [LocalDateTime] в базе данных Room.
  */
-internal class DateTimeConverter : BaseConverter<LocalDateTime, Long> {
+internal class DateTimeConverter : TwoWayBaseConverter<LocalDateTime, Long> {
 
     /**
      * Преобразует [LocalDateTime] в [Long].
