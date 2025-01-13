@@ -25,7 +25,6 @@ data class Settings(
     var lightThemeColor: Color? = null,
     var darkThemeColor: Color? = null,
     var subgroup: String? = null,
-    var link: String? = null,
     var isSelectedFrequencyCorrespondsToTheWeekNumbers: Boolean? = null,
     var lastDemonstratedVersion: Long = 1,
     var weekendCat: Boolean = false, // Гифка котика на выходном дне

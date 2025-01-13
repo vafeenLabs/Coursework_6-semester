@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">University schedule</string>
-    <string name="no_link">No link</string>
     <string name="settings">Settings</string>
-    <string name="link_to_table">Link to table</string>
-    <string name="table">Table</string>
     <string name="code">Code</string>
     <string name="next_lesson">next class</string>
     <string name="version">version</string>
@@ -16,7 +13,6 @@
     <string name="satudray">Sat</string>
     <string name="sunday">Sun</string>
     <string name="other_lessons_in_this_day">Classes at</string>
-    <string name="its_no_google_sheets_link">It\'s no Google Sheets link</string>
     <string name="interface_color">Interface color</string>
     <string name="new_interface_color">New color of interface</string>
     <string name="cancel">Cancel</string>
@@ -62,18 +58,12 @@
     <string name="icon_delete_this_theme">Delete this theme</string>
     <string name="this_is_selected_or_not">This is selected or not</string>
     <string name="edit_notifications_about_this_lesson">Edit notifications about this lesson</string>
-    <string name="close">close</string>
-    <string name="edit_link">edit link</string>
-    <string name="view_table">view table</string>
-    <string name="copy">copy</string>
-    <string name="clear">clear</string>
     <string name="this_is_user_subgroup">this is user subgroup</string>
     <string name="this_is_user_role">this is user role</string>
     <string name="icon_teacher">Icon teacher</string>
     <string name="icon_subgroup">Icon subgroup</string>
     <string name="change_color_of_interface">change color of interface</string>
     <string name="cats_in_interface">cats in interface</string>
-    <string name="paste">paste</string>
     <string name="view_code">view code</string>
     <string name="clear_text">Clear text</string>
     <string name="meow">Meow&lt;3</string>

@@ -2,7 +2,6 @@ package ru.vafeen.universityschedule.app
 
 import android.app.Application
 import android.app.NotificationManager
-import android.content.SharedPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,9 +13,8 @@ import ru.vafeen.universityschedule.domain.di.main.mainDomainModule
 import ru.vafeen.universityschedule.domain.notifications.NotificationChannelInfo
 import ru.vafeen.universityschedule.domain.usecase.network.GetSheetDataAndUpdateDBUseCase
 import ru.vafeen.universityschedule.domain.utils.createNotificationChannelKClass
-import ru.vafeen.universityschedule.domain.utils.getSettingsOrCreateIfNull
 import ru.vafeen.universityschedule.presentation.di.main.mainPresentationModule
-
+import ru.vafeen.universityschedule.presentation.utils.Link
 
 class App : Application() {
     override fun onCreate() {
@@ -30,11 +28,9 @@ class App : Application() {
                 mainDataModule,
             )
         }
-        val sharedPreferences = get<SharedPreferences>()
-        val settings = sharedPreferences.getSettingsOrCreateIfNull()
         val getSheetDataAndUpdateDBUseCase = get<GetSheetDataAndUpdateDBUseCase>()
         CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-            settings.link?.let { link -> getSheetDataAndUpdateDBUseCase.invoke(link) }
+            getSheetDataAndUpdateDBUseCase.invoke(Link.LINK_DATA)
         }
         val notificationManager =
             applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager

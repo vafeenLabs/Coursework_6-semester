@@ -38,7 +38,6 @@ import ru.vafeen.universityschedule.domain.utils.getMainColorForThisTheme
 import ru.vafeen.universityschedule.domain.utils.getVersionName
 import ru.vafeen.universityschedule.presentation.components.ui_utils.CardOfSettings
 import ru.vafeen.universityschedule.presentation.components.ui_utils.ColorPickerDialog
-import ru.vafeen.universityschedule.presentation.components.edit_link_dialog.EditLinkDialog
 import ru.vafeen.universityschedule.presentation.components.ui_utils.FeatureOfSettings
 import ru.vafeen.universityschedule.presentation.components.ui_utils.TextForThisTheme
 import ru.vafeen.universityschedule.presentation.components.video.AssetsInfo
@@ -62,7 +61,6 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
     val subgroupList by viewModel.subgroupFlow.collectAsState()
     val settings by viewModel.settings.collectAsState()
 
-    var linkIsEditable by remember { mutableStateOf(false) }
     var colorIsEditable by remember { mutableStateOf(false) }
     var isFeaturesEditable by remember { mutableStateOf(false) }
     var isSubGroupChanging by remember { mutableStateOf(false) }
@@ -104,12 +102,6 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
             }
         }
 
-        // Диалоговое окно для редактирования ссылки
-        if (linkIsEditable) {
-            EditLinkDialog(context = context) {
-                linkIsEditable = false
-            }
-        }
 
         // Диалоговое окно для изменения цвета интерфейса
         if (colorIsEditable) {
@@ -150,34 +142,6 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                         imageUri = Uri.parse(AssetsInfo.FUNNY_SETTINGS_CAT)
                     )
                 }
-            }
-
-            // Карточка для редактирования ссылки
-            CardOfSettings(
-                text = stringResource(R.string.link_to_table),
-                icon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.link),
-                        contentDescription = stringResource(R.string.edit_link),
-                        tint = it.suitableColor()
-                    )
-                },
-                onClick = { linkIsEditable = true }
-            )
-
-            // Карточка для просмотра таблицы
-            if (settings.link != null) {
-                CardOfSettings(
-                    text = stringResource(R.string.table),
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.table),
-                            contentDescription = stringResource(R.string.view_table),
-                            tint = it.suitableColor()
-                        )
-                    },
-                    onClick = { settings.link?.let { context.openLink(link = it) } }
-                )
             }
 
             // Роль

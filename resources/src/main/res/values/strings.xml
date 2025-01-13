@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">University schedule</string>
-    <string name="no_link">Ссылка отсутствует</string>
     <string name="settings">Настройки</string>
-    <string name="link_to_table">Ссылка на таблицу</string>
-    <string name="table">Таблица</string>
     <string name="code">Код</string>
     <string name="next_lesson">следующая пара</string>
     <string name="version">version</string>
@@ -16,7 +13,6 @@
     <string name="satudray">СБ</string>
     <string name="sunday">ВС</string>
     <string name="other_lessons_in_this_day">Пары в</string>
-    <string name="its_no_google_sheets_link">Это не ссылка Google Sheets</string>
     <string name="interface_color">Цвет интерфейса</string>
     <string name="new_interface_color">Новый цвет интерфейса</string>
     <string name="cancel">Отмена</string>
@@ -62,18 +58,12 @@
     <string name="icon_delete_this_theme">Удалить эту тему</string>
     <string name="this_is_selected_or_not">Выбрано это или нет </string>
     <string name="edit_notifications_about_this_lesson">Изменить уведомления об этой паре</string>
-    <string name="close">Закрыть</string>
-    <string name="edit_link">Изменить ссылку</string>
-    <string name="view_table">Посмотреть таблицу</string>
-    <string name="copy">Скопировать</string>
-    <string name="clear">Очистить</string>
     <string name="this_is_user_subgroup">Это подгруппа пользователя</string>
     <string name="this_is_user_role">Это роль пользователя</string>
     <string name="icon_teacher">Иконка преподавателя</string>
     <string name="icon_subgroup">Иконка подгруппы</string>
     <string name="change_color_of_interface">Изменить увет интерфейса</string>
     <string name="cats_in_interface">Котики на интерфейсе</string>
-    <string name="paste">вставить</string>
     <string name="view_code">Посмотреть код</string>
     <string name="clear_text">Очистить</string>
     <string name="meow">Мяу&lt;3</string>
