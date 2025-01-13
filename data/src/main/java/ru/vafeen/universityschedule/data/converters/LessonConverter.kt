@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.data.converters
 
 import ru.vafeen.universityschedule.data.database.entity.LessonEntity
-import ru.vafeen.universityschedule.domain.converter.BaseConverter
+import ru.vafeen.universityschedule.domain.converter.TwoWayBaseConverter
 import ru.vafeen.universityschedule.domain.models.Lesson
 import ru.vafeen.universityschedule.domain.models.model_additions.Frequency
 
@@ -10,7 +10,7 @@ import ru.vafeen.universityschedule.domain.models.model_additions.Frequency
  *
  * Используется для преобразования данных между сущностью базы данных и моделью доменного уровня.
  */
-internal class LessonConverter : BaseConverter<LessonEntity, Lesson> {
+internal class LessonConverter : TwoWayBaseConverter<LessonEntity, Lesson> {
 
     /**
      * Преобразует [LessonEntity] в [Lesson].

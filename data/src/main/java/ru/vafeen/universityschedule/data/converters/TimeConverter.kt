@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.data.converters
 
 import androidx.room.TypeConverter
-import ru.vafeen.universityschedule.domain.converter.BaseConverter
+import ru.vafeen.universityschedule.domain.converter.TwoWayBaseConverter
 import java.time.LocalTime
 
 /**
@@ -10,7 +10,7 @@ import java.time.LocalTime
  * Используется для сохранения времени в базе данных в формате количества секунд с начала суток
  * и его преобразования в объект [LocalTime] при работе с доменной моделью.
  */
-internal class TimeConverter : BaseConverter<Int?, LocalTime?> {
+internal class TimeConverter : TwoWayBaseConverter<Int?, LocalTime?> {
 
     /**
      * Преобразует [Int?] в [LocalTime?].

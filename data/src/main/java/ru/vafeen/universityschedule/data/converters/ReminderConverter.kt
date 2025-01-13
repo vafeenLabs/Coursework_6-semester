@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.data.converters
 
 import ru.vafeen.universityschedule.data.database.entity.ReminderEntity
-import ru.vafeen.universityschedule.domain.converter.BaseConverter
+import ru.vafeen.universityschedule.domain.converter.TwoWayBaseConverter
 import ru.vafeen.universityschedule.domain.models.Reminder
 
 /**
@@ -9,7 +9,7 @@ import ru.vafeen.universityschedule.domain.models.Reminder
  *
  * Используется для преобразования данных между сущностью базы данных и моделью доменного уровня.
  */
-internal class ReminderConverter : BaseConverter<ReminderEntity, Reminder> {
+internal class ReminderConverter : TwoWayBaseConverter<ReminderEntity, Reminder> {
 
     /**
      * Преобразует [ReminderEntity] в [Reminder].
