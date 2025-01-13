@@ -14,6 +14,7 @@ import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.usecase.CatMeowUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowLessonsUseCase
 import ru.vafeen.universityschedule.domain.usecase.network.GetSheetDataAndUpdateDBUseCase
+import ru.vafeen.universityschedule.presentation.utils.Link
 
 /**
  * ViewModel для экрана настроек.
@@ -30,10 +31,6 @@ internal class SettingsScreenViewModel(
     private val catMeowUseCase: CatMeowUseCase,
     private val settingsManager: SettingsManager,
 ) : ViewModel() {
-
-    // Переменная для хранения последнего использованного ссылки
-    private var lastLink: String? = null
-
     // Поток состояний для хранения настроек приложения
     val settings = settingsManager.settingsFlow
 
@@ -59,28 +56,14 @@ internal class SettingsScreenViewModel(
     val gSheetsServiceRequestStatusFlow = _gSheetsServiceRequestStatusFlow.asStateFlow()
 
     init {
-        // Инициализируем поток для отслеживания изменений в настройках
+        // Запрос на получение данных
         viewModelScope.launch(Dispatchers.IO) {
-            settings.collect {
-                Log.d("settings", "collect in voewModel")
-                val link = it.link
-                when {
-                    link.isNullOrEmpty() -> {
-                        // Если ссылка пустая, устанавливаем статус NoLink
-                        _gSheetsServiceRequestStatusFlow.emit(GSheetsServiceRequestStatus.NoLink)
-                    }
-
-                    link.isNotEmpty() && link != lastLink -> {
-                        // Если ссылка изменена, выполняем запрос на получение данных из Google Sheets
-                        getSheetDataAndUpdateDBUseCase.invoke(link = link) { status ->
-                            _gSheetsServiceRequestStatusFlow.emit(status)
-                        }
-                    }
-                }
-                lastLink = link
+            getSheetDataAndUpdateDBUseCase.invoke(link = Link.LINK_DATA) { status ->
+                _gSheetsServiceRequestStatusFlow.emit(status)
             }
         }
     }
+
 
     // Поток состояний для хранения списка подгрупп
     private val _subgroupFlow = MutableStateFlow<List<String>>(listOf())
