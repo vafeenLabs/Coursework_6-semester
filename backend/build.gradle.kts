@@ -11,3 +11,10 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.0.0")
+    implementation("io.ktor:ktor-server-core:1.0.0")
+    implementation("io.ktor:ktor-server-netty:1.0.0")
+    implementation("ch.qos.logback:logback-classic:1.0.0")
+}
