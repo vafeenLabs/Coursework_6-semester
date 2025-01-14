@@ -7,6 +7,7 @@ import ru.vafeen.universityschedule.data.converters.DateTimeConverter
 import ru.vafeen.universityschedule.data.converters.TimeConverter
 import ru.vafeen.universityschedule.data.database.dao.LessonDao
 import ru.vafeen.universityschedule.data.database.dao.ReminderDao
+import ru.vafeen.universityschedule.data.database.entity.GroupEntity
 import ru.vafeen.universityschedule.data.database.entity.LessonEntity
 import ru.vafeen.universityschedule.data.database.entity.ReminderEntity
 
@@ -18,8 +19,8 @@ import ru.vafeen.universityschedule.data.database.entity.ReminderEntity
  */
 @Database(
     exportSchema = true,
-    entities = [LessonEntity::class, ReminderEntity::class],
-    version = 7,
+    entities = [LessonEntity::class, ReminderEntity::class, GroupEntity::class],
+    version = 8,
 )
 @TypeConverters(TimeConverter::class, DateTimeConverter::class)
 internal abstract class AppDatabase : RoomDatabase() {

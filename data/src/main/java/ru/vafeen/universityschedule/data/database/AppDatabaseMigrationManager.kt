@@ -52,9 +52,22 @@ internal class AppDatabaseMigrationManager {
             db.execSQL("ALTER TABLE lesson ADD COLUMN note TEXT DEFAULT NULL")
         },
         createMigration(6, 7) { db ->
-            db.execSQL( """
+            db.execSQL(
+                """
                 ALTER TABLE `Lesson` ADD COLUMN `linkToCourse` TEXT
-                    """.trimIndent())
+                    """.trimIndent()
+            )
+        },
+        createMigration(7, 8) { db ->
+            db.execSQL(
+                """
+                CREATE TABLE IF NOT EXISTS `Group`(
+                `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                `course` INTEGER NOT NULL,
+                `group` TEXT NOT NULL
+                )
+            """.trimIndent()
+            )
         }
     )
 
