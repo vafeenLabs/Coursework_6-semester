@@ -3,7 +3,6 @@ package ru.vafeen.universityschedule.data.di
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import ru.vafeen.universityschedule.data.converters.DateTimeConverter
-import ru.vafeen.universityschedule.data.converters.DayOfWeekConverter
 import ru.vafeen.universityschedule.data.converters.DownloadStatusConverter
 import ru.vafeen.universityschedule.data.converters.FrequencyOneWayConverter
 import ru.vafeen.universityschedule.data.converters.JsonStringTemplateConverter
@@ -21,7 +20,6 @@ internal val converterModule = module {
     singleOf(::ReleaseConverter)
     singleOf(::ReminderConverter)
     singleOf(::TimeConverter)
-    singleOf(::DayOfWeekConverter)
     singleOf(::FrequencyOneWayConverter)
     singleOf(::JsonStringTemplateConverter)
 }

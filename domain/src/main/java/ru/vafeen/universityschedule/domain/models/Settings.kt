@@ -24,6 +24,8 @@ import ru.vafeen.universityschedule.domain.models.model_additions.Role
 data class Settings(
     var lightThemeColor: Color? = null,
     var darkThemeColor: Color? = null,
+    val teacherName: String? = null,
+    val group: String? = null,
     var subgroup: String? = null,
     var isSelectedFrequencyCorrespondsToTheWeekNumbers: Boolean? = null,
     var lastDemonstratedVersion: Long = 1,

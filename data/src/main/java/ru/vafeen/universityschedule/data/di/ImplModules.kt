@@ -12,8 +12,8 @@ import ru.vafeen.universityschedule.data.impl.database.LessonRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.database.ReminderRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.end_points.DownloadServiceLink
 import ru.vafeen.universityschedule.data.impl.network.end_points.GitHubDataServiceLink
-import ru.vafeen.universityschedule.data.impl.network.repository.ReleaseRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.repository.LessonDataRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.network.repository.ReleaseRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.service.RefresherImpl
 import ru.vafeen.universityschedule.data.impl.network.service.SettingsManagerImpl
 import ru.vafeen.universityschedule.data.impl.notifications.NotificationBuilderImpl
@@ -25,7 +25,6 @@ import ru.vafeen.universityschedule.data.network.service.GitHubDataService
 import ru.vafeen.universityschedule.data.network.service.LessonDataService
 import ru.vafeen.universityschedule.domain.database.LessonRepository
 import ru.vafeen.universityschedule.domain.database.ReminderRepository
-import ru.vafeen.universityschedule.domain.network.GoogleSheetsServiceLink
 import ru.vafeen.universityschedule.domain.network.repository.LessonDataRepository
 import ru.vafeen.universityschedule.domain.network.service.Refresher
 import ru.vafeen.universityschedule.domain.network.service.ReleaseRepository
@@ -70,11 +69,7 @@ internal val networkServiceModuleImpl = module {
             .baseUrl(DownloadServiceLink.BASE_LINK)
             .build().create(DownloadService::class.java)
     }
-    single<LessonDataService> {
-        Retrofit.Builder()
-            .baseUrl(GoogleSheetsServiceLink.BASE_URL)
-            .build().create(LessonDataService::class.java)
-    }
+    singleOf(::LessonDataService)
 }
 
 internal val servicesModuleImpl = module {

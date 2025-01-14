@@ -12,6 +12,9 @@ val converter = JsonStringTemplateConverter()
 fun main() {
     embeddedServer(Netty, host = "0.0.0.0", port = 8080) {
         routing {
+            get("/test") {
+                call.respondText { "Test successful!" }
+            }
             get("/") {
                 call.respondText("Hello, world!")
             }

@@ -1,6 +1,6 @@
 package ru.vafeen.universityschedule.data.converters
 
-import android.util.Log
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -8,14 +8,14 @@ import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import ru.vafeen.universityschedule.domain.models.model_additions.Frequency
 import java.lang.reflect.Type
-import java.time.DayOfWeek
 import java.time.LocalTime
 
 internal class JsonStringTemplateConverter(
-    private val dayOfWeekConverter: DayOfWeekConverter,
     private val frequencyOneWayConverter: FrequencyOneWayConverter
 ) {
-    inline fun <reified T> convert(jsonString: String): T? {
+    private var gson: Gson
+
+    init {
         val gsonBuilder = GsonBuilder()
 
         // Регистрация десериалайзера для LocalTime
@@ -25,20 +25,7 @@ internal class JsonStringTemplateConverter(
                 json: JsonElement?,
                 typeOfT: Type?,
                 context: JsonDeserializationContext?
-            ): LocalTime = LocalTime.parse(json?.asString) // Парсим строку в LocalTime
-        })
-
-        // Регистрация десериалайзера для DayOfWeek
-        gsonBuilder.registerTypeAdapter(DayOfWeek::class.java, object :
-            JsonDeserializer<DayOfWeek> {
-            override fun deserialize(
-                json: JsonElement?,
-                typeOfT: Type?,
-                context: JsonDeserializationContext?
-            ): DayOfWeek = json?.asString?.let {
-                dayOfWeekConverter.convert(it)
-            } ?: DayOfWeek.SUNDAY
-
+            ): LocalTime = LocalTime.parse(json?.asString)
         })
 
         // Регистрация десериалайзера для Frequency
@@ -52,25 +39,13 @@ internal class JsonStringTemplateConverter(
                 ?: Frequency.Every
         })
 
-        val gson = gsonBuilder.create()
-        Log.d("json", jsonString)
-
-        try {
-            // Проверяем, является ли T списком
-            if (T::class.java == List::class.java) {
-                val type = object : TypeToken<T>() {}.type
-                gson.fromJson(jsonString, type)
-            } else {
-                gson.fromJson(jsonString, T::class.java)
-            }.also {
-                Log.d("json", it.toString())
-                return it
-            }
-        } catch (e: Exception) {
-            Log.e("json", e.message.toString())
-            return null
-        }
+        gson = gsonBuilder.create()
     }
 
+    inline fun <reified T> convertObject(jsonString: String): T =
+        gson.fromJson(jsonString, T::class.java)
+
+    inline fun <reified T> convertList(jsonString: String): List<T> =
+        gson.fromJson(jsonString, object : TypeToken<List<T>>() {}.type)
 
 }

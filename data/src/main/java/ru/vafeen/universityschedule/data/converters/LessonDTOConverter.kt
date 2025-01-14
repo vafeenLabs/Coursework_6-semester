@@ -3,14 +3,14 @@ package ru.vafeen.universityschedule.data.converters
 import ru.vafeen.universityschdeule.backenddto.LessonDTO
 import ru.vafeen.universityschedule.domain.converter.OneWayBaseConverter
 import ru.vafeen.universityschedule.domain.models.Lesson
-import ru.vafeen.universityschedule.domain.models.model_additions.Frequency
 
 /**
  * Конвертер для преобразования [LessonDTO] в [Lesson] и обратно.
  *
  * Используется для преобразования данных между DTO и моделью доменного уровня.
  */
-internal class LessonDTOConverter : OneWayBaseConverter<LessonDTO, Lesson> {
+internal class LessonDTOConverter(private val frequencyOneWayConverter: FrequencyOneWayConverter) :
+    OneWayBaseConverter<LessonDTO, Lesson> {
 
     /**
      * Преобразует [LessonDTO] в [Lesson].
@@ -27,6 +27,6 @@ internal class LessonDTOConverter : OneWayBaseConverter<LessonDTO, Lesson> {
         classroom = a.classroom,
         teacher = a.teacher,
         subGroup = a.subGroup,
-        frequency = a.frequency?.let { Frequency.valueOf(it) },
+        frequency = a.frequency?.let { frequencyOneWayConverter.convert(it) },
     )
 }

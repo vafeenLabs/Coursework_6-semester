@@ -11,11 +11,11 @@ import ru.vafeen.universityschedule.domain.usecase.db.CleverUpdatingLessonsUseCa
  * Этот класс отвечает за выполнение операции получения данных
  * и обновления базы данных на основе полученных данных.
  *
- * @property getSheetDataUseCase UseCase для получения данных
+ * @property getLessonDataUseCase UseCase для получения данных
  * @property cleverUpdatingLessonsUseCase UseCase для интеллектуального обновления пар.
  */
-class GetSheetDataAndUpdateDBUseCase(
-    private val getSheetDataUseCase: GetSheetDataUseCase,
+class GetLessonDataAndUpdateDBUseCase(
+    private val getLessonDataUseCase: GetLessonDataUseCase,
     private val cleverUpdatingLessonsUseCase: CleverUpdatingLessonsUseCase,
 ) : UseCase {
 
@@ -26,11 +26,10 @@ class GetSheetDataAndUpdateDBUseCase(
      * @param updateRequestStatus Функция обратного вызова для обновления статуса запроса (по умолчанию null).
      */
     suspend fun invoke(
-        link: String,
         updateRequestStatus: (suspend (GSheetsServiceRequestStatus) -> Unit)? = null
     ) {
         updateRequestStatus?.invoke(GSheetsServiceRequestStatus.Waiting) // Устанавливаем статус ожидания
-        getSheetDataUseCase.invoke(link).also {
+        getLessonDataUseCase.invoke().also {
             when (it) {
                 is ResponseResult.Error -> {
                     updateRequestStatus?.invoke(GSheetsServiceRequestStatus.NetworkError) // Обработка ошибки сети

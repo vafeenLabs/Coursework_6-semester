@@ -1,6 +1,5 @@
 package ru.vafeen.universityschedule.presentation.components.viewModels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -13,21 +12,20 @@ import ru.vafeen.universityschedule.domain.models.Settings
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.usecase.CatMeowUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowLessonsUseCase
-import ru.vafeen.universityschedule.domain.usecase.network.GetSheetDataAndUpdateDBUseCase
-import ru.vafeen.universityschedule.presentation.utils.Link
+import ru.vafeen.universityschedule.domain.usecase.network.GetLessonDataAndUpdateDBUseCase
 
 /**
  * ViewModel для экрана настроек.
  * Управляет состоянием, связанным с настройками, обновлениями из Google Sheets и запросами на сервер.
  *
  * @param getAsFlowLessonsUseCase UseCase для получения данных о занятиях.
- * @param getSheetDataAndUpdateDBUseCase UseCase для получения данных из Google Sheets и обновления базы данных.
+ * @param getLessonDataAndUpdateDBUseCase UseCase для получения данных из Google Sheets и обновления базы данных.
  * @param catMeowUseCase UseCase для выполнения действия "мяу".
  * @param settingsManager Менеджер для работы с настройками приложения.
  */
 internal class SettingsScreenViewModel(
     private val getAsFlowLessonsUseCase: GetAsFlowLessonsUseCase,
-    private val getSheetDataAndUpdateDBUseCase: GetSheetDataAndUpdateDBUseCase,
+    private val getLessonDataAndUpdateDBUseCase: GetLessonDataAndUpdateDBUseCase,
     private val catMeowUseCase: CatMeowUseCase,
     private val settingsManager: SettingsManager,
 ) : ViewModel() {
@@ -58,7 +56,7 @@ internal class SettingsScreenViewModel(
     init {
         // Запрос на получение данных
         viewModelScope.launch(Dispatchers.IO) {
-            getSheetDataAndUpdateDBUseCase.invoke(link = Link.LINK_DATA) { status ->
+            getLessonDataAndUpdateDBUseCase.invoke { status ->
                 _gSheetsServiceRequestStatusFlow.emit(status)
             }
         }
