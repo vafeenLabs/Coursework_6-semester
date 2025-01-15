@@ -73,4 +73,6 @@
     <string name="role">Роль</string>
     <string name="teacher">Преподаватель</string>
     <string name="student">Студент</string>
+    <string name="group">Группа</string>
+    <string name="this_is_user_group">Это группа пользователя</string>
 </resources>
