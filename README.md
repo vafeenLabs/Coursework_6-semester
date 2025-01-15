@@ -1,6 +1,6 @@
+# University Schedule
 <div align="center">
 
-# University Schedule
 #### Easily track your university classes with this simple scheduler app.
 
 [![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)](#)
