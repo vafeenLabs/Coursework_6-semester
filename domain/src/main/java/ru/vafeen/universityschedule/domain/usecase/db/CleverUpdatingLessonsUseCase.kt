@@ -1,5 +1,6 @@
 package ru.vafeen.universityschedule.domain.usecase.db
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -41,9 +42,10 @@ class CleverUpdatingLessonsUseCase(
     fun invoke(newLessons: List<Lesson>) {
         // Запускаем обновление в отдельной корутине, используя IO-диспетчер.
         CoroutineScope(Dispatchers.IO).launch {
+            Log.d("lessons", "lessons from server = $newLessons")
             // Получаем текущий список пар из базы данных.
             val lastLessons = getAsFlowLessonsUseCase.invoke().first()
-
+            Log.d("lessons", "lest lessons = $lastLessons")
             // Список для добавления новых или обновленных пар.
             val result = mutableListOf<Lesson>()
             // Список для удаления старых пар, которых нет в новых данных.
@@ -64,7 +66,7 @@ class CleverUpdatingLessonsUseCase(
                         resultForDelete.add(lastLesson)
                 }
             }
-
+            Log.d("lessons", "new lessons = $result")
             // Добавляем новые или обновленные пары в базу данных.
             insertLessonsUseCase.invoke(*result.toTypedArray())
             // Удаляем старые пары из базы данных.

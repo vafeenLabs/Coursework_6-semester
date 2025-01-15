@@ -27,8 +27,8 @@ class GetLessonDataUseCase(
         val settings = settingsManager.settingsFlow.value
         return when (settings.role) {
             Role.Student -> {
-                if (settings.group != null)
-                    lessonDataRepository.getLessonDataByGroup(settings.group)
+                if (settings.groupId != null)
+                    lessonDataRepository.getLessonDataByGroupId(settings.groupId)
                 else lessonDataRepository.getAllLessonData()
             }
 
