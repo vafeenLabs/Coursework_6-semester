@@ -45,12 +45,4 @@ internal class LessonRepositoryImpl(
      */
     override suspend fun deleteLessons(lessons: List<Lesson>) =
         lessonDao.delete(lessons.map { lessonEntityConverter.convertBA(it) })
-
-    /**
-     * Обновление списка пар в базе данных.
-     *
-     * @param lessons Список пар для обновления.
-     */
-    override suspend fun updateLessons(lessons: List<Lesson>) =
-        lessonDao.update(lessons.map { lessonEntityConverter.convertBA(it) })
 }

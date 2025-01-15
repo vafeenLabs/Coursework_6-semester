@@ -28,11 +28,4 @@ interface LessonRepository {
      * @param lessons Список объектов [Lesson], которые нужно удалить.
      */
     suspend fun deleteLessons(lessons: List<Lesson>)
-
-    /**
-     * Обновляет список уроков в базе данных.
-     *
-     * @param lessons Список объектов [Lesson], которые нужно обновить.
-     */
-    suspend fun updateLessons(lessons: List<Lesson>)
 }
