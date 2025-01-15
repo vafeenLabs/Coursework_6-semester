@@ -62,8 +62,8 @@ internal class AppDatabaseMigrationManager {
             db.execSQL(
                 """
                 CREATE TABLE IF NOT EXISTS `Group`(
-                `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                `course` INTEGER NOT NULL,
+                `id` INTEGER PRIMARY KEY NOT NULL
+                `course` NOT NULL,
                 `group` TEXT NOT NULL
                 )
             """.trimIndent()

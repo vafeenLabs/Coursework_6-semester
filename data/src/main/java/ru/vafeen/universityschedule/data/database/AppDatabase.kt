@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ru.vafeen.universityschedule.data.converters.DateTimeConverter
 import ru.vafeen.universityschedule.data.converters.TimeConverter
+import ru.vafeen.universityschedule.data.database.dao.GroupDao
 import ru.vafeen.universityschedule.data.database.dao.LessonDao
 import ru.vafeen.universityschedule.data.database.dao.ReminderDao
 import ru.vafeen.universityschedule.data.database.entity.GroupEntity
@@ -34,4 +35,9 @@ internal abstract class AppDatabase : RoomDatabase() {
      * Получение DAO для работы с напоминаниями.
      */
     abstract fun reminderDao(): ReminderDao
+
+    /**
+     * Получение DAO для работы с группами.
+     */
+    abstract fun groupDao(): GroupDao
 }
