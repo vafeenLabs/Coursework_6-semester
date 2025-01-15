@@ -1,8 +1,14 @@
 package ru.vafeen.universityschedule.backend
 
+import ru.vafeen.universityschdeule.backenddto.GroupDTO
 import ru.vafeen.universityschdeule.backenddto.LessonDTO
 import java.time.DayOfWeek
 import java.time.LocalTime
+
+val groups = listOf(
+    GroupDTO(id = 1, course = 3, group = "ФИИТ 61"),
+    GroupDTO(id = 2, course = 3, group = "ФИИТ 62"),
+)
 
 val lessons = listOf(
     LessonDTO(
@@ -12,7 +18,7 @@ val lessons = listOf(
         endTime = LocalTime.of(21, 30),
         classroom = "10",
         teacher = "Фролова",
-        group = "61",
+        groupId = 1,
         subGroup = "1",
         frequency = null
     ),
@@ -23,7 +29,7 @@ val lessons = listOf(
         endTime = LocalTime.of(9, 35),
         classroom = "12",
         teacher = "Золотухин",
-        group = "61",
+        groupId = 1,
         subGroup = "2",
         frequency = "Числитель"
     ),
@@ -34,7 +40,7 @@ val lessons = listOf(
         endTime = LocalTime.of(9, 35),
         classroom = "11",
         teacher = "Крыжановская",
-        group = "61",
+        groupId = 1,
         subGroup = "2",
         frequency = "Знаменатель"
     ),
@@ -45,7 +51,7 @@ val lessons = listOf(
         endTime = LocalTime.of(11, 20),
         classroom = "9",
         teacher = "Болотова",
-        group = "61",
+        groupId = 1,
         subGroup = "1",
         frequency = "Числитель"
     ),
@@ -56,7 +62,7 @@ val lessons = listOf(
         endTime = LocalTime.of(11, 20),
         classroom = "11",
         teacher = "Крыжановская",
-        group = "61",
+        groupId = 1,
         subGroup = "2",
         frequency = "Числитель"
     ),
@@ -67,7 +73,7 @@ val lessons = listOf(
         endTime = LocalTime.of(15, 0),
         classroom = "11",
         teacher = "Крыжановская",
-        group = "61",
+        groupId = 1,
         subGroup = "1",
         frequency = null
     ),
@@ -78,7 +84,7 @@ val lessons = listOf(
         endTime = LocalTime.of(21, 0),
         classroom = null,
         teacher = null,
-        group = "61", // Для примера, на самом деле это должно быть исправлено
+        groupId = 1, // Для примера, на самом деле это должно быть исправлено
         subGroup = null,
         frequency = "Знаменатель"
     ),
@@ -89,7 +95,7 @@ val lessons = listOf(
         endTime = LocalTime.of(9, 45),
         classroom = "319",
         teacher = "Прокопенко",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = "Числитель"
     ),
@@ -100,7 +106,7 @@ val lessons = listOf(
         endTime = LocalTime.of(9, 35),
         classroom = "226",
         teacher = "Абрамов",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = "Знаменатель"
     ),
@@ -111,7 +117,7 @@ val lessons = listOf(
         endTime = LocalTime.of(11, 50),
         classroom = "319",
         teacher = "Корзунина",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = null
     ),
@@ -122,7 +128,7 @@ val lessons = listOf(
         endTime = LocalTime.of(13, 5),
         classroom = "319",
         teacher = "Корзунина",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = null
     ),
@@ -133,7 +139,7 @@ val lessons = listOf(
         endTime = LocalTime.of(15, 0),
         classroom = "319",
         teacher = "Борисенков",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = "Числитель"
     ),
@@ -144,7 +150,7 @@ val lessons = listOf(
         endTime = LocalTime.of(22, 0),
         classroom = "дистант",
         teacher = "Яцков",
-        group = "62",
+        groupId = 2,
         subGroup = "2",
         frequency = null
     ),
@@ -155,7 +161,7 @@ val lessons = listOf(
         endTime = LocalTime.of(11, 20),
         classroom = "дистант",
         teacher = "Болотова",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = null
     ),
@@ -166,7 +172,7 @@ val lessons = listOf(
         endTime = LocalTime.of(13, 5),
         classroom = "дистант",
         teacher = "Болотова",
-        group = "62",
+        groupId = 2,
         subGroup = "2",
         frequency = "Числитель"
     ),
@@ -177,7 +183,7 @@ val lessons = listOf(
         endTime = LocalTime.of(15, 0),
         classroom = "20",
         teacher = "Серых",
-        group = "62",
+        groupId = 2,
         subGroup = "1",
         frequency = "Числитель"
     ),
@@ -188,7 +194,7 @@ val lessons = listOf(
         endTime = LocalTime.of(15, 0),
         classroom = "20",
         teacher = "Серых",
-        group = "62",
+        groupId = 2,
         subGroup = "2",
         frequency = "Знаменатель"
     ),
@@ -199,7 +205,7 @@ val lessons = listOf(
         endTime = LocalTime.of(16, 55),
         classroom = "12",
         teacher = "Прокопенко",
-        group = "62",
+        groupId = 2,
         subGroup = "1",
         frequency = null
     ),
@@ -210,7 +216,7 @@ val lessons = listOf(
         endTime = LocalTime.of(18, 30),
         classroom = "433",
         teacher = "Прокопенко",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = "Знаменатель"
     ),
@@ -221,7 +227,7 @@ val lessons = listOf(
         endTime = LocalTime.of(9, 35),
         classroom = "20",
         teacher = "Золотухин",
-        group = "62",
+        groupId = 2,
         subGroup = "1",
         frequency = "Числитель"
     ),
@@ -232,7 +238,7 @@ val lessons = listOf(
         endTime = LocalTime.of(9, 35),
         classroom = "329",
         teacher = "Есина",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = "Знаменатель"
     ),
@@ -243,7 +249,7 @@ val lessons = listOf(
         endTime = LocalTime.of(11, 20),
         classroom = "433",
         teacher = "Золотухин",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = null
     ),
@@ -254,7 +260,7 @@ val lessons = listOf(
         endTime = LocalTime.of(13, 5),
         classroom = "226",
         teacher = "Курченкова",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = null
     ),
@@ -265,7 +271,7 @@ val lessons = listOf(
         endTime = LocalTime.of(15, 0),
         classroom = "433",
         teacher = "Вернер",
-        group = "62",
+        groupId = 2,
         subGroup = null,
         frequency = null
     ),
@@ -276,7 +282,7 @@ val lessons = listOf(
         endTime = LocalTime.of(16, 45),
         classroom = "10",
         teacher = "Вернер",
-        group = "62",
+        groupId = 2,
         subGroup = "1",
         frequency = null
     ),

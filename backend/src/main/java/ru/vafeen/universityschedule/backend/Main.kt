@@ -20,16 +20,14 @@ fun main() {
             }
             get("/groups") {
                 call.respondText {
-                    converter.convert(lessons.map {
-                        it.group
-                    }.distinct()).toString()
+                    converter.convert(groups).toString()
                 }
             }
             get("/{group}") {
-                val group = call.parameters["group"]
+                val groupId = call.parameters["group"]?.toIntOrNull()
                 call.respondText {
                     converter.convert(lessons.filter {
-                        it.group == group
+                        it.groupId == groupId
                     }).toString()
                 }
             }
