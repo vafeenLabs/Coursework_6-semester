@@ -1,6 +1,6 @@
 package ru.vafeen.universityschedule.data.converters
 
-import ru.vafeen.universityschdeule.backenddto.LessonDTO
+import ru.vafeen.universityschedule.backenddto.LessonDTO
 import ru.vafeen.universityschedule.domain.converter.OneWayBaseConverter
 import ru.vafeen.universityschedule.domain.models.Lesson
 

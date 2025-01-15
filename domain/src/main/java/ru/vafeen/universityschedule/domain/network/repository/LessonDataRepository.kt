@@ -4,17 +4,25 @@ import ru.vafeen.universityschedule.domain.models.Lesson
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 
 /**
- * Интерфейс репозитория для работы с данными, полученными с сервера.
+ * Интерфейс репозитория для работы с данными занятий, полученными с сервера.
+ * Предоставляет методы для получения расписания занятий.
+ *
+ * @property groupId Идентификатор группы, для которой необходимо получить данные о занятиях.
  */
 interface LessonDataRepository {
 
     /**
-     * Получает список уроков для указанной группы с сервера.
+     * Получает список занятий для указанной группы с сервера.
      *
-     * @param groupId Название группы, для которой необходимо получить данные о занятиях.
-     * @return [ResponseResult] с результатом запроса, содержащим список объектов [Lesson].
+     * @param groupId Идентификатор группы, для которой необходимо получить расписание.
+     * @return [ResponseResult] с результатом запроса, содержащим список объектов [Lesson] или информацию об ошибке.
      */
     suspend fun getLessonDataByGroupId(groupId: Int): ResponseResult<List<Lesson>>
 
+    /**
+     * Получает полный список всех занятий с сервера.
+     *
+     * @return [ResponseResult] с результатом запроса, содержащим список объектов [Lesson] или информацию об ошибке.
+     */
     suspend fun getAllLessonData(): ResponseResult<List<Lesson>>
 }

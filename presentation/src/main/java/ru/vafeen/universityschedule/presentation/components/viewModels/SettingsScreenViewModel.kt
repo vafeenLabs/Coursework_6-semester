@@ -21,10 +21,11 @@ import ru.vafeen.universityschedule.domain.usecase.network.FetchDataAndUpdateDBU
  * ViewModel для экрана настроек.
  * Управляет состоянием, связанным с настройками, обновлениями из Google Sheets и запросами на сервер.
  *
- * @param getAsFlowLessonsUseCase UseCase для получения данных о занятиях.
- * @param fetchDataAndUpdateDBUseCase UseCase для получения данных из Google Sheets и обновления базы данных.
- * @param catMeowUseCase UseCase для выполнения действия "мяу".
- * @param settingsManager Менеджер для работы с настройками приложения.
+ * @property getAsFlowLessonsUseCase Юзкейс для получения данных о занятиях.
+ * @property fetchDataAndUpdateDBUseCase Юзкейс для получения данных из Google Sheets и обновления базы данных.
+ * @property getAsFlowGroupsUseCase Юзкейс для получения данных о группах.
+ * @property catMeowUseCase Юзкейс для выполнения действия "мяу".
+ * @property settingsManager Менеджер для работы с настройками приложения.
  */
 internal class SettingsScreenViewModel(
     private val getAsFlowLessonsUseCase: GetAsFlowLessonsUseCase,
@@ -33,19 +34,29 @@ internal class SettingsScreenViewModel(
     private val catMeowUseCase: CatMeowUseCase,
     private val settingsManager: SettingsManager,
 ) : ViewModel() {
-    // Поток состояний для хранения настроек приложения
+
+    /**
+     * Поток состояний для хранения настроек приложения.
+     */
     val settings = settingsManager.settingsFlow
 
-    // Поток состояний для хранения списка подгрупп
+    /**
+     * Поток состояний для хранения списка подгрупп.
+     * Формируется из данных о занятиях.
+     */
     val subgroupFlow = getAsFlowLessonsUseCase.invoke().map {
         it.mapNotNull { lesson -> lesson.subGroup }.distinct()
     }.stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
 
-    // Поток состояний для хранения списка групп
+    /**
+     * Поток состояний для хранения списка групп.
+     */
     val groupFlow = getAsFlowGroupsUseCase.invoke()
         .stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
 
-    // Поток состояний для статуса запроса к Серверу
+    /**
+     * Поток состояний для статуса запроса к серверу Google Sheets.
+     */
     private val _gSheetsServiceRequestStatusFlow =
         MutableStateFlow(GSheetsServiceRequestStatus.Waiting)
     val gSheetsServiceRequestStatusFlow = _gSheetsServiceRequestStatusFlow.asStateFlow()
@@ -59,22 +70,20 @@ internal class SettingsScreenViewModel(
 
     /**
      * Сохраняет изменения настроек в SharedPreferences.
+     * Принимает функцию, изменяющую текущие настройки.
      *
-     * @param saving Функция, изменяющая текущие настройки.
+     * @param saving Функция, изменяющая настройки.
      */
     fun saveSettingsToSharedPreferences(saving: (Settings) -> Settings) {
         settingsManager.save(saving)
     }
 
-
     init {
-        // Запрос на получение данных
+        // Запускает процесс получения данных из Google Sheets и обновления базы данных.
         viewModelScope.launch(Dispatchers.IO) {
             fetchDataAndUpdateDBUseCase.invoke(this@launch) { status ->
                 _gSheetsServiceRequestStatusFlow.emit(status)
             }
         }
     }
-
-
 }

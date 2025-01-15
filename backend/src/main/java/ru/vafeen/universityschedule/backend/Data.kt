@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.backend
 
-import ru.vafeen.universityschdeule.backenddto.GroupDTO
-import ru.vafeen.universityschdeule.backenddto.LessonDTO
+import ru.vafeen.universityschedule.backenddto.GroupDTO
+import ru.vafeen.universityschedule.backenddto.LessonDTO
 import java.time.DayOfWeek
 import java.time.LocalTime
 

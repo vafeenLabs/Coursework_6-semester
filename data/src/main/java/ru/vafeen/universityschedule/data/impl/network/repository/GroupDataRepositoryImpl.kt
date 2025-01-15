@@ -7,15 +7,22 @@ import ru.vafeen.universityschedule.domain.models.Group
 import ru.vafeen.universityschedule.domain.network.repository.GroupDataRepository
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 
+/**
+ * Реализация репозитория для работы с данными групп через сеть.
+ * Использует сервис [GroupsDataService] для запросов к серверу и конвертер [GroupDTOConverter] для преобразования данных.
+ *
+ * @property groupsDataService Сервис для запросов к серверу.
+ * @property groupDTOConverter Конвертер для преобразования данных из формата DTO в модель приложения.
+ */
 internal class GroupDataRepositoryImpl(
     private val groupsDataService: GroupsDataService,
     private val groupDTOConverter: GroupDTOConverter,
-) :
-    GroupDataRepository {
+) : GroupDataRepository {
+
     /**
      * Получает список доступных групп с сервера.
      *
-     * @return [ResponseResult] с результатом запроса, содержащим список групп ([String]) или информацию об ошибке.
+     * @return [ResponseResult] с результатом запроса, содержащим список групп ([Group]) или информацию об ошибке.
      */
     override suspend fun getGroups(): ResponseResult<List<Group>> =
         getResponseWrappedAllErrors {

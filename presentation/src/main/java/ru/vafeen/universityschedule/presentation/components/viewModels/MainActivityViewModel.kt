@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavHostController
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.launch
 import ru.vafeen.universityschedule.domain.models.Release
 import ru.vafeen.universityschedule.domain.models.Settings
 import ru.vafeen.universityschedule.domain.network.result.DownloadStatus
@@ -36,11 +35,12 @@ import kotlin.system.exitProcess
  * ViewModel для управления состоянием главной активности приложения.
  * Обрабатывает обновления, миграцию данных, навигацию и общие ошибки.
  *
- * @param getLatestReleaseUseCase UseCase для получения последней версии приложения.
- * @param refresher Сервис для скачивания и обновлений.
- * @param context Контекст приложения для работы с ресурсами и управления ошибками.
- * @param schedulerAPIMigrationManager Менеджер миграции API, который отвечает за перенос с AlarmManager на WorkManager.
- * @param settingsManager Менеджер для работы с настройками приложения.
+ * @property getLatestReleaseUseCase Юзкейс для получения последней версии приложения.
+ * @property rebootingRemindersUseCase Юзкейс для перезапуска напоминаний.
+ * @property context Контекст приложения для работы с ресурсами и управления ошибками.
+ * @property schedulerAPIMigrationManager Менеджер миграции API, который отвечает за перенос с AlarmManager на WorkManager.
+ * @property settingsManager Менеджер для работы с настройками приложения.
+ * @property refresher Сервис для скачивания и обновлений.
  */
 internal class MainActivityViewModel(
     private val getLatestReleaseUseCase: GetLatestReleaseUseCase,
@@ -50,15 +50,24 @@ internal class MainActivityViewModel(
     private val settingsManager: SettingsManager,
     private val refresher: Refresher,
 ) : ViewModel(), BottomBarNavigator {
+
+    /**
+     * Последняя доступная версия приложения.
+     */
     var release: Release? = null
         private set
 
     /**
-     * Получает версию приложения.
+     * Версия приложения.
      */
     val versionCode = context.getVersionCode()
     val versionName = context.getVersionName()
 
+    /**
+     * Проверяет наличие обновлений приложения.
+     *
+     * @return Последняя версия приложения, если она отличается от текущей, или null в противном случае.
+     */
     suspend fun checkUpdates(): Release? {
         val localRelease = getLatestReleaseUseCase.invoke()
         return if (localRelease != null && versionName != null &&
@@ -72,6 +81,9 @@ internal class MainActivityViewModel(
         } else null
     }
 
+    /**
+     * Запускает процесс обновления приложения.
+     */
     fun update() {
         release?.let {
             viewModelScope.launch(Dispatchers.IO) {
@@ -81,14 +93,16 @@ internal class MainActivityViewModel(
     }
 
     /**
-     * Поток состояния, который отслеживает процесс обновления.
+     * Поток состояния, отслеживающий процесс обновления.
+     * Возвращает true, если обновление находится в процессе, и false в противном случае.
      */
     val isUpdateInProcessFlow: SharedFlow<Boolean> = refresher.progressFlow.map {
         it !is DownloadStatus.Error && it !is DownloadStatus.Success
     }.shareIn(viewModelScope, SharingStarted.Lazily)
 
     /**
-     * Поток состояния, который отслеживает процент выполнения обновления.
+     * Поток состояния, отслеживающий процент выполнения обновления.
+     * Возвращает процент выполнения или 0, если обновление не начато или завершено.
      */
     val percentageFlow: SharedFlow<Float> = refresher.progressFlow.map {
         when (it) {
@@ -205,6 +219,4 @@ internal class MainActivityViewModel(
         else navController?.popBackStack()
         emitCurrentScreen()
     }
-
-
 }

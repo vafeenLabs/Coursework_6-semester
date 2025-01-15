@@ -8,11 +8,11 @@ import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 
 /**
- * UseCase для получения данных о парах
+ * Юзкейс для получения данных о парах.
+ * Отвечает за выполнение операции получения списка пар из репозитория.
  *
- * Этот класс отвечает за выполнение операции получения списка пар.
- *
- * @property lessonDataRepository Репозиторий, используемый для взаимодействия с данными.
+ * @property lessonDataRepository Репозиторий, используемый для взаимодействия с данными о парах.
+ * @property settingsManager Менеджер настроек, предоставляющий информацию о текущих настройках приложения.
  */
 class GetLessonDataUseCase(
     private val lessonDataRepository: LessonDataRepository,
@@ -20,7 +20,10 @@ class GetLessonDataUseCase(
 ) : UseCase {
 
     /**
-     * Получает список пар из таблицы Google Sheets по указанной ссылке.
+     * Получает список пар из таблицы Google Sheets.
+     * Если пользователь является студентом и указана группа, возвращает расписание для этой группы.
+     * В противном случае возвращает полный список всех пар.
+     *
      * @return [ResponseResult] с списком пар [Lesson] или ошибкой, если произошла ошибка при получении данных.
      */
     suspend fun invoke(): ResponseResult<List<Lesson>> {

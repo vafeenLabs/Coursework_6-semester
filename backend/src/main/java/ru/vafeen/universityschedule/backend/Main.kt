@@ -6,7 +6,7 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import ru.vafeen.universityschdeule.backenddto.converters.JsonStringTemplateConverter
+import ru.vafeen.universityschedule.backenddto.converters.JsonStringTemplateConverter
 
 val converter = JsonStringTemplateConverter()
 fun main() {

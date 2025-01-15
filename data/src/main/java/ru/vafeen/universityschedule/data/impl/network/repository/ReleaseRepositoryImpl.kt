@@ -2,11 +2,10 @@ package ru.vafeen.universityschedule.data.impl.network.repository
 
 import ru.vafeen.universityschedule.data.converters.ReleaseConverter
 import ru.vafeen.universityschedule.data.network.service.GitHubDataService
+import ru.vafeen.universityschedule.data.utils.getResponseWrappedAllErrors
 import ru.vafeen.universityschedule.domain.models.Release
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 import ru.vafeen.universityschedule.domain.network.service.ReleaseRepository
-import java.io.IOException
-import java.net.UnknownHostException
 
 /**
  * Реализация репозитория для получения информации о релизах из GitHub.
@@ -24,8 +23,8 @@ internal class ReleaseRepositoryImpl(
      *
      * @return Результат запроса, содержащий информацию о релизе или ошибку.
      */
-    override suspend fun getLatestRelease(): ResponseResult<Release> {
-        return try {
+    override suspend fun getLatestRelease(): ResponseResult<Release> =
+        getResponseWrappedAllErrors {
             // Выполнение запроса
             val response = gitHubDataService.getLatestRelease()
             val release = releaseConverter.convertAB(response.body())
@@ -37,15 +36,5 @@ internal class ReleaseRepositoryImpl(
                 // Обработка HTTP ошибки, если статус не успешен
                 ResponseResult.Error(Exception("Ошибка сервера: ${response.code()}"))
             }
-        } catch (e: UnknownHostException) {
-            // Ошибка при отсутствии интернета
-            ResponseResult.Error(UnknownHostException("Нет подключения к интернету"))
-        } catch (e: IOException) {
-            // Общая ошибка сети
-            ResponseResult.Error(IOException("Ошибка сети: ${e.localizedMessage}"))
-        } catch (e: Exception) {
-            // Обработка любых других ошибок
-            ResponseResult.Error(Exception("Неизвестная ошибка: ${e.localizedMessage}"))
         }
-    }
 }
