@@ -1,20 +1,20 @@
 package ru.vafeen.universityschedule.domain.usecase.network
 
-import ru.vafeen.universityschedule.domain.network.repository.GroupDataRepository
+import ru.vafeen.universityschedule.domain.network.repository.GroupRemoteRepository
 
 /**
  * Юзкейс для получения данных о группах с сервера.
- * Использует репозиторий [GroupDataRepository] для запроса данных.
+ * Использует репозиторий [GroupRemoteRepository] для запроса данных.
  *
- * @property groupDataRepository Репозиторий для работы с данными групп.
+ * @property groupRemoteRepository Репозиторий для работы с данными групп.
  */
 class GetGroupDataUseCase(
-    private val groupDataRepository: GroupDataRepository
+    private val groupRemoteRepository: GroupRemoteRepository
 ) {
     /**
      * Получает список всех доступных групп с сервера.
      *
      * @return Результат запроса, содержащий список групп или информацию об ошибке.
      */
-    suspend operator fun invoke() = groupDataRepository.getGroups()
+    suspend operator fun invoke() = groupRemoteRepository.getGroups()
 }

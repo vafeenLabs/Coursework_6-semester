@@ -4,7 +4,7 @@ import ru.vafeen.universityschedule.data.converters.GroupDTOConverter
 import ru.vafeen.universityschedule.data.network.service.server.GroupsDataService
 import ru.vafeen.universityschedule.data.utils.getResponseWrappedAllErrors
 import ru.vafeen.universityschedule.domain.models.Group
-import ru.vafeen.universityschedule.domain.network.repository.GroupDataRepository
+import ru.vafeen.universityschedule.domain.network.repository.GroupRemoteRepository
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 
 /**
@@ -14,10 +14,10 @@ import ru.vafeen.universityschedule.domain.network.result.ResponseResult
  * @property groupsDataService Сервис для запросов к серверу.
  * @property groupDTOConverter Конвертер для преобразования данных из формата DTO в модель приложения.
  */
-internal class GroupDataRepositoryImpl(
+internal class GroupRemoteRepositoryImpl(
     private val groupsDataService: GroupsDataService,
     private val groupDTOConverter: GroupDTOConverter,
-) : GroupDataRepository {
+) : GroupRemoteRepository {
 
     /**
      * Получает список доступных групп с сервера.

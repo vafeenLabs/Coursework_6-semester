@@ -7,7 +7,7 @@ import ru.vafeen.universityschedule.domain.network.result.ResponseResult
  * Интерфейс репозитория для работы с данными групп через сеть.
  * Предоставляет методы для получения информации о группах.
  */
-interface GroupDataRepository {
+interface GroupRemoteRepository {
 
     /**
      * Получает список всех доступных групп с сервера.

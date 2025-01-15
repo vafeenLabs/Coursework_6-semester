@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.vafeen.universityschedule.data.converters.LessonEntityConverter
 import ru.vafeen.universityschedule.data.database.AppDatabase
-import ru.vafeen.universityschedule.domain.database.LessonRepository
+import ru.vafeen.universityschedule.domain.database.LessonLocalRepository
 import ru.vafeen.universityschedule.domain.models.Lesson
 
 /**
@@ -13,10 +13,10 @@ import ru.vafeen.universityschedule.domain.models.Lesson
  * @property lessonEntityConverter Конвертер для преобразования объектов Lesson между слоями.
  * @property db База данных приложения.
  */
-internal class LessonRepositoryImpl(
+internal class LessonLocalRepositoryImpl(
     private val lessonEntityConverter: LessonEntityConverter,
     private val db: AppDatabase
-) : LessonRepository {
+) : LessonLocalRepository {
 
     private val lessonDao = db.lessonDao()
 

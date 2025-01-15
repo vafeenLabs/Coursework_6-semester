@@ -6,7 +6,7 @@ import ru.vafeen.universityschedule.domain.models.Group
 /**
  * Интерфейс репозитория для работы с группами.
  */
-interface GroupRepository {
+interface GroupLocalRepository {
 
     /**
      * Получает список групп как поток данных.

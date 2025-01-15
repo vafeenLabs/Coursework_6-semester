@@ -4,7 +4,7 @@ import ru.vafeen.universityschedule.data.converters.LessonDTOConverter
 import ru.vafeen.universityschedule.data.network.service.server.LessonDataService
 import ru.vafeen.universityschedule.data.utils.getResponseWrappedAllErrors
 import ru.vafeen.universityschedule.domain.models.Lesson
-import ru.vafeen.universityschedule.domain.network.repository.LessonDataRepository
+import ru.vafeen.universityschedule.domain.network.repository.LessonRemoteRepository
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 
 /**
@@ -14,10 +14,10 @@ import ru.vafeen.universityschedule.domain.network.result.ResponseResult
  * @property lessonDTOConverter Конвертер для преобразования данных из формата DTO в модель приложения.
  * @property lessonDataService Сервис для запросов к серверу.
  */
-internal class LessonDataRepositoryImpl(
+internal class LessonRemoteRepositoryImpl(
     private val lessonDTOConverter: LessonDTOConverter,
     private val lessonDataService: LessonDataService,
-) : LessonDataRepository {
+) : LessonRemoteRepository {
 
     /**
      * Получает список занятий для указанной группы с сервера.

@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.vafeen.universityschedule.data.converters.ReminderConverter
 import ru.vafeen.universityschedule.data.database.AppDatabase
-import ru.vafeen.universityschedule.domain.database.ReminderRepository
+import ru.vafeen.universityschedule.domain.database.ReminderLocalRepository
 import ru.vafeen.universityschedule.domain.models.Reminder
 
 /**
@@ -13,10 +13,10 @@ import ru.vafeen.universityschedule.domain.models.Reminder
  * @property reminderConverter Конвертер для преобразования объектов Reminder между слоями.
  * @property db База данных приложения.
  */
-internal class ReminderRepositoryImpl(
+internal class ReminderLocalRepositoryImpl(
     private val reminderConverter: ReminderConverter,
     private val db: AppDatabase
-) : ReminderRepository {
+) : ReminderLocalRepository {
 
     private val reminderDao = db.reminderDao()
 
