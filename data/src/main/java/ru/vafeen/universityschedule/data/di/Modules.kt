@@ -5,6 +5,8 @@ import org.koin.dsl.module
 import ru.vafeen.universityschedule.data.converters.DateTimeConverter
 import ru.vafeen.universityschedule.data.converters.DownloadStatusConverter
 import ru.vafeen.universityschedule.data.converters.FrequencyOneWayConverter
+import ru.vafeen.universityschedule.data.converters.GroupDTOConverter
+import ru.vafeen.universityschedule.data.converters.GroupEntityConverter
 import ru.vafeen.universityschedule.data.converters.JsonStringTemplateConverter
 import ru.vafeen.universityschedule.data.converters.LessonDTOConverter
 import ru.vafeen.universityschedule.data.converters.LessonEntityConverter
@@ -22,6 +24,8 @@ internal val converterModule = module {
     singleOf(::TimeConverter)
     singleOf(::FrequencyOneWayConverter)
     singleOf(::JsonStringTemplateConverter)
+    singleOf(::GroupEntityConverter)
+    singleOf(::GroupDTOConverter)
 }
 
 
