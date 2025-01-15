@@ -17,7 +17,6 @@ import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowRemindersUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetReminderByIdOfReminderUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.InsertLessonsUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.InsertRemindersUseCase
-import ru.vafeen.universityschedule.domain.usecase.db.UpdateLessonsUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.CancelJobUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.ScheduleRepeatingJobUseCase
 import java.time.LocalDate
@@ -27,17 +26,16 @@ import java.time.LocalDate
  * напоминаниями и настройками. Обрабатывает добавление, удаление, обновление пар и напоминаний,
  * а также управление миграцией данных и задачами планировщика.
  *
- * @param getAsFlowLessonsUseCase UseCase для получения пар как потока данных.
- * @param getAsFlowRemindersUseCase UseCase для получения напоминаний как потока данных.
- * @param insertLessonsUseCase UseCase для добавления новых пар.
- * @param insertRemindersUseCase UseCase для добавления новых напоминаний.
- * @param deleteAllReminderUseCase UseCase для удаления всех напоминаний.
- * @param getReminderByIdOfReminderUseCase UseCase для получения напоминания по ID.
- * @param scheduleRepeatingJobUseCase UseCase для планирования повторяющихся задач.
- * @param catMeowUseCase UseCase для вызова "мяу" .
- * @param cancelJobUseCase UseCase для отмены задач.
- * @param updateLessonsUseCase UseCase для обновления информации о парах.
- * @param settingsManager Менеджер для работы с настройками приложения.
+ * @property getAsFlowLessonsUseCase Юзкейс для получения пар как потока данных.
+ * @property getAsFlowRemindersUseCase Юзкейс для получения напоминаний как потока данных.
+ * @property insertLessonsUseCase Юзкейс для добавления новых пар.
+ * @property insertRemindersUseCase Юзкейс для добавления новых напоминаний.
+ * @property deleteAllReminderUseCase Юзкейс для удаления всех напоминаний.
+ * @property getReminderByIdOfReminderUseCase Юзкейс для получения напоминания по ID.
+ * @property scheduleRepeatingJobUseCase Юзкейс для планирования повторяющихся задач.
+ * @property catMeowUseCase Юзкейс для вызова "мяу" .
+ * @property cancelJobUseCase Юзкейс для отмены задач.
+ * @property settingsManager Менеджер для работы с настройками приложения.
  */
 internal class MainScreenViewModel(
     getAsFlowLessonsUseCase: GetAsFlowLessonsUseCase,
@@ -49,28 +47,39 @@ internal class MainScreenViewModel(
     private val scheduleRepeatingJobUseCase: ScheduleRepeatingJobUseCase,
     private val catMeowUseCase: CatMeowUseCase,
     private val cancelJobUseCase: CancelJobUseCase,
-    private val updateLessonsUseCase: UpdateLessonsUseCase,
     private val settingsManager: SettingsManager
 ) : ViewModel() {
 
-    // Переменная для отслеживания текущего состояния пары
+    /**
+     * Флаг, указывающий, проходит ли в данный момент пара.
+     */
     var nowIsLesson: Boolean = false
 
-    // Количество дней для отображения в расписании (например, 365 дней)
+    /**
+     * Количество дней для отображения в расписании (например, 365 дней).
+     */
     val pageNumber = 365
 
-    // Текущая дата
+    /**
+     * Текущая дата.
+     */
     val todayDate: LocalDate = LocalDate.now()
 
-    // Поток данных с парами
+    /**
+     * Поток данных с парами.
+     */
     val lessonsFlow = getAsFlowLessonsUseCase.invoke().map {
         it.toList()
     }
 
-    // Поток данных с напоминаниями
+    /**
+     * Поток данных с напоминаниями.
+     */
     val remindersFlow = getAsFlowRemindersUseCase.invoke()
 
-    // Поток с настройками приложения
+    /**
+     * Поток с настройками приложения.
+     */
     val settingsFlow = settingsManager.settingsFlow
 
     /**
@@ -82,18 +91,20 @@ internal class MainScreenViewModel(
 
     /**
      * Функция для обновления данных о паре.
+     *
      * @param lesson Пара, данные которой нужно обновить.
      */
     fun updateLesson(lesson: Lesson) {
         viewModelScope.launch(Dispatchers.IO) {
             Log.d("update", "обновление ${lesson.note}")
-            updateLessonsUseCase.invoke(lesson)
+            insertLessonsUseCase.invoke(lesson)
         }
     }
 
     /**
      * Функция для добавления напоминания за 15 минут до начала пары
      * и обновления локальной базы данных.
+     *
      * @param lesson Пара, для которой создается напоминание.
      * @param newReminder Новое напоминание.
      */
@@ -109,6 +120,7 @@ internal class MainScreenViewModel(
     /**
      * Функция для удаления напоминания о проверке за 15 минут до начала пары
      * и обновления локальной базы данных.
+     *
      * @param lesson Пара, для которой удаляется напоминание.
      */
     suspend fun removeReminderAbout15MinutesBeforeLessonAndUpdateLocalDB(
@@ -127,6 +139,8 @@ internal class MainScreenViewModel(
 
     /**
      * Функция для сохранения настроек в SharedPreferences.
+     * Принимает функцию, изменяющую текущие настройки.
+     *
      * @param saving Функция, изменяющая настройки.
      */
     fun saveSettingsToSharedPreferences(saving: (Settings) -> Settings) {
@@ -136,6 +150,7 @@ internal class MainScreenViewModel(
     /**
      * Функция для добавления напоминания об отметке на паре
      * и обновления локальной базы данных.
+     *
      * @param lesson Пара, для которой создается напоминание.
      * @param newReminder Новое напоминание.
      */
@@ -151,6 +166,7 @@ internal class MainScreenViewModel(
     /**
      * Функция для удаления напоминания об отметке на паре
      * и обновления локальной базы данных.
+     *
      * @param lesson Пара, для которой удаляется напоминание.
      */
     suspend fun removeReminderAboutCheckingOnLessonAndUpdateLocalDB(

@@ -7,6 +7,7 @@ import java.time.LocalTime
 
 /**
  * Сущность для представления пары в базе данных.
+ * Содержит подробную информацию о паре, включая день недели, время начала и конца, аудиторию, преподавателя и другие атрибуты.
  *
  * @property id Уникальный идентификатор пары (генерируется автоматически).
  * @property dayOfWeek День недели, в который проходит пара.
@@ -20,6 +21,7 @@ import java.time.LocalTime
  * @property idOfReminderBeforeLesson Идентификатор напоминания перед парой.
  * @property idOfReminderAfterBeginningLesson Идентификатор напоминания после начала пары.
  * @property note Заметки пользователя к паре.
+ * @property linkToCourse Ссылка на курс, связанный с парой.
  */
 @Entity(tableName = "Lesson")
 internal data class LessonEntity(
@@ -40,6 +42,7 @@ internal data class LessonEntity(
 
     /**
      * Переопределение метода toString для удобного отображения информации о паре.
+     * Возвращает строку с основной информацией о паре.
      */
     override fun toString(): String {
         return "\n dayOfWeek=${dayOfWeek ?: "\"is null\""} name=${name ?: "\"is null\""} st=${startTime}-et=${endTime} classroom=${classroom ?: "\"is null\""} teacher=${teacher ?: "\"is null\""} subGroup=${subGroup ?: "\"is null\""} frequency=${frequency ?: "\"is null\""}"

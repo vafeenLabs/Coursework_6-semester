@@ -54,4 +54,12 @@ dependencies {
     implementation(libs.work.runtime.ktx)
     //Direct-Refresher
     implementation(libs.direct.refresher)
+    //ktor
+    // Ktor client core
+    implementation ("io.ktor:ktor-client-core:2.3.4")
+    // Ktor client for Android
+    implementation ("io.ktor:ktor-client-okhttp:2.3.4")
+    // Json serialization (если нужно)
+    implementation ("io.ktor:ktor-client-content-negotiation:2.3.4")
+    implementation ("io.ktor:ktor-serialization-kotlinx-json:2.3.4")
 }

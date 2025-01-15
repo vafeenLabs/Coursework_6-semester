@@ -5,12 +5,14 @@ import com.google.gson.Gson
 import ru.vafeen.universityschedule.domain.models.model_additions.Role
 
 /**
- * Класс, представляющий локальные настройки приложения.
+ * Модель для представления локальных настроек приложения.
+ * Содержит информацию о темах, подгруппе пользователя, ссылках и различных флагах функциональности.
  *
  * @property lightThemeColor Цвет темы для светлого режима (может быть null).
  * @property darkThemeColor Цвет темы для темного режима (может быть null).
+ * @property teacherName Имя преподавателя (может быть null).
+ * @property groupId Идентификатор группы пользователя (может быть null).
  * @property subgroup Подгруппа, к которой относится пользователь (может быть null).
- * @property link Ссылка, используемая в приложении (может быть null).
  * @property isSelectedFrequencyCorrespondsToTheWeekNumbers Флаг, указывающий, соответствует ли выбранная частота номерам недель (может быть null).
  * @property lastDemonstratedVersion Последняя продемонстрированная версия приложения.
  * @property weekendCat Флаг, указывающий на наличие функции гифки котика на выходном дне (по умолчанию false).
@@ -19,11 +21,14 @@ import ru.vafeen.universityschedule.domain.models.model_additions.Role
  * @property notificationsAboutLesson Флаг, указывающий на наличие функции уведомлений о паре (по умолчанию true).
  * @property releaseBody Описание релиза.
  * @property isMigrationFromAlarmManagerToWorkManagerSuccessful Флаг, указывающий на успешность миграции от AlarmManager к WorkManager (по умолчанию false).
- * @property isRemindersRebootedForVersion6_1_15 Флаг указывающий на перезагрузку всех задач после изменений в [Scheduler][ru.vafeen.universityschedule.domain.scheduler.Scheduler]
+ * @property isRemindersRebootedForVersion6_1_15 Флаг, указывающий на перезагрузку всех задач после изменений в [Scheduler][ru.vafeen.universityschedule.domain.scheduler.Scheduler].
+ * @property role Роль пользователя (может быть null).
  */
 data class Settings(
     var lightThemeColor: Color? = null,
     var darkThemeColor: Color? = null,
+    val teacherName: String? = null,
+    val groupId: Int? = null,
     var subgroup: String? = null,
     var isSelectedFrequencyCorrespondsToTheWeekNumbers: Boolean? = null,
     var lastDemonstratedVersion: Long = 1,

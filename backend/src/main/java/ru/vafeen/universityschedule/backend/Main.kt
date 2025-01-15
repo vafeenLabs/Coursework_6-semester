@@ -6,20 +6,28 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import ru.vafeen.universityschdeule.backenddto.converters.JsonStringTemplateConverter
+import ru.vafeen.universityschedule.backenddto.converters.JsonStringTemplateConverter
 
 val converter = JsonStringTemplateConverter()
 fun main() {
     embeddedServer(Netty, host = "0.0.0.0", port = 8080) {
         routing {
+            get("/test") {
+                call.respondText { "Test successful!" }
+            }
             get("/") {
                 call.respondText("Hello, world!")
             }
+            get("/groups") {
+                call.respondText {
+                    converter.convert(groups).toString()
+                }
+            }
             get("/{group}") {
-                val group = call.parameters["group"]
+                val groupId = call.parameters["group"]?.toIntOrNull()
                 call.respondText {
                     converter.convert(lessons.filter {
-                        it.group == group
+                        it.groupId == groupId
                     }).toString()
                 }
             }

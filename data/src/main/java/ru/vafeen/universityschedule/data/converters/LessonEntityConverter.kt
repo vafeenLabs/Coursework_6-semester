@@ -10,7 +10,7 @@ import ru.vafeen.universityschedule.domain.models.model_additions.Frequency
  *
  * Используется для преобразования данных между сущностью базы данных и моделью доменного уровня.
  */
-internal class LessonConverter : TwoWayBaseConverter<LessonEntity, Lesson> {
+internal class LessonEntityConverter : TwoWayBaseConverter<LessonEntity, Lesson> {
 
     /**
      * Преобразует [LessonEntity] в [Lesson].

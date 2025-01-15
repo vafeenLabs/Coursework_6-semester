@@ -1,12 +1,10 @@
 package ru.vafeen.universityschedule.data.impl.network.service
 
 import android.content.SharedPreferences
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import ru.vafeen.universityschedule.domain.models.Settings
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.utils.getSettingsOrCreateIfNull
@@ -39,10 +37,9 @@ internal class SettingsManagerImpl(private val sharedPreferences: SharedPreferen
      */
     init {
         sharedPreferences.registerOnSharedPreferenceChangeListener { sharedPreferences, key ->
-            CoroutineScope(Dispatchers.IO).launch {
-                // Эмитим новые настройки, если в SharedPreferences произошло изменение
-                _settingsFlow.emit(sharedPreferences.getSettingsOrCreateIfNull())
-            }
+            // Эмитим новые настройки, если в SharedPreferences произошло изменение
+            Log.d("sp", "callback")
+            _settingsFlow.value = sharedPreferences.getSettingsOrCreateIfNull()
         }
     }
 
@@ -57,6 +54,7 @@ internal class SettingsManagerImpl(private val sharedPreferences: SharedPreferen
     override fun save(saving: (Settings) -> Settings) {
         // Обновляем настройки в памяти
         settings = saving(settings)
+        Log.d("sp", "save ${settings.toJsonString()}")
         // Сохраняем обновленные настройки в SharedPreferences
         sharedPreferences.save(settings)
     }
