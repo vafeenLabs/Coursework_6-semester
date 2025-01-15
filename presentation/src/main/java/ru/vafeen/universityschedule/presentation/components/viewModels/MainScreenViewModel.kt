@@ -17,7 +17,6 @@ import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowRemindersUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetReminderByIdOfReminderUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.InsertLessonsUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.InsertRemindersUseCase
-import ru.vafeen.universityschedule.domain.usecase.db.UpdateLessonsUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.CancelJobUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.ScheduleRepeatingJobUseCase
 import java.time.LocalDate
@@ -49,7 +48,6 @@ internal class MainScreenViewModel(
     private val scheduleRepeatingJobUseCase: ScheduleRepeatingJobUseCase,
     private val catMeowUseCase: CatMeowUseCase,
     private val cancelJobUseCase: CancelJobUseCase,
-    private val updateLessonsUseCase: UpdateLessonsUseCase,
     private val settingsManager: SettingsManager
 ) : ViewModel() {
 
@@ -87,7 +85,7 @@ internal class MainScreenViewModel(
     fun updateLesson(lesson: Lesson) {
         viewModelScope.launch(Dispatchers.IO) {
             Log.d("update", "обновление ${lesson.note}")
-            updateLessonsUseCase.invoke(lesson)
+            insertLessonsUseCase.invoke(lesson)
         }
     }
 

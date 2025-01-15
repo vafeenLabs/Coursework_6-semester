@@ -4,33 +4,51 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import ru.vafeen.universityschedule.domain.GSheetsServiceRequestStatus
 import ru.vafeen.universityschedule.domain.models.Settings
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.usecase.CatMeowUseCase
+import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowGroupsUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowLessonsUseCase
-import ru.vafeen.universityschedule.domain.usecase.network.GetLessonDataAndUpdateDBUseCase
+import ru.vafeen.universityschedule.domain.usecase.network.FetchDataAndUpdateDBUseCase
 
 /**
  * ViewModel для экрана настроек.
  * Управляет состоянием, связанным с настройками, обновлениями из Google Sheets и запросами на сервер.
  *
  * @param getAsFlowLessonsUseCase UseCase для получения данных о занятиях.
- * @param getLessonDataAndUpdateDBUseCase UseCase для получения данных из Google Sheets и обновления базы данных.
+ * @param fetchDataAndUpdateDBUseCase UseCase для получения данных из Google Sheets и обновления базы данных.
  * @param catMeowUseCase UseCase для выполнения действия "мяу".
  * @param settingsManager Менеджер для работы с настройками приложения.
  */
 internal class SettingsScreenViewModel(
     private val getAsFlowLessonsUseCase: GetAsFlowLessonsUseCase,
-    private val getLessonDataAndUpdateDBUseCase: GetLessonDataAndUpdateDBUseCase,
+    private val fetchDataAndUpdateDBUseCase: FetchDataAndUpdateDBUseCase,
+    private val getAsFlowGroupsUseCase: GetAsFlowGroupsUseCase,
     private val catMeowUseCase: CatMeowUseCase,
     private val settingsManager: SettingsManager,
 ) : ViewModel() {
     // Поток состояний для хранения настроек приложения
     val settings = settingsManager.settingsFlow
+
+    // Поток состояний для хранения списка подгрупп
+    val subgroupFlow = getAsFlowLessonsUseCase.invoke().map {
+        it.mapNotNull { lesson -> lesson.subGroup }.distinct()
+    }.stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
+
+    // Поток состояний для хранения списка групп
+    val groupFlow = getAsFlowGroupsUseCase.invoke()
+        .stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
+
+    // Поток состояний для статуса запроса к Серверу
+    private val _gSheetsServiceRequestStatusFlow =
+        MutableStateFlow(GSheetsServiceRequestStatus.Waiting)
+    val gSheetsServiceRequestStatusFlow = _gSheetsServiceRequestStatusFlow.asStateFlow()
 
     /**
      * Функция для выполнения действия "мяу".
@@ -48,33 +66,15 @@ internal class SettingsScreenViewModel(
         settingsManager.save(saving)
     }
 
-    // Поток состояний для статуса запроса к Google Sheets
-    private val _gSheetsServiceRequestStatusFlow =
-        MutableStateFlow<GSheetsServiceRequestStatus>(GSheetsServiceRequestStatus.Waiting)
-    val gSheetsServiceRequestStatusFlow = _gSheetsServiceRequestStatusFlow.asStateFlow()
 
     init {
         // Запрос на получение данных
         viewModelScope.launch(Dispatchers.IO) {
-            getLessonDataAndUpdateDBUseCase.invoke { status ->
+            fetchDataAndUpdateDBUseCase.invoke(this@launch) { status ->
                 _gSheetsServiceRequestStatusFlow.emit(status)
             }
         }
     }
 
 
-    // Поток состояний для хранения списка подгрупп
-    private val _subgroupFlow = MutableStateFlow<List<String>>(listOf())
-    val subgroupFlow = _subgroupFlow.asStateFlow()
-
-    init {
-        // Инициализируем поток для получения подгрупп из базы данных
-        viewModelScope.launch(Dispatchers.IO) {
-            getAsFlowLessonsUseCase.invoke().map { it.mapNotNull { lesson -> lesson.subGroup } }
-                .collect { subGroups ->
-                    // Эмитируем только уникальные подгруппы
-                    _subgroupFlow.emit(subGroups.distinct())
-                }
-        }
-    }
 }

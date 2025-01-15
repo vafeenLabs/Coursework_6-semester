@@ -11,7 +11,7 @@ import org.koin.core.context.GlobalContext.startKoin
 import ru.vafeen.universityschedule.data.di.main.mainDataModule
 import ru.vafeen.universityschedule.domain.di.main.mainDomainModule
 import ru.vafeen.universityschedule.domain.notifications.NotificationChannelInfo
-import ru.vafeen.universityschedule.domain.usecase.network.GetLessonDataAndUpdateDBUseCase
+import ru.vafeen.universityschedule.domain.usecase.network.FetchDataAndUpdateDBUseCase
 import ru.vafeen.universityschedule.domain.utils.createNotificationChannelKClass
 import ru.vafeen.universityschedule.presentation.di.main.mainPresentationModule
 
@@ -20,8 +20,8 @@ class App : Application() {
         super.onCreate()
         koinInit()
 
-        CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-            get<GetLessonDataAndUpdateDBUseCase>().invoke()
+        CoroutineScope(Dispatchers.IO).launch {
+            get<FetchDataAndUpdateDBUseCase>().invoke(this)
         }
 
         registerNotificationChannels()

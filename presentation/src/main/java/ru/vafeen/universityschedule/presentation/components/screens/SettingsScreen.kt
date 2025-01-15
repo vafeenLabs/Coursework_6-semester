@@ -1,6 +1,7 @@
 package ru.vafeen.universityschedule.presentation.components.screens
 
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -15,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AssistChip
@@ -48,6 +48,7 @@ import ru.vafeen.universityschedule.presentation.theme.FontSize
 import ru.vafeen.universityschedule.presentation.theme.Theme
 import ru.vafeen.universityschedule.presentation.utils.Link
 import ru.vafeen.universityschedule.presentation.utils.getIconByRequestStatus
+import ru.vafeen.universityschedule.presentation.utils.groupCourseString
 import ru.vafeen.universityschedule.presentation.utils.openLink
 import ru.vafeen.universityschedule.presentation.utils.sendEmail
 import ru.vafeen.universityschedule.presentation.utils.suitableColor
@@ -59,14 +60,15 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
     val context = LocalContext.current
     val dark = isSystemInDarkTheme()
     val subgroupList by viewModel.subgroupFlow.collectAsState()
+    val groupList by viewModel.groupFlow.collectAsState()
     val settings by viewModel.settings.collectAsState()
 
     var colorIsEditable by remember { mutableStateOf(false) }
     var isFeaturesEditable by remember { mutableStateOf(false) }
+    var isGroupChanging by remember { mutableStateOf(false) }
     var isSubGroupChanging by remember { mutableStateOf(false) }
     var catsOnUIIsChanging by remember { mutableStateOf(false) }
     var isRoleChanging by remember { mutableStateOf(false) }
-    val subGroupLazyRowState = rememberLazyListState()
     val networkState by viewModel.gSheetsServiceRequestStatusFlow.collectAsState()
 
     BackHandler {
@@ -182,8 +184,8 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                                             role = if (settings.role != role) role else null
                                         ).let { s ->
                                             if (role == Role.Teacher) s.copy(
-                                                subgroup = null
-                                                // TODO(Add removing group this)
+                                                subgroup = null,
+                                                groupId = null
                                             ) else s
                                         }
                                     }
@@ -195,6 +197,53 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                     }
                 }
             )
+
+            // Группа
+            if (groupList.isNotEmpty() && settings.role == Role.Student) {
+                CardOfSettings(
+                    text = stringResource(R.string.group),
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.group),
+                            contentDescription = stringResource(R.string.group),
+                            tint = it.suitableColor()
+                        )
+                    },
+                    onClick = { isGroupChanging = !isGroupChanging },
+                    additionalContentIsVisible = isGroupChanging,
+                    additionalContent = {
+                        LazyRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = it)
+                        ) {
+                            items(groupList) { group ->
+
+                                AssistChip(
+                                    leadingIcon = {
+                                        if (group.id == settings.groupId) {
+                                            Icon(
+                                                painter = painterResource(id = R.drawable.done),
+                                                contentDescription = stringResource(R.string.this_is_user_group),
+                                                tint = Theme.colors.oppositeTheme
+                                            )
+                                        }
+                                    },
+                                    modifier = Modifier.padding(horizontal = 3.dp),
+                                    onClick = {
+                                        viewModel.saveSettingsToSharedPreferences { settings ->
+                                            settings.copy(
+                                                groupId = if (settings.groupId != group.id) group.id else null
+                                            )
+                                        }
+                                    },
+                                    label = { TextForThisTheme(text = group.groupCourseString()) }
+                                )
+                            }
+                        }
+                    }
+                )
+            }
 
             // Подгруппа
             if (subgroupList.isNotEmpty() && settings.role == Role.Student) {
@@ -211,7 +260,6 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                     additionalContentIsVisible = isSubGroupChanging,
                     additionalContent = {
                         LazyRow(
-                            state = subGroupLazyRowState,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = it)
@@ -241,6 +289,8 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                         }
                     }
                 )
+            } else {
+                Log.d("subgroup", "${subgroupList} && ${settings.role == Role.Student}")
             }
 
             // Карточка для настроек уведомлений
