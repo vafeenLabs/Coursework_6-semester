@@ -10,7 +10,7 @@ data class LessonDTO(
     val endTime: LocalTime,
     val classroom: String? = null,
     val teacher: String? = null,
-    val group: String? = null,
+    val groupId: Int,
     val subGroup: String? = null,
     val frequency: String? = null,
 )
