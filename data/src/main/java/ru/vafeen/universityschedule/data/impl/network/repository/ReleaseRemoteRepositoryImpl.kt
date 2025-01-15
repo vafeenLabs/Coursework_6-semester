@@ -5,7 +5,7 @@ import ru.vafeen.universityschedule.data.network.service.GitHubDataService
 import ru.vafeen.universityschedule.data.utils.getResponseWrappedAllErrors
 import ru.vafeen.universityschedule.domain.models.Release
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
-import ru.vafeen.universityschedule.domain.network.service.ReleaseRepository
+import ru.vafeen.universityschedule.domain.network.repository.ReleaseRemoteRepository
 
 /**
  * Реализация репозитория для получения информации о релизах из GitHub.
@@ -13,10 +13,10 @@ import ru.vafeen.universityschedule.domain.network.service.ReleaseRepository
  * @property gitHubDataService Сервис для выполнения запросов к API GitHub.
  * @property releaseConverter Конвертер для преобразования объектов Release между слоями.
  */
-internal class ReleaseRepositoryImpl(
+internal class ReleaseRemoteRepositoryImpl(
     private val gitHubDataService: GitHubDataService,
     private val releaseConverter: ReleaseConverter
-) : ReleaseRepository {
+) : ReleaseRemoteRepository {
 
     /**
      * Получение последнего релиза из GitHub.

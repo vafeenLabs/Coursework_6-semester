@@ -1,4 +1,4 @@
-package ru.vafeen.universityschedule.domain.network.service
+package ru.vafeen.universityschedule.domain.network.repository
 
 import ru.vafeen.universityschedule.domain.models.Release
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
@@ -6,7 +6,7 @@ import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 /**
  * Интерфейс репозитория для работы с релизами.
  */
-interface ReleaseRepository {
+interface ReleaseRemoteRepository {
 
     /**
      * Получает информацию о последнем релизе.

@@ -6,7 +6,7 @@ import ru.vafeen.universityschedule.domain.models.Reminder
 /**
  * Интерфейс репозитория для работы с напоминаниями.
  */
-interface ReminderRepository {
+interface ReminderLocalRepository {
 
     /**
      * Получает список напоминаний как поток данных.

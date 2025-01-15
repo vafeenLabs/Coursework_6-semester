@@ -13,14 +13,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.vafeen.universityschedule.data.database.AppDatabase
 import ru.vafeen.universityschedule.data.database.AppDatabaseMigrationManager
-import ru.vafeen.universityschedule.data.impl.database.GroupRepositoryImpl
-import ru.vafeen.universityschedule.data.impl.database.LessonRepositoryImpl
-import ru.vafeen.universityschedule.data.impl.database.ReminderRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.database.GroupLocalRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.database.LessonLocalRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.database.ReminderLocalRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.end_points.DownloadServiceLink
 import ru.vafeen.universityschedule.data.impl.network.end_points.GitHubDataServiceLink
-import ru.vafeen.universityschedule.data.impl.network.repository.GroupDataRepositoryImpl
-import ru.vafeen.universityschedule.data.impl.network.repository.LessonDataRepositoryImpl
-import ru.vafeen.universityschedule.data.impl.network.repository.ReleaseRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.network.repository.GroupRemoteRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.network.repository.LessonRemoteRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.network.repository.ReleaseRemoteRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.service.RefresherImpl
 import ru.vafeen.universityschedule.data.impl.network.service.SettingsManagerImpl
 import ru.vafeen.universityschedule.data.impl.notifications.NotificationBuilderImpl
@@ -31,13 +31,13 @@ import ru.vafeen.universityschedule.data.network.service.DownloadService
 import ru.vafeen.universityschedule.data.network.service.GitHubDataService
 import ru.vafeen.universityschedule.data.network.service.server.GroupsDataService
 import ru.vafeen.universityschedule.data.network.service.server.LessonDataService
-import ru.vafeen.universityschedule.domain.database.GroupRepository
-import ru.vafeen.universityschedule.domain.database.LessonRepository
-import ru.vafeen.universityschedule.domain.database.ReminderRepository
-import ru.vafeen.universityschedule.domain.network.repository.GroupDataRepository
-import ru.vafeen.universityschedule.domain.network.repository.LessonDataRepository
+import ru.vafeen.universityschedule.domain.database.GroupLocalRepository
+import ru.vafeen.universityschedule.domain.database.LessonLocalRepository
+import ru.vafeen.universityschedule.domain.database.ReminderLocalRepository
+import ru.vafeen.universityschedule.domain.network.repository.GroupRemoteRepository
+import ru.vafeen.universityschedule.domain.network.repository.LessonRemoteRepository
 import ru.vafeen.universityschedule.domain.network.service.Refresher
-import ru.vafeen.universityschedule.domain.network.service.ReleaseRepository
+import ru.vafeen.universityschedule.domain.network.repository.ReleaseRemoteRepository
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.notifications.NotificationBuilder
 import ru.vafeen.universityschedule.domain.notifications.NotificationService
@@ -50,26 +50,26 @@ internal val databaseModuleImpl = module {
             context = get(), klass = AppDatabase::class.java, name = "universityScheduleDB.db"
         ).addMigrations(*AppDatabaseMigrationManager().migrations()).build()
     }
-    singleOf(::LessonRepositoryImpl) {
-        bind<LessonRepository>()
+    singleOf(::LessonLocalRepositoryImpl) {
+        bind<LessonLocalRepository>()
     }
-    singleOf(::ReminderRepositoryImpl) {
-        bind<ReminderRepository>()
+    singleOf(::ReminderLocalRepositoryImpl) {
+        bind<ReminderLocalRepository>()
     }
-    singleOf(::GroupRepositoryImpl) {
-        bind<GroupRepository>()
+    singleOf(::GroupLocalRepositoryImpl) {
+        bind<GroupLocalRepository>()
     }
 }
 
 internal val networkRepositoryModuleImpl = module {
-    singleOf(::LessonDataRepositoryImpl) {
-        bind<LessonDataRepository>()
+    singleOf(::LessonRemoteRepositoryImpl) {
+        bind<LessonRemoteRepository>()
     }
-    singleOf(::ReleaseRepositoryImpl) {
-        bind<ReleaseRepository>()
+    singleOf(::ReleaseRemoteRepositoryImpl) {
+        bind<ReleaseRemoteRepository>()
     }
-    singleOf(::GroupDataRepositoryImpl) {
-        bind<GroupDataRepository>()
+    singleOf(::GroupRemoteRepositoryImpl) {
+        bind<GroupRemoteRepository>()
     }
 
 }

@@ -1,6 +1,6 @@
 package ru.vafeen.universityschedule.domain.usecase.db
 
-import ru.vafeen.universityschedule.domain.database.GroupRepository
+import ru.vafeen.universityschedule.domain.database.GroupLocalRepository
 import ru.vafeen.universityschedule.domain.models.Group
 import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 
@@ -9,9 +9,9 @@ import ru.vafeen.universityschedule.domain.usecase.base.UseCase
  *
  * Этот класс отвечает за удаление одной или нескольких групп из репозитория.
  *
- * @property groupRepository Репозиторий, используемый для взаимодействия с данными групп.
+ * @property groupLocalRepository Репозиторий, используемый для взаимодействия с данными групп.
  */
-class DeleteGroupsUseCase(private val groupRepository: GroupRepository) : UseCase {
+class DeleteGroupsUseCase(private val groupLocalRepository: GroupLocalRepository) : UseCase {
 
     /**
      * Удаляет указанные группы из базы данных.
@@ -19,5 +19,5 @@ class DeleteGroupsUseCase(private val groupRepository: GroupRepository) : UseCas
      * @param group Группы, которые нужно удалить. Можно передавать несколько групп в виде vararg.
      */
     suspend fun invoke(group: List<Group>) =
-        groupRepository.deleteGroups(group)
+        groupLocalRepository.deleteGroups(group)
 }

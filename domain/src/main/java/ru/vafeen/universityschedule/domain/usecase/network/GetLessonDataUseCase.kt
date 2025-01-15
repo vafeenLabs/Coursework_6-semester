@@ -2,7 +2,7 @@ package ru.vafeen.universityschedule.domain.usecase.network
 
 import ru.vafeen.universityschedule.domain.models.Lesson
 import ru.vafeen.universityschedule.domain.models.model_additions.Role
-import ru.vafeen.universityschedule.domain.network.repository.LessonDataRepository
+import ru.vafeen.universityschedule.domain.network.repository.LessonRemoteRepository
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.usecase.base.UseCase
@@ -11,11 +11,11 @@ import ru.vafeen.universityschedule.domain.usecase.base.UseCase
  * Юзкейс для получения данных о парах.
  * Отвечает за выполнение операции получения списка пар из репозитория.
  *
- * @property lessonDataRepository Репозиторий, используемый для взаимодействия с данными о парах.
+ * @property lessonRemoteRepository Репозиторий, используемый для взаимодействия с данными о парах.
  * @property settingsManager Менеджер настроек, предоставляющий информацию о текущих настройках приложения.
  */
 class GetLessonDataUseCase(
-    private val lessonDataRepository: LessonDataRepository,
+    private val lessonRemoteRepository: LessonRemoteRepository,
     private val settingsManager: SettingsManager
 ) : UseCase {
 
@@ -31,12 +31,12 @@ class GetLessonDataUseCase(
         return when (settings.role) {
             Role.Student -> {
                 if (settings.groupId != null)
-                    lessonDataRepository.getLessonDataByGroupId(settings.groupId)
-                else lessonDataRepository.getAllLessonData()
+                    lessonRemoteRepository.getLessonDataByGroupId(settings.groupId)
+                else lessonRemoteRepository.getAllLessonData()
             }
 
             else -> {
-                lessonDataRepository.getAllLessonData()
+                lessonRemoteRepository.getAllLessonData()
             }
         }
     }

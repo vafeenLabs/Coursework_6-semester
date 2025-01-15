@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.vafeen.universityschedule.data.converters.GroupEntityConverter
 import ru.vafeen.universityschedule.data.database.AppDatabase
-import ru.vafeen.universityschedule.domain.database.GroupRepository
+import ru.vafeen.universityschedule.domain.database.GroupLocalRepository
 import ru.vafeen.universityschedule.domain.models.Group
 
 /**
@@ -13,10 +13,10 @@ import ru.vafeen.universityschedule.domain.models.Group
  * @property groupEntityConverter Конвертер для преобразования объектов Group между слоями.
  * @property db База данных приложения.
  */
-internal class GroupRepositoryImpl(
+internal class GroupLocalRepositoryImpl(
     private val db: AppDatabase,
     private val groupEntityConverter: GroupEntityConverter,
-) : GroupRepository {
+) : GroupLocalRepository {
 
     private val groupDao = db.groupDao()
 

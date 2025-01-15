@@ -6,10 +6,8 @@ import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 /**
  * Интерфейс репозитория для работы с данными занятий, полученными с сервера.
  * Предоставляет методы для получения расписания занятий.
- *
- * @property groupId Идентификатор группы, для которой необходимо получить данные о занятиях.
  */
-interface LessonDataRepository {
+interface LessonRemoteRepository {
 
     /**
      * Получает список занятий для указанной группы с сервера.

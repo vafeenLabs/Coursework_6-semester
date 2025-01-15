@@ -6,7 +6,7 @@ import ru.vafeen.universityschedule.domain.models.Lesson
 /**
  * Интерфейс репозитория для работы с уроками.
  */
-interface LessonRepository {
+interface LessonLocalRepository {
 
     /**
      * Получает список уроков как поток данных.
