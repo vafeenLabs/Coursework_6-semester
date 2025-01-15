@@ -36,11 +36,4 @@ interface ReminderRepository {
      * @param reminders Список объектов [Reminder], которые нужно удалить.
      */
     suspend fun deleteReminders(reminders: List<Reminder>)
-
-    /**
-     * Обновляет список напоминаний в базе данных.
-     *
-     * @param reminders Список объектов [Reminder], которые нужно обновить.
-     */
-    suspend fun updateReminders(reminders: List<Reminder>)
 }

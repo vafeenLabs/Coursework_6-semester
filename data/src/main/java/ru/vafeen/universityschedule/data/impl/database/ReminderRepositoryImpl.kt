@@ -54,12 +54,4 @@ internal class ReminderRepositoryImpl(
      */
     override suspend fun deleteReminders(reminders: List<Reminder>) =
         reminderDao.delete(reminders.map { reminderConverter.convertBA(it) })
-
-    /**
-     * Обновление списка напоминаний в базе данных.
-     *
-     * @param reminders Список напоминаний для обновления.
-     */
-    override suspend fun updateReminders(reminders: List<Reminder>) =
-        reminderDao.update(reminders.map { reminderConverter.convertBA(it) })
 }
