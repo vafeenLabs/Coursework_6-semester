@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 8,
-    "identityHash": "30c1d2280a8eb83c8ee0451600e8a6fd",
+    "identityHash": "299748ebbe81edba586f50a27687fe8d",
     "entities": [
       {
         "tableName": "Lesson",
@@ -154,7 +154,7 @@
       },
       {
         "tableName": "Group",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `course` INTEGER NOT NULL, `group` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `course` INTEGER NOT NULL, `group` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -176,7 +176,7 @@
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
+          "autoGenerate": false,
           "columnNames": [
             "id"
           ]
@@ -188,7 +188,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '30c1d2280a8eb83c8ee0451600e8a6fd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '299748ebbe81edba586f50a27687fe8d')"
     ]
   }
 }
