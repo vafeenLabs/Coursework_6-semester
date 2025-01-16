@@ -2,13 +2,15 @@ package ru.vafeen.universityschedule.data.impl.network.service
 
 import android.content.SharedPreferences
 import android.util.Log
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import ru.vafeen.universityschedule.data.utils.getFromSharedPreferences
+import ru.vafeen.universityschedule.data.utils.saveInOrRemoveFromSharedPreferences
 import ru.vafeen.universityschedule.domain.models.Settings
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
-import ru.vafeen.universityschedule.domain.utils.getSettingsOrCreateIfNull
-import ru.vafeen.universityschedule.domain.utils.save
+import ru.vafeen.universityschedule.domain.utils.SharedPreferencesValue
 
 /**
  * Реализация интерфейса [SettingsManager] для управления настройками приложения с использованием [SharedPreferences].
@@ -57,5 +59,41 @@ internal class SettingsManagerImpl(private val sharedPreferences: SharedPreferen
         Log.d("sp", "save ${settings.toJsonString()}")
         // Сохраняем обновленные настройки в SharedPreferences
         sharedPreferences.save(settings)
+        // Обновляем flow
+        _settingsFlow.value = sharedPreferences.getSettingsOrCreateIfNull()
+    }
+
+    /**
+     * Сохраняет настройки в SharedPreferences.
+     *
+     * @param settings Объект [Settings], который нужно сохранить.
+     */
+    private fun SharedPreferences.save(settings: Settings) = saveInOrRemoveFromSharedPreferences {
+        putString(SharedPreferencesValue.Settings.key, settings.toJsonString())
+    }
+
+    /**
+     * Получает настройки из SharedPreferences или создает новые, если их нет.
+     *
+     * Эта функция проверяет наличие настроек в SharedPreferences и возвращает их.
+     * Если настройки не найдены, создаются новые и сохраняются в SharedPreferences.
+     *
+     * @return Объект [Settings], полученный из SharedPreferences или созданный по умолчанию.
+     */
+    private fun SharedPreferences.getSettingsOrCreateIfNull(): Settings {
+        val settings = getFromSharedPreferences {
+            getString(SharedPreferencesValue.Settings.key, "").let {
+                if (it != "") Gson().fromJson(it, Settings::class.java)
+                else null
+            }
+        }
+        return if (settings != null) settings
+        else {
+            val newSettings = Settings() // Создание новых настроек по умолчанию.
+            saveInOrRemoveFromSharedPreferences {
+                putString(SharedPreferencesValue.Settings.key, newSettings.toJsonString())
+            }
+            newSettings
+        }
     }
 }
