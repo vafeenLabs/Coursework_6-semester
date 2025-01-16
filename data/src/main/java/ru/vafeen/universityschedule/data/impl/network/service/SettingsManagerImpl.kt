@@ -11,20 +11,22 @@ import ru.vafeen.universityschedule.data.utils.saveInOrRemoveFromSharedPreferenc
 import ru.vafeen.universityschedule.domain.models.Settings
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.utils.SharedPreferencesValue
-
 /**
  * Реализация интерфейса [SettingsManager] для управления настройками приложения с использованием [SharedPreferences].
  * Этот класс предоставляет реактивный способ наблюдения за изменениями настроек через [StateFlow].
  *
  * @property sharedPreferences Экземпляр [SharedPreferences], используемый для хранения и загрузки настроек.
  */
-internal class SettingsManagerImpl(private val sharedPreferences: SharedPreferences) :
-    SettingsManager {
+internal class SettingsManagerImpl(private val sharedPreferences: SharedPreferences) : SettingsManager {
 
-    // Текущие настройки, загруженные из SharedPreferences
+    /**
+     * Текущие настройки, загруженные из SharedPreferences.
+     */
     private var settings = sharedPreferences.getSettingsOrCreateIfNull()
 
-    // Внутренний StateFlow для отслеживания изменений настроек
+    /**
+     * Внутренний StateFlow для отслеживания изменений настроек.
+     */
     private val _settingsFlow = MutableStateFlow(settings)
 
     /**
@@ -74,7 +76,6 @@ internal class SettingsManagerImpl(private val sharedPreferences: SharedPreferen
 
     /**
      * Получает настройки из SharedPreferences или создает новые, если их нет.
-     *
      * Эта функция проверяет наличие настроек в SharedPreferences и возвращает их.
      * Если настройки не найдены, создаются новые и сохраняются в SharedPreferences.
      *
