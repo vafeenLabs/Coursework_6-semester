@@ -61,13 +61,14 @@ internal class AppDatabaseMigrationManager {
         createMigration(7, 8) { db ->
             db.execSQL(
                 """
-                CREATE TABLE IF NOT EXISTS `Group`(
-                `id` INTEGER PRIMARY KEY NOT NULL
-                `course` NOT NULL,
-                `group` TEXT NOT NULL
-                )
-            """.trimIndent()
+                    CREATE TABLE IF NOT EXISTS `Group`(
+                    `id` INTEGER PRIMARY KEY NOT NULL,
+                    `course` INTEGER NOT NULL,
+                    `group` TEXT NOT NULL
+                    )
+                    """.trimIndent()
             )
+
         }
     )
 
