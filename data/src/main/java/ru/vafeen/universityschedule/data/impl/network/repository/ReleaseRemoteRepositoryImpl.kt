@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.data.impl.network.repository
 
 import ru.vafeen.universityschedule.data.converters.ReleaseConverter
-import ru.vafeen.universityschedule.data.network.service.GitHubDataService
+import ru.vafeen.universityschedule.data.network.service.ReleaseRemoteService
 import ru.vafeen.universityschedule.data.utils.getResponseWrappedAllErrors
 import ru.vafeen.universityschedule.domain.models.Release
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
@@ -10,11 +10,11 @@ import ru.vafeen.universityschedule.domain.network.repository.ReleaseRemoteRepos
 /**
  * Реализация репозитория для получения информации о релизах из GitHub.
  *
- * @property gitHubDataService Сервис для выполнения запросов к API GitHub.
+ * @property releaseRemoteService Сервис для выполнения запросов к API GitHub.
  * @property releaseConverter Конвертер для преобразования объектов Release между слоями.
  */
 internal class ReleaseRemoteRepositoryImpl(
-    private val gitHubDataService: GitHubDataService,
+    private val releaseRemoteService: ReleaseRemoteService,
     private val releaseConverter: ReleaseConverter
 ) : ReleaseRemoteRepository {
 
@@ -26,7 +26,7 @@ internal class ReleaseRemoteRepositoryImpl(
     override suspend fun getLatestRelease(): ResponseResult<Release> =
         getResponseWrappedAllErrors {
             // Выполнение запроса
-            val response = gitHubDataService.getLatestRelease()
+            val response = releaseRemoteService.getLatestRelease()
             val release = releaseConverter.convertAB(response.body())
             // Проверка на успешный ответ и релиза на null после конвертации
             if (response.isSuccessful && release != null) {
