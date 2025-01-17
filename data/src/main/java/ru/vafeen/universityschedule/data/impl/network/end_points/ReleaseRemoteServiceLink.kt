@@ -1,6 +1,6 @@
 package ru.vafeen.universityschedule.data.impl.network.end_points
 
-internal object GitHubDataServiceLink {
+internal object ReleaseRemoteServiceLink {
     const val BASE_LINK = "https://api.github.com/"
 
     object EndPoint {
