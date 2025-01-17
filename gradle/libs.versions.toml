@@ -2,7 +2,7 @@
 accompanistPermissions = "0.31.1-alpha"
 agp = "8.7.3"
 alwan = "1.0.1"
-directRefresher = "1.0.2"
+directRefresher = "1.0.3"
 glideCompiler = "4.14.2"
 glide = "4.16.0"
 koinAndroid = "4.0.0"
