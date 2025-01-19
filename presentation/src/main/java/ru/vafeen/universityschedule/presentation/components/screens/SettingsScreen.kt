@@ -182,7 +182,7 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                                 onClick = {
                                     viewModel.saveSettingsToSharedPreferences { settings ->
                                         settings.copy(
-                                            role = if (settings.role != role) role else null
+                                            role = role
                                         ).let { s ->
                                             if (role == Role.Teacher) s.copy(
                                                 subgroup = null,
