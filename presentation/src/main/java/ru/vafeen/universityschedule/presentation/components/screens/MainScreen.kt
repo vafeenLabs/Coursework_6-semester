@@ -1,6 +1,7 @@
 package ru.vafeen.universityschedule.presentation.components.screens
 
 import android.app.Activity
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -54,6 +55,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.androidx.compose.koinViewModel
 import ru.vafeen.universityschedule.domain.models.model_additions.Frequency
+import ru.vafeen.universityschedule.domain.models.model_additions.Role
 import ru.vafeen.universityschedule.domain.utils.getMainColorForThisTheme
 import ru.vafeen.universityschedule.presentation.components.ui_utils.CardOfNextLesson
 import ru.vafeen.universityschedule.presentation.components.ui_utils.StringForSchedule
@@ -81,7 +83,6 @@ import java.time.LocalTime
  *
  * @param bottomBarNavigator Навигатор для управления нижней панелью навигации.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun MainScreen(bottomBarNavigator: BottomBarNavigator) {
     val lifecycleState by LocalLifecycleOwner.current.lifecycle.currentStateFlow.collectAsState()
@@ -339,13 +340,15 @@ internal fun MainScreen(bottomBarNavigator: BottomBarNavigator) {
             val lessonsOfThisDay = lessons.filter {
                 it.dayOfWeek == dateOfThisLesson.dayOfWeek &&
                         (it.frequency == null || it.frequency == weekOfYearOfThisDay) &&
-                        (it.subGroup == settings.subgroup || settings.subgroup == null || it.subGroup == null)
+                        if (settings.role == Role.Student) (it.subGroup == settings.subgroup || settings.subgroup == null || it.subGroup == null)
+                        else it.teacher == settings.teacherName
             }.sorted()
 
             val lessonsInOppositeNumAndDenDay = lessons.filter {
                 it.dayOfWeek == dateOfThisLesson.dayOfWeek &&
                         it.frequency == weekOfYearOfThisDay.getOpposite() &&
-                        (it.subGroup == settings.subgroup || settings.subgroup == null || it.subGroup == null)
+                        if (settings.role == Role.Student) (it.subGroup == settings.subgroup || settings.subgroup == null || it.subGroup == null)
+                        else it.teacher == settings.teacherName
             }.sorted()
 
             Box {

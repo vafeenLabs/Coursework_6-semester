@@ -6,6 +6,7 @@ import ru.vafeen.universityschedule.domain.models.model_additions.Role
 
 /**
  * Модель для представления локальных настроек приложения.
+ *
  * Содержит информацию о темах, подгруппе пользователя, ссылках и различных флагах функциональности.
  *
  * @property lightThemeColor Цвет темы для светлого режима (может быть null).
@@ -22,7 +23,7 @@ import ru.vafeen.universityschedule.domain.models.model_additions.Role
  * @property releaseBody Описание релиза.
  * @property isMigrationFromAlarmManagerToWorkManagerSuccessful Флаг, указывающий на успешность миграции от AlarmManager к WorkManager (по умолчанию false).
  * @property isRemindersRebootedForVersion6_1_15 Флаг, указывающий на перезагрузку всех задач после изменений в [Scheduler][ru.vafeen.universityschedule.domain.scheduler.Scheduler].
- * @property role Роль пользователя (может быть null).
+ * @property role Роль пользователя (по умолчанию [Role.Student]).
  */
 data class Settings(
     var lightThemeColor: Color? = null,
@@ -39,7 +40,7 @@ data class Settings(
     var releaseBody: String = "",
     var isMigrationFromAlarmManagerToWorkManagerSuccessful: Boolean = false,
     var isRemindersRebootedForVersion6_1_15: Boolean = false,
-    val role: Role? = null
+    val role: Role = Role.Student
 ) {
     /**
      * Преобразует объект [Settings] в строку формата JSON.

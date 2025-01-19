@@ -13,7 +13,7 @@ val converter = JsonStringTemplateConverter()
 val lessons =
     sequenceOf<LessonDTO>().plus(lessons3).plus(lessons5).plus(lessons6).plus(lessons7)
         .plus(lessons8)
-        .plus(lessons61).plus(lessons61).plus(lessons62).plus(lessons71).plus(lessons72).toList()
+        .plus(lessons61).plus(lessons62).plus(lessons71).plus(lessons72).toList()
 
 fun main() {
     embeddedServer(Netty, host = "0.0.0.0", port = 8080) {
@@ -34,7 +34,7 @@ fun main() {
             }
             get("/teachers") {
                 call.respondText {
-                    converter.convert(lessons.mapNotNull {
+                    converter.convert(lessons.map {
                         it.teacher
                     }.distinct()).toString()
                 }
@@ -45,7 +45,7 @@ fun main() {
                 }
             }
             // поменялся энд поинт
-            get("/groups/{group}") {
+            get("/group/{group}") {
                 val groupId = call.parameters["group"]?.toIntOrNull()
                 call.respondText {
                     converter.convert(lessons.filter {

@@ -31,7 +31,8 @@ internal class LessonEntityConverter : TwoWayBaseConverter<LessonEntity, Lesson>
         idOfReminderBeforeLesson = a.idOfReminderBeforeLesson,
         idOfReminderAfterBeginningLesson = a.idOfReminderAfterBeginningLesson,
         note = a.note,
-        linkToCourse = a.linkToCourse
+        linkToCourse = a.linkToCourse,
+        groupId = a.groupId,
     )
 
     /**
@@ -53,6 +54,7 @@ internal class LessonEntityConverter : TwoWayBaseConverter<LessonEntity, Lesson>
         idOfReminderBeforeLesson = b.idOfReminderBeforeLesson,
         idOfReminderAfterBeginningLesson = b.idOfReminderAfterBeginningLesson,
         note = b.note,
-        linkToCourse = b.linkToCourse
+        linkToCourse = b.linkToCourse,
+        groupId = b.groupId
     )
 }
