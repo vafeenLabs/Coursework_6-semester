@@ -1,11 +1,9 @@
 package ru.vafeen.universityschedule.domain.usecase.db
 
 import android.util.Log
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import ru.vafeen.universityschedule.domain.models.Lesson
+import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 import ru.vafeen.universityschedule.domain.utils.containsLesson
 
@@ -39,40 +37,37 @@ class CleverUpdatingLessonsUseCase(
      *
      * @param newLessons Список новых пар, которые должны быть в базе данных.
      */
-    fun invoke(newLessons: List<Lesson>) {
-        // Запускаем обновление в отдельной корутине, используя IO-диспетчер.
-        CoroutineScope(Dispatchers.IO).launch {
-            Log.d("lessons", "lessons from server = $newLessons")
-            // Получаем текущий список пар из базы данных.
-            val lastLessons = getAsFlowLessonsUseCase.invoke().first()
-            Log.d("lessons", "lest lessons = $lastLessons")
-            // Список для добавления новых или обновленных пар.
-            val result = mutableListOf<Lesson>()
-            // Список для удаления старых пар, которых нет в новых данных.
-            val resultForDelete = mutableListOf<Lesson>()
+    suspend fun invoke(newLessons: List<Lesson>) {
+        // Получаем текущий список пар из базы данных.
+        val lastLessons = getAsFlowLessonsUseCase.invoke().first()
 
-            // Проходимся по новым парам.
-            for (newLesson in newLessons) {
-                // Если текущая пара уже есть, оставляем существующую запись.
-                // Если нет, добавляем новую.
-                result.add(lastLessons.containsLesson(lesson = newLesson) ?: newLesson)
-            }
+        // Списки для добавления новых или обновленных пар и удаления старых пар.
+        val result = mutableListOf<Lesson>()
+        val resultForDelete = mutableListOf<Lesson>()
 
-            // Проходимся по текущим парам в базе данных.
-            for (lastLesson in lastLessons) {
-                // Если пара отсутствует в новых данных, добавляем ее в список для удаления.
-                newLessons.containsLesson(lesson = lastLesson).let {
-                    if (it == null)
-                        resultForDelete.add(lastLesson)
-                }
-            }
-            Log.d("lessons", "new lessons = $result")
-            // Добавляем новые или обновленные пары в базу данных.
-            insertLessonsUseCase.invoke(*result.toTypedArray())
-            // Удаляем старые пары из базы данных.
-            deleteLessonsUseCase.invoke(*resultForDelete.toTypedArray())
-            // Удаляем напоминания, связанные с удаленными парами.
-            deleteUseLessRemindersForLessonsUseCase.invoke(resultForDelete)
+        // Обработка новых пар и формирование списка для добавления или обновления.
+        for (newLesson in newLessons) {
+            result.add(lastLessons.containsLesson(lesson = newLesson) ?: newLesson)
         }
+
+        // Определение старых пар, которые необходимо удалить.
+        for (lastLesson in lastLessons) {
+            if (newLessons.containsLesson(lesson = lastLesson) == null) {
+                resultForDelete.add(lastLesson)
+            }
+        }
+
+        // Логируем результаты для отладки (опционально).
+        Log.d("CleverUpdating", "New or updated lessons: $result")
+        Log.d("CleverUpdating", "Lessons to delete: $resultForDelete")
+
+        // Добавляем новые или обновленные пары в базу данных.
+        insertLessonsUseCase.invoke(*result.toTypedArray())
+
+        // Удаляем старые пары из базы данных.
+        deleteLessonsUseCase.invoke(*resultForDelete.toTypedArray())
+
+        // Удаляем напоминания, связанные с удаленными парами.
+        deleteUseLessRemindersForLessonsUseCase.invoke(resultForDelete)
     }
 }

@@ -28,5 +28,7 @@ internal class LessonDTOConverter(private val frequencyOneWayConverter: Frequenc
         teacher = a.teacher,
         subGroup = a.subGroup,
         frequency = a.frequency?.let { frequencyOneWayConverter.convert(it) },
+        groupId = a.groupId,
+        linkToCourse = a.linkToCourse
     )
 }

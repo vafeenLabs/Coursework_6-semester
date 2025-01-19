@@ -1,7 +1,6 @@
 package ru.vafeen.universityschedule.presentation.components.screens
 
 import android.net.Uri
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -59,14 +58,16 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
     val viewModel: SettingsScreenViewModel = koinViewModel()
     val context = LocalContext.current
     val dark = isSystemInDarkTheme()
-    val subgroupList by viewModel.subgroupFlow.collectAsState()
-    val groupList by viewModel.groupFlow.collectAsState()
+    val subgroupList by viewModel.subgroupFlow.collectAsState(listOf())
+    val groupList by viewModel.groupFlow.collectAsState(listOf())
+    val teachersList by viewModel.teachersFlow.collectAsState(listOf())
     val settings by viewModel.settings.collectAsState()
 
     var colorIsEditable by remember { mutableStateOf(false) }
     var isFeaturesEditable by remember { mutableStateOf(false) }
     var isGroupChanging by remember { mutableStateOf(false) }
     var isSubGroupChanging by remember { mutableStateOf(false) }
+    var isTeacherChanging by remember { mutableStateOf(false) }
     var catsOnUIIsChanging by remember { mutableStateOf(false) }
     var isRoleChanging by remember { mutableStateOf(false) }
     val networkState by viewModel.gSheetsServiceRequestStatusFlow.collectAsState()
@@ -181,12 +182,12 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                                 onClick = {
                                     viewModel.saveSettingsToSharedPreferences { settings ->
                                         settings.copy(
-                                            role = if (settings.role != role) role else null
+                                            role = role
                                         ).let { s ->
                                             if (role == Role.Teacher) s.copy(
                                                 subgroup = null,
                                                 groupId = null
-                                            ) else s
+                                            ) else s.copy(teacherName = null)
                                         }
                                     }
                                 },
@@ -251,7 +252,7 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                     text = stringResource(R.string.subgroup),
                     icon = {
                         Icon(
-                            painter = painterResource(id = R.drawable.group),
+                            painter = painterResource(id = R.drawable.subgroup),
                             contentDescription = stringResource(R.string.subgroup),
                             tint = it.suitableColor()
                         )
@@ -289,8 +290,51 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                         }
                     }
                 )
-            } else {
-                Log.d("subgroup", "${subgroupList} && ${settings.role == Role.Student}")
+            }
+
+            if (teachersList.isNotEmpty() && settings.role == Role.Teacher) {
+                CardOfSettings(
+                    text = stringResource(R.string.teacher),
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.teacher),
+                            contentDescription = stringResource(R.string.icon_teacher),
+                            tint = it.suitableColor()
+                        )
+                    },
+                    onClick = { isTeacherChanging = !isTeacherChanging },
+                    additionalContentIsVisible = isTeacherChanging,
+                    additionalContent = {
+                        LazyRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = it)
+                        ) {
+                            items(teachersList) { teacher ->
+                                AssistChip(
+                                    leadingIcon = {
+                                        if (teacher.name == settings.teacherName) {
+                                            Icon(
+                                                painter = painterResource(id = R.drawable.done),
+                                                contentDescription = stringResource(R.string.selected_teacher),
+                                                tint = Theme.colors.oppositeTheme
+                                            )
+                                        }
+                                    },
+                                    modifier = Modifier.padding(horizontal = 3.dp),
+                                    onClick = {
+                                        viewModel.saveSettingsToSharedPreferences { settings ->
+                                            settings.copy(
+                                                teacherName = if (settings.teacherName != teacher.name) teacher.name else null
+                                            )
+                                        }
+                                    },
+                                    label = { TextForThisTheme(text = teacher.name) }
+                                )
+                            }
+                        }
+                    }
+                )
             }
 
             // Карточка для настроек уведомлений

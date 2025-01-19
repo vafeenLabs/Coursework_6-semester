@@ -45,4 +45,16 @@ internal class LessonRemoteRepositoryImpl(
         getResponseWrappedAllErrors {
             ResponseResult.Success(lessonDTOConverter.convertList(lessonDataService.getLessonData()))
         }
+
+    override suspend fun getLessonDataByTeacherName(teacher: String): ResponseResult<List<Lesson>> =
+        getResponseWrappedAllErrors {
+            ResponseResult.Success(
+                lessonDTOConverter.convertList(
+                    lessonDataService.getLessonDataByTeacherName(
+                        teacher
+                    )
+                )
+            )
+        }
+
 }

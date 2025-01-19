@@ -26,18 +26,20 @@ class GetLessonDataUseCase(
      *
      * @return [ResponseResult] с списком пар [Lesson] или ошибкой, если произошла ошибка при получении данных.
      */
-    suspend fun invoke(): ResponseResult<List<Lesson>> {
-        val settings = settingsManager.settingsFlow.value
-        return when (settings.role) {
-            Role.Student -> {
-                if (settings.groupId != null)
-                    lessonRemoteRepository.getLessonDataByGroupId(settings.groupId)
-                else lessonRemoteRepository.getAllLessonData()
-            }
+    suspend fun invoke(): ResponseResult<List<Lesson>> =
+        settingsManager.settingsFlow.value.let { settings ->
+            when (settings.role) {
+                Role.Student -> {
+                    if (settings.groupId != null)
+                        lessonRemoteRepository.getLessonDataByGroupId(settings.groupId)
+                    else lessonRemoteRepository.getAllLessonData()
+                }
 
-            else -> {
-                lessonRemoteRepository.getAllLessonData()
+                else -> {
+                    if (settings.teacherName != null)
+                        lessonRemoteRepository.getLessonDataByTeacherName(settings.teacherName)
+                    else lessonRemoteRepository.getAllLessonData()
+                }
             }
         }
-    }
 }

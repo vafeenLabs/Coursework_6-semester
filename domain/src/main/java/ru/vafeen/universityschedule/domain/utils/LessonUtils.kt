@@ -19,7 +19,8 @@ internal fun Iterable<Lesson>.containsLesson(lesson: Lesson): Lesson? = filter {
             it.classroom == lesson.classroom &&
             it.teacher == lesson.teacher &&
             it.subGroup == lesson.subGroup &&
-            it.frequency == lesson.frequency && it.linkToCourse == lesson.linkToCourse
+            it.frequency == lesson.frequency && it.linkToCourse == lesson.linkToCourse &&
+            it.groupId == lesson.groupId
 }.let {
     if (it.isEmpty()) null // Возвращаем null, если совпадений нет.
     else it[0] // Возвращаем первую найденную пару.

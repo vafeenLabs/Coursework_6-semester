@@ -4,10 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import ru.vafeen.universityschedule.domain.GSheetsServiceRequestStatus
 import ru.vafeen.universityschedule.domain.models.Settings
@@ -15,6 +13,7 @@ import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.usecase.CatMeowUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowGroupsUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowLessonsUseCase
+import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowTeachersUseCase
 import ru.vafeen.universityschedule.domain.usecase.network.FetchDataAndUpdateDBUseCase
 
 /**
@@ -28,9 +27,10 @@ import ru.vafeen.universityschedule.domain.usecase.network.FetchDataAndUpdateDBU
  * @property settingsManager Менеджер для работы с настройками приложения.
  */
 internal class SettingsScreenViewModel(
-    private val getAsFlowLessonsUseCase: GetAsFlowLessonsUseCase,
     private val fetchDataAndUpdateDBUseCase: FetchDataAndUpdateDBUseCase,
+    private val getAsFlowLessonsUseCase: GetAsFlowLessonsUseCase,
     private val getAsFlowGroupsUseCase: GetAsFlowGroupsUseCase,
+    private val getAsFlowTeachersUseCase: GetAsFlowTeachersUseCase,
     private val catMeowUseCase: CatMeowUseCase,
     private val settingsManager: SettingsManager,
 ) : ViewModel() {
@@ -46,13 +46,16 @@ internal class SettingsScreenViewModel(
      */
     val subgroupFlow = getAsFlowLessonsUseCase.invoke().map {
         it.mapNotNull { lesson -> lesson.subGroup }.distinct()
-    }.stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
+    }
+//        .stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
+
+    val teachersFlow = getAsFlowTeachersUseCase.invoke()
 
     /**
      * Поток состояний для хранения списка групп.
      */
     val groupFlow = getAsFlowGroupsUseCase.invoke()
-        .stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
+//        .stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
 
     /**
      * Поток состояний для статуса запроса к серверу Google Sheets.

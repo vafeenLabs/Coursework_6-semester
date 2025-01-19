@@ -6,16 +6,19 @@ import java.time.LocalTime
 
 /**
  * Модель для представления пары в расписании.
- * Содержит подробную информацию о паре, включая день недели, время начала и конца, аудиторию, преподавателя и другие атрибуты.
+ *
+ * Содержит подробную информацию о паре, включая день недели, время начала и окончания, аудиторию,
+ * преподавателя и другие атрибуты.
  *
  * @property id Уникальный идентификатор пары.
- * @property dayOfWeek День недели, в который проходит пара (может быть null).
- * @property name Название пары (может быть null).
- * @property startTime Время начала пары.
- * @property endTime Время окончания пары.
+ * @property dayOfWeek День недели, в который проходит пара (не может быть null).
+ * @property name Название пары (не может быть null).
+ * @property startTime Время начала пары (не может быть null).
+ * @property endTime Время окончания пары (не может быть null).
  * @property classroom Номер аудитории, в которой проходит пара (может быть null).
- * @property teacher Имя преподавателя (может быть null).
+ * @property teacher Имя преподавателя (не может быть null).
  * @property subGroup Подгруппа, к которой относится пара (может быть null).
+ * @property groupId Идентификатор группы, к которой относится пара (не может быть null).
  * @property frequency Частота проведения пары (может быть null).
  * @property idOfReminderBeforeLesson Идентификатор напоминания перед парой (может быть null).
  * @property idOfReminderAfterBeginningLesson Идентификатор напоминания после начала пары (может быть null).
@@ -24,13 +27,14 @@ import java.time.LocalTime
  */
 data class Lesson(
     val id: Int = 0,
-    val dayOfWeek: DayOfWeek? = null,
-    val name: String? = null,
+    val dayOfWeek: DayOfWeek,
+    val name: String,
     val startTime: LocalTime,
     val endTime: LocalTime,
     val classroom: String? = null,
-    val teacher: String? = null,
+    val teacher: String,
     val subGroup: String? = null,
+    val groupId: Int,
     val frequency: Frequency? = null,
     val idOfReminderBeforeLesson: Int? = null,
     val idOfReminderAfterBeginningLesson: Int? = null,
@@ -40,11 +44,28 @@ data class Lesson(
 
     /**
      * Возвращает строковое представление объекта [Lesson].
-     * Включает информацию о дне недели, названии, времени начала и окончания,
-     * аудитории, преподавателе, подгруппе, частоте и ссылке на курс.
+     *
+     * Включает информацию о дне недели, названии, времени начала и окончания, аудитории,
+     * преподавателе, подгруппе, частоте и ссылке на курс.
+     *
+     * @return Строковое представление объекта [Lesson].
      */
     override fun toString(): String {
-        return "\n dayOfWeek=${dayOfWeek ?: "\"is null\""} name=${name ?: "\"is null\""} st=${startTime}-et=${endTime} classroom=${classroom ?: "\"is null\""} tchr=${teacher ?: "\"is null\""} sbgr=${subGroup ?: "\"is null\""} fr=${frequency ?: "\"is null\""} linkToCourse=${linkToCourse ?: "\"is null\""}"
+        return "\nLesson(id=$id, " +
+                "dayOfWeek=$dayOfWeek, " +
+                "name=${name ?: "\"is null\""}, " +
+                "startTime=$startTime, " +
+                "endTime=$endTime, " +
+                "classroom=${classroom ?: "\"is null\""}, " +
+                "teacher=$teacher, " +
+                "subGroup=${subGroup ?: "\"is null\""}, " +
+                "groupId=$groupId, " +
+                "frequency=${frequency ?: "\"is null\""}, " +
+                "idOfReminderBeforeLesson=${idOfReminderBeforeLesson ?: "\"is null\""}, " +
+                "idOfReminderAfterBeginningLesson=${idOfReminderAfterBeginningLesson ?: "\"is null\""}, " +
+                "note=${note ?: "\"is null\""}, " +
+                "linkToCourse=${linkToCourse ?: "\"is null\""}" +
+                ")"
     }
 
     /**

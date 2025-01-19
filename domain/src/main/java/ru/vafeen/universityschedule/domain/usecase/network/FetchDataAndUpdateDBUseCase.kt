@@ -2,14 +2,12 @@ package ru.vafeen.universityschedule.domain.usecase.network
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.first
 import ru.vafeen.universityschedule.domain.GSheetsServiceRequestStatus
 import ru.vafeen.universityschedule.domain.network.result.ResponseResult
 import ru.vafeen.universityschedule.domain.usecase.base.UseCase
+import ru.vafeen.universityschedule.domain.usecase.db.CleverUpdatingGroupsUseCase
 import ru.vafeen.universityschedule.domain.usecase.db.CleverUpdatingLessonsUseCase
-import ru.vafeen.universityschedule.domain.usecase.db.DeleteGroupsUseCase
-import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowGroupsUseCase
-import ru.vafeen.universityschedule.domain.usecase.db.InsertGroupsUseCase
+import ru.vafeen.universityschedule.domain.usecase.db.CleverUpdatingTeachersUseCase
 
 /**
  * Юзкейс для получения данных с сервера и обновления базы данных.
@@ -25,10 +23,10 @@ import ru.vafeen.universityschedule.domain.usecase.db.InsertGroupsUseCase
 class FetchDataAndUpdateDBUseCase(
     private val getLessonDataUseCase: GetLessonDataUseCase,
     private val getGroupDataUseCase: GetGroupDataUseCase,
+    private val getTeacherDataUseCase: GetTeacherDataUseCase,
     private val cleverUpdatingLessonsUseCase: CleverUpdatingLessonsUseCase,
-    private val getAsFlowGroupsUseCase: GetAsFlowGroupsUseCase,
-    private val deleteGroupsUseCase: DeleteGroupsUseCase,
-    private val insertGroupsUseCase: InsertGroupsUseCase,
+    private val cleverUpdatingGroupsUseCase: CleverUpdatingGroupsUseCase,
+    private val cleverUpdatingTeachersUseCase: CleverUpdatingTeachersUseCase,
 ) : UseCase {
 
     /**
@@ -63,9 +61,20 @@ class FetchDataAndUpdateDBUseCase(
                 when (it) {
                     is ResponseResult.Error -> false
                     is ResponseResult.Success -> {
-                        val groups = getAsFlowGroupsUseCase.invoke().first()
-                        deleteGroupsUseCase.invoke(groups)
-                        insertGroupsUseCase.invoke(it.data)
+                        cleverUpdatingGroupsUseCase.invoke(it.data)
+                        true
+                    }
+                }
+            }
+        }
+
+        // Асинхронное получение данных о преподавателяъ
+        val teacherDataFetchingIsSuccessful = coroutineScope.async {
+            getTeacherDataUseCase.invoke().let {
+                when (it) {
+                    is ResponseResult.Error -> false
+                    is ResponseResult.Success -> {
+                        cleverUpdatingTeachersUseCase.invoke(it.data)
                         true
                     }
                 }
@@ -75,7 +84,8 @@ class FetchDataAndUpdateDBUseCase(
         // Ожидание завершения асинхронных операций
         when (listOf(
             lessonDataFetchingIsSuccessful.await(),
-            groupDataFetchingIsSuccessful.await()
+            groupDataFetchingIsSuccessful.await(),
+            teacherDataFetchingIsSuccessful.await()
         ).all { successful -> successful }) {
             false -> {
                 // Обработка ошибки сети

@@ -3,15 +3,13 @@ package ru.vafeen.universityschedule.data.network.service.server
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import ru.vafeen.universityschedule.backenddto.GroupDTO
 import ru.vafeen.universityschedule.data.converters.JsonStringTemplateConverter
 
-
-internal class GroupsDataService(
+internal class TeacherDataService(
     private val jsonStringTemplateConverter: JsonStringTemplateConverter,
     private val client: HttpClient,
 ) {
-    suspend fun getGroups(): List<GroupDTO> =
-        jsonStringTemplateConverter.convertList(client.get(EndPoint.groups()).body())
-
+    suspend fun getTeacherData(): List<String> = jsonStringTemplateConverter.convertList(
+        client.get(EndPoint.teachers()).body()
+    )
 }
