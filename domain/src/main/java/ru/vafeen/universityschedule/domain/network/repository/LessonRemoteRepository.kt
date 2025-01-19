@@ -23,4 +23,6 @@ interface LessonRemoteRepository {
      * @return [ResponseResult] с результатом запроса, содержащим список объектов [Lesson] или информацию об ошибке.
      */
     suspend fun getAllLessonData(): ResponseResult<List<Lesson>>
+
+    suspend fun getLessonDataByTeacherName(teacher: String): ResponseResult<List<Lesson>>
 }

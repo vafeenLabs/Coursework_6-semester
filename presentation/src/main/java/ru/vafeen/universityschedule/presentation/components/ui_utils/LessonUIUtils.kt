@@ -217,7 +217,7 @@ internal fun Lesson.StringForSchedule(
                 modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.group),
+                    painter = painterResource(id = R.drawable.subgroup),
                     contentDescription = stringResource(R.string.icon_subgroup),
                     tint = suitableColor
                 )

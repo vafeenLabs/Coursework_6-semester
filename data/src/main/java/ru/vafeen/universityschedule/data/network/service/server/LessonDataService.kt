@@ -16,9 +16,14 @@ internal class LessonDataService(
 ) {
 
     suspend fun getLessonData(): List<LessonDTO> =
-        jsonStringTemplateConverter.convertList(client.get(EndPoint.ALL).body<String>())
+        jsonStringTemplateConverter.convertList(client.get(EndPoint.allSchedule()).body<String>())
 
 
     suspend fun getLessonDataByGroupId(groupId: Int): List<LessonDTO> =
-        jsonStringTemplateConverter.convertList(client.get(EndPoint.group(groupId)).body())
+        jsonStringTemplateConverter.convertList(client.get(EndPoint.groupSchedule(groupId)).body())
+
+    suspend fun getLessonDataByTeacherName(teacher: String): List<LessonDTO> =
+        jsonStringTemplateConverter.convertList(
+            client.get(EndPoint.teacherSchedule(teacher)).body()
+        )
 }

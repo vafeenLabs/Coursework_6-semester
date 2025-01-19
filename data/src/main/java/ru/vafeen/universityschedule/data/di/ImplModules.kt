@@ -17,10 +17,12 @@ import ru.vafeen.universityschedule.data.database.DBInfo
 import ru.vafeen.universityschedule.data.impl.database.GroupLocalRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.database.LessonLocalRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.database.ReminderLocalRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.database.TeacherLocalRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.end_points.ReleaseRemoteServiceLink
 import ru.vafeen.universityschedule.data.impl.network.repository.GroupRemoteRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.repository.LessonRemoteRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.repository.ReleaseRemoteRepositoryImpl
+import ru.vafeen.universityschedule.data.impl.network.repository.TeacherRemoteRepositoryImpl
 import ru.vafeen.universityschedule.data.impl.network.service.RefresherImpl
 import ru.vafeen.universityschedule.data.impl.network.service.SettingsManagerImpl
 import ru.vafeen.universityschedule.data.impl.notifications.NotificationBuilderImpl
@@ -30,12 +32,15 @@ import ru.vafeen.universityschedule.data.impl.scheduler.SchedulerImpl
 import ru.vafeen.universityschedule.data.network.service.ReleaseRemoteService
 import ru.vafeen.universityschedule.data.network.service.server.GroupsDataService
 import ru.vafeen.universityschedule.data.network.service.server.LessonDataService
+import ru.vafeen.universityschedule.data.network.service.server.TeacherDataService
 import ru.vafeen.universityschedule.domain.database.GroupLocalRepository
 import ru.vafeen.universityschedule.domain.database.LessonLocalRepository
 import ru.vafeen.universityschedule.domain.database.ReminderLocalRepository
+import ru.vafeen.universityschedule.domain.database.TeacherLocalRepository
 import ru.vafeen.universityschedule.domain.network.repository.GroupRemoteRepository
 import ru.vafeen.universityschedule.domain.network.repository.LessonRemoteRepository
 import ru.vafeen.universityschedule.domain.network.repository.ReleaseRemoteRepository
+import ru.vafeen.universityschedule.domain.network.repository.TeacherRemoteRepository
 import ru.vafeen.universityschedule.domain.network.service.Refresher
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.notifications.NotificationBuilder
@@ -58,6 +63,9 @@ internal val databaseModuleImpl = module {
     singleOf(::GroupLocalRepositoryImpl) {
         bind<GroupLocalRepository>()
     }
+    singleOf(::TeacherLocalRepositoryImpl) {
+        bind<TeacherLocalRepository>()
+    }
 }
 
 internal val networkRepositoryModuleImpl = module {
@@ -70,7 +78,9 @@ internal val networkRepositoryModuleImpl = module {
     singleOf(::GroupRemoteRepositoryImpl) {
         bind<GroupRemoteRepository>()
     }
-
+    singleOf(::TeacherRemoteRepositoryImpl) {
+        bind<TeacherRemoteRepository>()
+    }
 }
 
 internal val networkServiceModuleImpl = module {
@@ -105,6 +115,7 @@ internal val networkServiceModuleImpl = module {
     }
     singleOf(::LessonDataService)
     singleOf(::GroupsDataService)
+    singleOf(::TeacherDataService)
 }
 
 internal val servicesModuleImpl = module {

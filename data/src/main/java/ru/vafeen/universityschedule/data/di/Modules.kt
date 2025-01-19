@@ -12,20 +12,22 @@ import ru.vafeen.universityschedule.data.converters.LessonDTOConverter
 import ru.vafeen.universityschedule.data.converters.LessonEntityConverter
 import ru.vafeen.universityschedule.data.converters.ReleaseConverter
 import ru.vafeen.universityschedule.data.converters.ReminderConverter
+import ru.vafeen.universityschedule.data.converters.TeacherConverter
 import ru.vafeen.universityschedule.data.converters.TimeConverter
 
 internal val converterModule = module {
     singleOf(::DateTimeConverter)
     singleOf(::DownloadStatusConverter)
-    singleOf(::LessonEntityConverter)
+    singleOf(::FrequencyOneWayConverter)
+    singleOf(::GroupDTOConverter)
+    singleOf(::GroupEntityConverter)
+    singleOf(::JsonStringTemplateConverter)
     singleOf(::LessonDTOConverter)
+    singleOf(::LessonEntityConverter)
     singleOf(::ReleaseConverter)
     singleOf(::ReminderConverter)
+    singleOf(::TeacherConverter)
     singleOf(::TimeConverter)
-    singleOf(::FrequencyOneWayConverter)
-    singleOf(::JsonStringTemplateConverter)
-    singleOf(::GroupEntityConverter)
-    singleOf(::GroupDTOConverter)
 }
 
 

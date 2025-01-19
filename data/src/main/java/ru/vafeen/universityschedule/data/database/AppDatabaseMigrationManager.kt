@@ -69,7 +69,17 @@ internal class AppDatabaseMigrationManager {
                     """.trimIndent()
             )
 
+        },
+        createMigration(8, 9) { db ->
+            db.execSQL(
+                """
+                    CREATE TABLE Teacher (
+                        name TEXT PRIMARY KEY NOT NULL
+                    )
+                    """.trimIndent()
+            )
         }
+
     )
 
     /**

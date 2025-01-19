@@ -75,4 +75,5 @@
     <string name="student">Студент</string>
     <string name="group">Группа</string>
     <string name="this_is_user_group">Это группа пользователя</string>
+    <string name="selected_teacher">Выбранный преподаватель</string>
 </resources>
