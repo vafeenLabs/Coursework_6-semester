@@ -190,6 +190,7 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                                             ) else s.copy(teacherName = null)
                                         }
                                     }
+                                    viewModel.sync()
                                 },
                                 label = { TextForThisTheme(text = stringResource(role.resourceName)) }
                             )
@@ -237,6 +238,7 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                                                 groupId = if (settings.groupId != group.id) group.id else null
                                             )
                                         }
+                                        viewModel.sync()
                                     },
                                     label = { TextForThisTheme(text = group.groupCourseString()) }
                                 )
@@ -328,6 +330,7 @@ internal fun SettingsScreen(bottomBarNavigator: BottomBarNavigator) {
                                                 teacherName = if (settings.teacherName != teacher.name) teacher.name else null
                                             )
                                         }
+                                        viewModel.sync()
                                     },
                                     label = { TextForThisTheme(text = teacher.name) }
                                 )

@@ -47,7 +47,6 @@ internal class SettingsScreenViewModel(
     val subgroupFlow = getAsFlowLessonsUseCase.invoke().map {
         it.mapNotNull { lesson -> lesson.subGroup }.distinct()
     }
-//        .stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
 
     val teachersFlow = getAsFlowTeachersUseCase.invoke()
 
@@ -55,7 +54,6 @@ internal class SettingsScreenViewModel(
      * Поток состояний для хранения списка групп.
      */
     val groupFlow = getAsFlowGroupsUseCase.invoke()
-//        .stateIn(viewModelScope, started = SharingStarted.Eagerly, initialValue = listOf())
 
     /**
      * Поток состояний для статуса запроса к серверу Google Sheets.
@@ -81,12 +79,16 @@ internal class SettingsScreenViewModel(
         settingsManager.save(saving)
     }
 
-    init {
-        // Запускает процесс получения данных из Google Sheets и обновления базы данных.
+    fun sync() {
         viewModelScope.launch(Dispatchers.IO) {
             fetchDataAndUpdateDBUseCase.invoke(this@launch) { status ->
                 _gSheetsServiceRequestStatusFlow.emit(status)
             }
         }
+    }
+
+    init {
+        // Запускает процесс получения данных из Google Sheets и обновления базы данных.
+        sync()
     }
 }
