@@ -1063,10 +1063,10 @@ val lessons61 = listOf(
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
-        name = "Тест",
+        name = "ПП",
         startTime = LocalTime.of(9, 0),
         endTime = LocalTime.of(10, 35),
-        classroom = null,
+        classroom = "319",
         teacher = "Прокопенко",
         groupId = GroupIds.ID61.value,
         subGroup = null,
