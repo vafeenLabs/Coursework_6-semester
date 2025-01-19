@@ -6,9 +6,15 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import ru.vafeen.universityschedule.backenddto.LessonDTO
 import ru.vafeen.universityschedule.backenddto.converters.JsonStringTemplateConverter
 
 val converter = JsonStringTemplateConverter()
+val lessons =
+    sequenceOf<LessonDTO>().plus(lessons3).plus(lessons5).plus(lessons6).plus(lessons7)
+        .plus(lessons8)
+        .plus(lessons61).plus(lessons61).plus(lessons62).plus(lessons71).plus(lessons72).toList()
+
 fun main() {
     embeddedServer(Netty, host = "0.0.0.0", port = 8080) {
         routing {
