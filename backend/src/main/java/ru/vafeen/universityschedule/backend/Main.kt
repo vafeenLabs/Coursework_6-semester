@@ -24,12 +24,28 @@ fun main() {
             get("/") {
                 call.respondText("Hello, world!")
             }
+            get("/teachers/{teacher}") {
+                val name = call.parameters["teacher"]
+                call.respondText {
+                    converter.convert(lessons.filter {
+                        it.teacher == name
+                    }).toString()
+                }
+            }
+            get("/teachers") {
+                call.respondText {
+                    converter.convert(lessons.mapNotNull {
+                        it.teacher
+                    }.distinct()).toString()
+                }
+            }
             get("/groups") {
                 call.respondText {
                     converter.convert(groups).toString()
                 }
             }
-            get("/{group}") {
+            // поменялся энд поинт
+            get("/groups/{group}") {
                 val groupId = call.parameters["group"]?.toIntOrNull()
                 call.respondText {
                     converter.convert(lessons.filter {
