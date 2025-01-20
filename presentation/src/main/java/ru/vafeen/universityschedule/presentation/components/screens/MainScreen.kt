@@ -1,7 +1,6 @@
 package ru.vafeen.universityschedule.presentation.components.screens
 
 import android.app.Activity
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -28,7 +27,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -367,7 +365,7 @@ internal fun MainScreen(bottomBarNavigator: BottomBarNavigator) {
 
                                 lesson.StringForSchedule(
                                     colorBack = mainColor,
-                                    dateOfThisLesson = null,
+                                    dateOfThisLesson = dateOfThisLesson,
                                     viewModel = viewModel,
                                     isNoteAvailable = settings.notesAboutLesson,
                                     isNotificationsAvailable = settings.notificationsAboutLesson,

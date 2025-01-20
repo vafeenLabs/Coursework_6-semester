@@ -26,5 +26,5 @@ internal interface ReminderDao : DataAccessObject<ReminderEntity>, FlowGetAllImp
      * @return [ReminderEntity] или null, если напоминание не найдено
      */
     @Query("select * from reminder where idOfReminder=:idOfReminder limit 1")
-    fun getReminderByIdOfReminder(idOfReminder: Int): ReminderEntity?
+    suspend fun getReminderByIdOfReminder(idOfReminder: Int): ReminderEntity?
 }

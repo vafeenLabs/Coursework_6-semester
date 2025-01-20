@@ -73,10 +73,6 @@ internal fun NavigationRoot(
         }
     }
 
-    // Лаунч эффекта для вызова миграции API
-    LaunchedEffect(null) {
-        viewModel.callSchedulerAPIMigration()
-    }
 
     // Scaffold для отображения интерфейса с нижней панелью
     Scaffold(containerColor = Theme.colors.singleTheme,

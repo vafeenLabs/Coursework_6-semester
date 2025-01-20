@@ -19,7 +19,6 @@ import ru.vafeen.universityschedule.domain.models.Settings
 import ru.vafeen.universityschedule.domain.network.result.DownloadStatus
 import ru.vafeen.universityschedule.domain.network.service.Refresher
 import ru.vafeen.universityschedule.domain.network.service.SettingsManager
-import ru.vafeen.universityschedule.domain.scheduler.SchedulerAPIMigrationManager
 import ru.vafeen.universityschedule.domain.usecase.network.GetLatestReleaseUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.RebootingRemindersUseCase
 import ru.vafeen.universityschedule.domain.utils.getVersionCode
@@ -46,7 +45,6 @@ internal class MainActivityViewModel(
     private val getLatestReleaseUseCase: GetLatestReleaseUseCase,
     private val rebootingRemindersUseCase: RebootingRemindersUseCase,
     context: Context,
-    private val schedulerAPIMigrationManager: SchedulerAPIMigrationManager,
     private val settingsManager: SettingsManager,
     private val refresher: Refresher,
 ) : ViewModel(), BottomBarNavigator {
@@ -127,24 +125,6 @@ internal class MainActivityViewModel(
         settingsManager.save(saving)
     }
 
-    /**
-     * Запускает процесс миграции данных с AlarmManager на WorkManager, если миграция еще не была выполнена.
-     * Обновляет настройки после успешной миграции.
-     */
-    suspend fun callSchedulerAPIMigration() {
-        if (!settings.value.isMigrationFromAlarmManagerToWorkManagerSuccessful) {
-            schedulerAPIMigrationManager.migrate()
-            saveSettingsToSharedPreferences {
-                it.copy(isMigrationFromAlarmManagerToWorkManagerSuccessful = true)
-            }
-        }
-        if (!settings.value.isRemindersRebootedForVersion6_1_15) {
-            rebootingRemindersUseCase.invoke()
-            saveSettingsToSharedPreferences {
-                it.copy(isRemindersRebootedForVersion6_1_15 = true)
-            }
-        }
-    }
 
     /**
      * Регистрирует обработчик необработанных исключений для приложения.

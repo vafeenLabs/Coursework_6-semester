@@ -2,12 +2,13 @@ package ru.vafeen.universityschedule.domain.usecase.db
 
 import kotlinx.coroutines.flow.first
 import ru.vafeen.universityschedule.domain.models.Teacher
+import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 
 class CleverUpdatingTeachersUseCase(
     private val deleteTeachersUseCase: DeleteTeachersUseCase,
     private val insertTeachersUseCase: InsertTeachersUseCase,
     private val getAsFlowTeachersUseCase: GetAsFlowTeachersUseCase,
-) {
+) : UseCase {
 
     suspend operator fun invoke(newTeachers: List<Teacher>) {
         // Получаем текущий список учителей из базы данных.

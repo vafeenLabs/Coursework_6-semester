@@ -1,5 +1,6 @@
 package ru.vafeen.universityschedule.data.impl.database
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.vafeen.universityschedule.data.converters.ReminderConverter
@@ -36,7 +37,7 @@ internal class ReminderLocalRepositoryImpl(
      * @param idOfReminder Идентификатор напоминания.
      * @return Напоминание или null, если не найдено.
      */
-    override fun getReminderByIdOfReminder(idOfReminder: Int): Reminder? =
+    override suspend fun getReminderByIdOfReminder(idOfReminder: Int): Reminder? =
         reminderDao.getReminderByIdOfReminder(idOfReminder)?.let { reminderConverter.convertAB(it) }
 
     /**
@@ -45,7 +46,9 @@ internal class ReminderLocalRepositoryImpl(
      * @param reminders Список напоминаний для вставки.
      */
     override suspend fun insertReminders(reminders: List<Reminder>) =
-        reminderDao.insert(reminders.map { reminderConverter.convertBA(it) })
+        reminderDao.insert(reminders.map { reminderConverter.convertBA(it) }.also {
+            Log.d("insert", it.joinToString { r -> "$r\n" })
+        })
 
     /**
      * Удаление списка напоминаний из базы данных.

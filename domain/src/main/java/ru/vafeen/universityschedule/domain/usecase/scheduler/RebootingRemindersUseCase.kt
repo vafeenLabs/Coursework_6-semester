@@ -1,7 +1,10 @@
 package ru.vafeen.universityschedule.domain.usecase.scheduler
 
 import kotlinx.coroutines.flow.first
+import org.koin.core.component.KoinComponent
+import ru.vafeen.universityschedule.domain.notifications.NotificationService
 import ru.vafeen.universityschedule.domain.scheduler.Scheduler
+import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowRemindersUseCase
 
 /**
@@ -16,7 +19,9 @@ import ru.vafeen.universityschedule.domain.usecase.db.GetAsFlowRemindersUseCase
 class RebootingRemindersUseCase(
     private val scheduler: Scheduler,
     private val getAsFlowRemindersUseCase: GetAsFlowRemindersUseCase
-) {
+) : UseCase, KoinComponent {
+    private val notificationService: NotificationService = getKoin().get()
+
     /**
      * Перезапускает все существующие задачи напоминаний.
      *

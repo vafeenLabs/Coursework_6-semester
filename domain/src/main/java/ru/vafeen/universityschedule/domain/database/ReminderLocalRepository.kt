@@ -21,7 +21,7 @@ interface ReminderLocalRepository {
      * @param idOfReminder Идентификатор напоминания.
      * @return Объект [Reminder] с указанным идентификатором или null, если не найдено.
      */
-    fun getReminderByIdOfReminder(idOfReminder: Int): Reminder?
+    suspend fun getReminderByIdOfReminder(idOfReminder: Int): Reminder?
 
     /**
      * Вставляет список напоминаний в базу данных.
