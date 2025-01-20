@@ -27,7 +27,6 @@ import ru.vafeen.universityschedule.data.impl.network.service.RefresherImpl
 import ru.vafeen.universityschedule.data.impl.network.service.SettingsManagerImpl
 import ru.vafeen.universityschedule.data.impl.notifications.NotificationBuilderImpl
 import ru.vafeen.universityschedule.data.impl.notifications.NotificationServiceImpl
-import ru.vafeen.universityschedule.data.impl.scheduler.SchedulerAPIMigrationManagerImpl
 import ru.vafeen.universityschedule.data.impl.scheduler.SchedulerImpl
 import ru.vafeen.universityschedule.data.network.service.ReleaseRemoteService
 import ru.vafeen.universityschedule.data.network.service.server.GroupsDataService
@@ -46,7 +45,6 @@ import ru.vafeen.universityschedule.domain.network.service.SettingsManager
 import ru.vafeen.universityschedule.domain.notifications.NotificationBuilder
 import ru.vafeen.universityschedule.domain.notifications.NotificationService
 import ru.vafeen.universityschedule.domain.scheduler.Scheduler
-import ru.vafeen.universityschedule.domain.scheduler.SchedulerAPIMigrationManager
 
 internal val databaseModuleImpl = module {
     single<AppDatabase> {
@@ -127,9 +125,6 @@ internal val servicesModuleImpl = module {
     }
     singleOf(::SchedulerImpl) {
         bind<Scheduler>()
-    }
-    singleOf(::SchedulerAPIMigrationManagerImpl) {
-        bind<SchedulerAPIMigrationManager>()
     }
     singleOf(::SettingsManagerImpl) {
         bind<SettingsManager>()

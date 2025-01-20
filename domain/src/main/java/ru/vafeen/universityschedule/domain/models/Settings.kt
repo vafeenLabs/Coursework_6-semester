@@ -38,8 +38,6 @@ data class Settings(
     var notesAboutLesson: Boolean = false,
     var notificationsAboutLesson: Boolean = true,
     var releaseBody: String = "",
-    var isMigrationFromAlarmManagerToWorkManagerSuccessful: Boolean = false,
-    var isRemindersRebootedForVersion6_1_15: Boolean = false,
     val role: Role = Role.Student
 ) {
     /**
