@@ -18,7 +18,7 @@ class ScheduleRepeatingJobUseCase(private val scheduler: Scheduler) : UseCase {
      *
      * @param reminder Напоминание, для которого нужно запланировать повторяющуюся задачу.
      */
-    fun invoke(reminder: Reminder) {
+    fun invoke(reminder: Reminder) =
         scheduler.scheduleRepeatingJob(reminder = reminder) // Планирование задачи в планировщике.
-    }
+
 }

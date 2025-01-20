@@ -50,8 +50,6 @@ dependencies {
     api(libs.androidx.room.common)
     api(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
-    //work manager
-    implementation(libs.work.runtime.ktx)
     //Direct-Refresher
     implementation(libs.direct.refresher)
     //ktor

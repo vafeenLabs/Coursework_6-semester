@@ -11,14 +11,14 @@ import ru.vafeen.universityschedule.domain.usecase.db.CleverUpdatingTeachersUseC
 
 /**
  * Юзкейс для получения данных с сервера и обновления базы данных.
- * Использует другие юзкейсы для получения и обработки данных.
+ * Этот класс использует другие юзкейсы для получения и обработки данных о занятиях, группах и преподавателях.
  *
  * @property getLessonDataUseCase Юзкейс для получения данных о занятиях.
  * @property getGroupDataUseCase Юзкейс для получения данных о группах.
+ * @property getTeacherDataUseCase Юзкейс для получения данных о преподавателях.
  * @property cleverUpdatingLessonsUseCase Юзкейс для обновления занятий в базе данных.
- * @property getAsFlowGroupsUseCase Юзкейс для получения групп в виде потока.
- * @property deleteGroupsUseCase Юзкейс для удаления групп из базы данных.
- * @property insertGroupsUseCase Юзкейс для вставки групп в базу данных.
+ * @property cleverUpdatingGroupsUseCase Юзкейс для обновления групп в базе данных.
+ * @property cleverUpdatingTeachersUseCase Юзкейс для обновления преподавателей в базе данных.
  */
 class FetchDataAndUpdateDBUseCase(
     private val getLessonDataUseCase: GetLessonDataUseCase,
@@ -32,8 +32,15 @@ class FetchDataAndUpdateDBUseCase(
     /**
      * Получает данные с сервера и обновляет базу данных.
      *
+     * Этот метод выполняет асинхронные операции по получению данных о занятиях, группах и преподавателях.
+     * В зависимости от успешности этих операций обновляются соответствующие данные в базе данных.
+     *
      * @param coroutineScope Область корутины для выполнения асинхронных операций.
      * @param updateRequestStatus Функция обратного вызова для обновления статуса запроса (по умолчанию null).
+     * Статусы могут включать:
+     * - [GSheetsServiceRequestStatus.Waiting] — статус ожидания начала запроса.
+     * - [GSheetsServiceRequestStatus.NetworkError] — статус ошибки сети, если одна из операций завершилась неудачно.
+     * - [GSheetsServiceRequestStatus.Success] — статус успешного завершения всех операций.
      */
     suspend fun invoke(
         coroutineScope: CoroutineScope,
@@ -46,10 +53,10 @@ class FetchDataAndUpdateDBUseCase(
         val lessonDataFetchingIsSuccessful = coroutineScope.async {
             getLessonDataUseCase.invoke().let {
                 when (it) {
-                    is ResponseResult.Error -> false
+                    is ResponseResult.Error -> false // Ошибка при получении данных о занятиях
                     is ResponseResult.Success -> {
-                        cleverUpdatingLessonsUseCase.invoke(it.data)
-                        true
+                        cleverUpdatingLessonsUseCase.invoke(it.data) // Обновляем занятия в базе данных
+                        true // Успех
                     }
                 }
             }
@@ -59,41 +66,41 @@ class FetchDataAndUpdateDBUseCase(
         val groupDataFetchingIsSuccessful = coroutineScope.async {
             getGroupDataUseCase.invoke().let {
                 when (it) {
-                    is ResponseResult.Error -> false
+                    is ResponseResult.Error -> false // Ошибка при получении данных о группах
                     is ResponseResult.Success -> {
-                        cleverUpdatingGroupsUseCase.invoke(it.data)
-                        true
+                        cleverUpdatingGroupsUseCase.invoke(it.data) // Обновляем группы в базе данных
+                        true // Успех
                     }
                 }
             }
         }
 
-        // Асинхронное получение данных о преподавателяъ
+        // Асинхронное получение данных о преподавателях
         val teacherDataFetchingIsSuccessful = coroutineScope.async {
             getTeacherDataUseCase.invoke().let {
                 when (it) {
-                    is ResponseResult.Error -> false
+                    is ResponseResult.Error -> false // Ошибка при получении данных о преподавателях
                     is ResponseResult.Success -> {
-                        cleverUpdatingTeachersUseCase.invoke(it.data)
-                        true
+                        cleverUpdatingTeachersUseCase.invoke(it.data) // Обновляем преподавателей в базе данных
+                        true // Успех
                     }
                 }
             }
         }
 
-        // Ожидание завершения асинхронных операций
+        // Ожидание завершения асинхронных операций и обработка результата
         when (listOf(
             lessonDataFetchingIsSuccessful.await(),
             groupDataFetchingIsSuccessful.await(),
             teacherDataFetchingIsSuccessful.await()
         ).all { successful -> successful }) {
             false -> {
-                // Обработка ошибки сети
+                // Обработка ошибки сети, если хотя бы одна операция завершилась неудачно
                 updateRequestStatus?.invoke(GSheetsServiceRequestStatus.NetworkError)
             }
 
             true -> {
-                // Устанавливаем статус успеха
+                // Устанавливаем статус успеха, если все операции завершились успешно
                 updateRequestStatus?.invoke(GSheetsServiceRequestStatus.Success)
             }
         }

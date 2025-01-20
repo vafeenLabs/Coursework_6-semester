@@ -42,6 +42,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <receiver android:name=".presentation.NotificationAboutLessonReceiver" />
+
+        <receiver
+            android:name=".data.impl.scheduler.ReminderReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".data.impl.scheduler.ReminderRecoveryReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>

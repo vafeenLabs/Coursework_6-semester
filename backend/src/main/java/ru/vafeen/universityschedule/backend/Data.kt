@@ -23,8 +23,8 @@ val lessons3 = listOf(
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
         name = "ПП",
-        startTime = LocalTime.of(9, 0),
-        endTime = LocalTime.of(10, 35),
+        startTime = LocalTime.of(13, 55),
+        endTime = LocalTime.of(15, 35),
         classroom = "20",
         teacher = "Прокопенко",
         groupId =  GroupIds.ID3.value,

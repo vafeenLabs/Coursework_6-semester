@@ -1,6 +1,7 @@
 package ru.vafeen.universityschedule.domain.usecase.network
 
 import ru.vafeen.universityschedule.domain.network.repository.GroupRemoteRepository
+import ru.vafeen.universityschedule.domain.usecase.base.UseCase
 
 /**
  * Юзкейс для получения данных о группах с сервера.
@@ -10,7 +11,7 @@ import ru.vafeen.universityschedule.domain.network.repository.GroupRemoteReposit
  */
 class GetGroupDataUseCase(
     private val groupRemoteRepository: GroupRemoteRepository
-) {
+) : UseCase {
     /**
      * Получает список всех доступных групп с сервера.
      *

@@ -17,7 +17,6 @@ class CatMeowUseCase(private val context: Context) : UseCase {
     /**
      * Отображает тост с сообщением "Мяу".
      */
-    operator fun invoke() {
+    operator fun invoke() =
         Toast.makeText(context, context.getString(R.string.meow), Toast.LENGTH_SHORT).show()
-    }
 }

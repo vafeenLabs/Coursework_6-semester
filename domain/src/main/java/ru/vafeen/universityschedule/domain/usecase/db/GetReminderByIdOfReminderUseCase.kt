@@ -12,7 +12,8 @@ import ru.vafeen.universityschedule.domain.usecase.base.UseCase
  *
  * @property reminderLocalRepository Репозиторий, используемый для взаимодействия с данными напоминаний.
  */
-class GetReminderByIdOfReminderUseCase(private val reminderLocalRepository: ReminderLocalRepository) : UseCase {
+class GetReminderByIdOfReminderUseCase(private val reminderLocalRepository: ReminderLocalRepository) :
+    UseCase {
 
     /**
      * Возвращает напоминание по указанному идентификатору.
@@ -20,6 +21,6 @@ class GetReminderByIdOfReminderUseCase(private val reminderLocalRepository: Remi
      * @param idOfReminder Идентификатор напоминания, которое нужно получить.
      * @return Напоминание [Reminder] с указанным идентификатором или null, если напоминание не найдено.
      */
-    fun invoke(idOfReminder: Int): Reminder? =
+    suspend operator fun invoke(idOfReminder: Int): Reminder? =
         reminderLocalRepository.getReminderByIdOfReminder(idOfReminder = idOfReminder)
 }

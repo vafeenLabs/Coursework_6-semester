@@ -25,6 +25,9 @@ import ru.vafeen.universityschedule.domain.usecase.network.GetGroupDataUseCase
 import ru.vafeen.universityschedule.domain.usecase.network.GetLatestReleaseUseCase
 import ru.vafeen.universityschedule.domain.usecase.network.GetLessonDataUseCase
 import ru.vafeen.universityschedule.domain.usecase.network.GetTeacherDataUseCase
+import ru.vafeen.universityschedule.domain.usecase.notification.NotificationAbout15MinutesBeforeLessonUseCase
+import ru.vafeen.universityschedule.domain.usecase.notification.NotificationAfterBeginningLessonForBeCheckedAtThisLesson
+import ru.vafeen.universityschedule.domain.usecase.notification.NotificationReminderRecoveryUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.CancelJobUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.RebootingRemindersUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.ScheduleRepeatingJobUseCase
@@ -66,4 +69,10 @@ internal val databaseUseCaseModule = module {
     singleOf(::InsertLessonsUseCase)
     singleOf(::InsertRemindersUseCase)
     singleOf(::InsertTeachersUseCase)
+}
+
+internal val notificationUseCaseModule = module {
+    singleOf(::NotificationAbout15MinutesBeforeLessonUseCase)
+    singleOf(::NotificationAfterBeginningLessonForBeCheckedAtThisLesson)
+    singleOf(::NotificationReminderRecoveryUseCase)
 }
