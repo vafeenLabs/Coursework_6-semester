@@ -1,7 +1,7 @@
 package ru.vafeen.universityschedule.data.network.service.server
 
 internal object EndPoint {
-    private const val BASE_LINK = "http://192.168.0.103:8080"
+    private const val BASE_LINK = "http://192.168.1.103:8080"
     fun allSchedule() = "$BASE_LINK/all"
     fun groups(): String = "$BASE_LINK/groups"
     fun groupSchedule(group: Int): String = "$BASE_LINK/group/$group"
