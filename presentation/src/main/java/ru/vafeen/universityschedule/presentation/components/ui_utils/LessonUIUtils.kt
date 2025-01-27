@@ -76,14 +76,14 @@ internal fun Lesson.StringForSchedule(
 
     val focusManager = LocalFocusManager.current
     val settings by viewModel.settingsFlow.collectAsState()
-    var text by remember { mutableStateOf(this.note ?: "") }
+    var note by remember { mutableStateOf(this.note ?: "") }
     var isFocused by remember { mutableStateOf(false) }
     val suitableColor by remember { mutableStateOf(colorBack.suitableColor()) }
     val context = LocalContext.current
     val checkBoxColor = CheckboxDefaults.colors(
-        checkedColor = Theme.colors.oppositeTheme,
-        checkmarkColor = Theme.colors.singleTheme,
-        uncheckedColor = Theme.colors.oppositeTheme
+        checkedColor = suitableColor,
+        checkmarkColor =  suitableColor.suitableColor(),
+        uncheckedColor =  suitableColor,
     )
     val outlinedTextFieldColors = OutlinedTextFieldDefaults.colors(
         focusedTextColor = suitableColor,
@@ -152,7 +152,7 @@ internal fun Lesson.StringForSchedule(
                         horizontalArrangement = Arrangement.End
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            if (idOfReminderBeforeLesson == null || idOfReminderAfterBeginningLesson == null || note?.isNotEmpty() != true) Icon(
+                            if (idOfReminderBeforeLesson == null || idOfReminderAfterBeginningLesson == null || this@StringForSchedule.note?.isNotEmpty() != true) Icon(
                                 painter = painterResource(id = R.drawable.add),
                                 contentDescription = stringResource(R.string.edit_notifications_about_this_lesson),
                                 tint = suitableColor
@@ -162,7 +162,7 @@ internal fun Lesson.StringForSchedule(
                                 contentDescription = stringResource(R.string.moodle_course_link),
                                 tint = suitableColor
                             )
-                            if (note?.isNotEmpty() == true) Icon(
+                            if (this@StringForSchedule.note?.isNotEmpty() == true) Icon(
                                 painter = painterResource(id = R.drawable.edit),
                                 contentDescription = stringResource(R.string.note),
                                 tint = suitableColor
@@ -184,7 +184,7 @@ internal fun Lesson.StringForSchedule(
                 }
             }
 
-            name?.let {
+            name.let {
                 if (it.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
@@ -195,7 +195,7 @@ internal fun Lesson.StringForSchedule(
 
 
 
-            if (teacher?.isNotEmpty() == true) Row(
+            if (teacher.isNotEmpty()) Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End,
             ) {
@@ -206,7 +206,7 @@ internal fun Lesson.StringForSchedule(
                 )
                 Spacer(modifier = Modifier.width(3.dp))
                 Text(
-                    text = teacher?.replace(oldValue = " ", newValue = "\n") ?: undefined,
+                    text = teacher.replace(oldValue = " ", newValue = "\n") ?: undefined,
                     fontSize = FontSize.small17,
                     color = suitableColor,
                     maxLines = 3
@@ -253,8 +253,8 @@ internal fun Lesson.StringForSchedule(
                 }
             }
 
-            if (!isAdditionalInfoExpanded && text.isNotEmpty())
-                Text(text = text, fontSize = FontSize.micro14, color = suitableColor)
+            if (!isAdditionalInfoExpanded && note.isNotEmpty())
+                Text(text = note, fontSize = FontSize.micro14, color = suitableColor)
 
             if (isAdditionalInfoExpanded && (isNoteAvailable || isNotificationsAvailable)) Column(
                 modifier = Modifier
@@ -266,23 +266,23 @@ internal fun Lesson.StringForSchedule(
                     OutlinedTextField(modifier = Modifier
                         .fillMaxWidth()
                         .onFocusChanged { focusState -> isFocused = focusState.isFocused },
-                        value = text,
+                        value = note,
                         onValueChange = {
-                            text = it
+                            note = it
                         },
                         label = { Text(text = stringResource(R.string.note)) },
                         colors = outlinedTextFieldColors,
                         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                         keyboardActions = KeyboardActions(onDone = {
                             focusManager.clearFocus()
-                            viewModel.updateLesson(this@StringForSchedule.copy(note = text))
+                            viewModel.updateLesson(this@StringForSchedule.copy(note = note))
                         }),
                         trailingIcon = {
-                            if (isFocused && text.isNotEmpty()) {
+                            if (isFocused && note.isNotEmpty()) {
                                 IconButton(onClick = {
-                                    text = ""
+                                    note = ""
                                     focusManager.clearFocus()
-                                    viewModel.updateLesson(this@StringForSchedule.copy(note = text))
+                                    viewModel.updateLesson(this@StringForSchedule.copy(note = note))
                                 }) {
                                     Icon(
                                         painter = painterResource(id = R.drawable.clear),
@@ -295,9 +295,10 @@ internal fun Lesson.StringForSchedule(
                 }
                 if (dateOfThisLesson != null && isNotificationsAvailable) {
                     Spacer(modifier = Modifier.height(5.dp))
-                    TextForThisTheme(
+                    Text(
                         text = stringResource(id = if (frequency == Frequency.Every || frequency == null) R.string.every_week else R.string.every_2_weeks),
-                        fontSize = FontSize.medium19
+                        fontSize = FontSize.medium19,
+                        color = suitableColor
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Row(
@@ -312,12 +313,13 @@ internal fun Lesson.StringForSchedule(
                             Icon(
                                 painter = painterResource(id = R.drawable.message),
                                 contentDescription = stringResource(R.string.reminder_about_lesson_before_time),
-                                tint = Theme.colors.oppositeTheme
+                                tint = suitableColor
                             )
                             Spacer(modifier = Modifier.width(5.dp))
-                            TextForThisTheme(
+                            Text(
                                 text = stringResource(id = R.string.notification_about_lesson_before_time),
-                                fontSize = FontSize.medium19
+                                fontSize = FontSize.medium19,
+                                color = suitableColor
                             )
                         }
                         Checkbox(
@@ -366,9 +368,10 @@ internal fun Lesson.StringForSchedule(
                                 tint = Theme.colors.oppositeTheme
                             )
                             Spacer(modifier = Modifier.width(2.dp))
-                            TextForThisTheme(
+                            Text(
                                 text = stringResource(id = R.string.notification_about_lesson_after_starting),
-                                fontSize = FontSize.medium19
+                                fontSize = FontSize.medium19,
+                                color = suitableColor
                             )
                         }
                         Checkbox(
