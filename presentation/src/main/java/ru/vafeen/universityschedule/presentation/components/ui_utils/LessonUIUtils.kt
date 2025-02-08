@@ -82,8 +82,8 @@ internal fun Lesson.StringForSchedule(
     val context = LocalContext.current
     val checkBoxColor = CheckboxDefaults.colors(
         checkedColor = suitableColor,
-        checkmarkColor =  suitableColor.suitableColor(),
-        uncheckedColor =  suitableColor,
+        checkmarkColor = suitableColor.suitableColor(),
+        uncheckedColor = suitableColor,
     )
     val outlinedTextFieldColors = OutlinedTextFieldDefaults.colors(
         focusedTextColor = suitableColor,
@@ -111,7 +111,7 @@ internal fun Lesson.StringForSchedule(
             modifier = Modifier
                 .fillMaxWidth()
                 .let {
-                    if (isNoteAvailable || isNotificationsAvailable) it.clickable {
+                    if (isNoteAvailable || isNotificationsAvailable || linkToCourse != null) it.clickable {
                         isAdditionalInfoExpanded = !isAdditionalInfoExpanded
                     }
                     else it
@@ -232,10 +232,12 @@ internal fun Lesson.StringForSchedule(
             if (isAdditionalInfoExpanded) linkToCourse?.let { link ->
                 if (link.isNotEmpty()) {
                     Row(
-                        modifier = Modifier.combinedClickable(onClick = { context.openLink(link) },
-                            onLongClick = {
-                                context.copyTextToClipBoard(text = link, label = null)
-                            }).padding(vertical = 5.dp),
+                        modifier = Modifier
+                            .combinedClickable(onClick = { context.openLink(link) },
+                                onLongClick = {
+                                    context.copyTextToClipBoard(text = link, label = null)
+                                })
+                            .padding(vertical = 5.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
