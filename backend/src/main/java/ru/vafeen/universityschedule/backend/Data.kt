@@ -6,7 +6,6 @@ import java.time.DayOfWeek
 import java.time.LocalTime
 
 
-
 val groups = listOf(
     GroupDTO(id = GroupIds.ID61.value, course = 3, group = "ФИИТ 61"),
     GroupDTO(id = GroupIds.ID62.value, course = 3, group = "ФИИТ 62"),
@@ -27,9 +26,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(15, 35),
         classroom = "20",
         teacher = "Прокопенко",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -38,9 +38,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(12, 35),
         classroom = "20",
         teacher = "Золотухин",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -49,9 +50,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(14, 35),
         classroom = "11",
         teacher = "Крыжановская",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -60,9 +62,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(10, 35),
         classroom = "20",
         teacher = "Вернер",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -71,9 +74,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(12, 35),
         classroom = "20",
         teacher = "Серых",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -82,9 +86,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(14, 35),
         classroom = "329",
         teacher = "Есина",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -93,9 +98,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(10, 35),
         classroom = "329",
         teacher = "Есина",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -104,9 +110,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(12, 35),
         classroom = "20",
         teacher = "Вернер",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -115,9 +122,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(14, 35),
         classroom = "226",
         teacher = "Курченкова",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -126,9 +134,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(10, 35),
         classroom = "226",
         teacher = "Курченкова",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -137,9 +146,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(12, 35),
         classroom = "20",
         teacher = "Прокопенко",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -148,9 +158,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(14, 35),
         classroom = "20",
         teacher = "Серых",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -159,9 +170,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(10, 35),
         classroom = "12",
         teacher = "Золотухин",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -170,9 +182,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(12, 35),
         classroom = "226",
         teacher = "Абрамов",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -181,9 +194,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(14, 35),
         classroom = "12",
         teacher = "Золотухин",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -192,9 +206,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(10, 35),
         classroom = "319",
         teacher = "Корзунина",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -203,9 +218,10 @@ val lessons3 = listOf(
         endTime = LocalTime.of(12, 35),
         classroom = "20",
         teacher = "Серых",
-        groupId =  GroupIds.ID3.value,
+        groupId = GroupIds.ID3.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -219,7 +235,8 @@ val lessons5 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID5.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -230,7 +247,8 @@ val lessons5 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID5.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -241,7 +259,8 @@ val lessons5 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID5.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -252,7 +271,8 @@ val lessons5 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID5.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -263,7 +283,8 @@ val lessons5 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID5.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -274,7 +295,8 @@ val lessons5 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID5.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -285,7 +307,8 @@ val lessons5 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID5.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -296,7 +319,8 @@ val lessons5 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID5.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -307,7 +331,8 @@ val lessons5 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID5.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -318,7 +343,8 @@ val lessons5 = listOf(
         teacher = "Курченкова",
         groupId = GroupIds.ID5.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -329,7 +355,8 @@ val lessons5 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID5.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -340,7 +367,8 @@ val lessons5 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID5.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -351,7 +379,8 @@ val lessons5 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID5.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -362,7 +391,8 @@ val lessons5 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID5.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -373,7 +403,8 @@ val lessons5 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID5.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -384,7 +415,8 @@ val lessons5 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID5.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -395,7 +427,8 @@ val lessons5 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID5.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -410,7 +443,8 @@ val lessons6 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID6.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -421,7 +455,8 @@ val lessons6 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID6.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -432,7 +467,8 @@ val lessons6 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID6.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -443,7 +479,8 @@ val lessons6 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID6.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -454,7 +491,8 @@ val lessons6 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID6.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -465,7 +503,8 @@ val lessons6 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID6.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -476,7 +515,8 @@ val lessons6 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID6.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -487,7 +527,8 @@ val lessons6 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID6.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -498,7 +539,8 @@ val lessons6 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID6.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -509,7 +551,8 @@ val lessons6 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID6.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -520,7 +563,8 @@ val lessons6 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID6.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -531,7 +575,8 @@ val lessons6 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID6.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -542,7 +587,8 @@ val lessons6 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID6.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -553,7 +599,8 @@ val lessons6 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID6.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -564,7 +611,8 @@ val lessons6 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID6.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -575,7 +623,8 @@ val lessons6 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID6.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -586,7 +635,8 @@ val lessons6 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID6.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -601,7 +651,8 @@ val lessons7 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID7.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -612,7 +663,8 @@ val lessons7 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID7.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -623,7 +675,8 @@ val lessons7 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID7.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -634,7 +687,8 @@ val lessons7 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID7.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -645,7 +699,8 @@ val lessons7 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID7.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -656,7 +711,8 @@ val lessons7 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID7.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -667,7 +723,8 @@ val lessons7 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID7.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -678,7 +735,8 @@ val lessons7 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID7.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -689,7 +747,8 @@ val lessons7 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID7.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -700,7 +759,8 @@ val lessons7 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID7.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -711,7 +771,8 @@ val lessons7 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID7.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -722,7 +783,8 @@ val lessons7 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID7.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -733,7 +795,8 @@ val lessons7 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID7.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -744,7 +807,8 @@ val lessons7 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID7.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -755,7 +819,8 @@ val lessons7 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID7.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -766,7 +831,8 @@ val lessons7 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID7.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -777,7 +843,8 @@ val lessons7 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID7.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -792,7 +859,8 @@ val lessons8 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID8.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -803,7 +871,8 @@ val lessons8 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -814,7 +883,8 @@ val lessons8 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID8.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -825,7 +895,8 @@ val lessons8 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID8.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -836,7 +907,8 @@ val lessons8 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -847,7 +919,8 @@ val lessons8 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID8.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -858,7 +931,8 @@ val lessons8 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID8.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -869,7 +943,8 @@ val lessons8 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -880,7 +955,8 @@ val lessons8 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID8.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -891,7 +967,8 @@ val lessons8 = listOf(
         teacher = "Курченкова",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -902,7 +979,8 @@ val lessons8 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID8.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -913,7 +991,8 @@ val lessons8 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -924,7 +1003,8 @@ val lessons8 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -935,7 +1015,8 @@ val lessons8 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID8.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -946,7 +1027,8 @@ val lessons8 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID8.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -957,7 +1039,8 @@ val lessons8 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -968,7 +1051,8 @@ val lessons8 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID8.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -982,7 +1066,8 @@ val lessons61 = listOf(
         teacher = "Фролова",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -993,7 +1078,8 @@ val lessons61 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1004,7 +1090,8 @@ val lessons61 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID61.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1015,7 +1102,8 @@ val lessons61 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID61.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1026,7 +1114,8 @@ val lessons61 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1037,7 +1126,8 @@ val lessons61 = listOf(
         teacher = "Болотова",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1048,7 +1138,8 @@ val lessons61 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID61.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1059,7 +1150,8 @@ val lessons61 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID61.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1070,7 +1162,8 @@ val lessons61 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1081,7 +1174,8 @@ val lessons61 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1092,7 +1186,8 @@ val lessons61 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID61.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1103,7 +1198,8 @@ val lessons61 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID61.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1114,7 +1210,8 @@ val lessons61 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1125,7 +1222,8 @@ val lessons61 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1136,7 +1234,8 @@ val lessons61 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID61.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1147,7 +1246,8 @@ val lessons61 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID61.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1158,7 +1258,8 @@ val lessons61 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1169,7 +1270,8 @@ val lessons61 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1180,7 +1282,8 @@ val lessons61 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID61.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1191,7 +1294,8 @@ val lessons61 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID61.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1202,7 +1306,8 @@ val lessons61 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1213,7 +1318,8 @@ val lessons61 = listOf(
         teacher = "Курченкова",
         groupId = GroupIds.ID61.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -1227,7 +1333,8 @@ val lessons62 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID62.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1238,7 +1345,8 @@ val lessons62 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID62.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1249,7 +1357,8 @@ val lessons62 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID62.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1260,7 +1369,8 @@ val lessons62 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID62.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1271,7 +1381,8 @@ val lessons62 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID62.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1282,7 +1393,8 @@ val lessons62 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID62.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1293,7 +1405,8 @@ val lessons62 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID62.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1304,7 +1417,8 @@ val lessons62 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID62.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1315,7 +1429,8 @@ val lessons62 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID62.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1326,7 +1441,8 @@ val lessons62 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID62.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1337,7 +1453,8 @@ val lessons62 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID62.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1348,7 +1465,8 @@ val lessons62 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID62.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1359,7 +1477,8 @@ val lessons62 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID62.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1370,7 +1489,8 @@ val lessons62 = listOf(
         teacher = "Курченкова",
         groupId = GroupIds.ID62.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1381,7 +1501,8 @@ val lessons62 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID62.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1392,7 +1513,8 @@ val lessons62 = listOf(
         teacher = "Фролова",
         groupId = GroupIds.ID62.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1403,7 +1525,8 @@ val lessons62 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID62.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -1417,7 +1540,8 @@ val lessons71 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID71.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1428,7 +1552,8 @@ val lessons71 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID71.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1439,7 +1564,8 @@ val lessons71 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID71.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1450,7 +1576,8 @@ val lessons71 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID71.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1461,7 +1588,8 @@ val lessons71 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID71.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1472,7 +1600,8 @@ val lessons71 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID71.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1483,7 +1612,8 @@ val lessons71 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID71.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1494,7 +1624,8 @@ val lessons71 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID71.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1505,7 +1636,8 @@ val lessons71 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID71.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1516,7 +1648,8 @@ val lessons71 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID71.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1527,7 +1660,8 @@ val lessons71 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID71.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1538,7 +1672,8 @@ val lessons71 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID71.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1549,7 +1684,8 @@ val lessons71 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID71.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1560,7 +1696,8 @@ val lessons71 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID71.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1571,7 +1708,8 @@ val lessons71 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID71.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1582,7 +1720,8 @@ val lessons71 = listOf(
         teacher = "Крыжановская",
         groupId = GroupIds.ID71.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1593,7 +1732,8 @@ val lessons71 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID71.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
@@ -1607,7 +1747,8 @@ val lessons72 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID72.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1618,7 +1759,8 @@ val lessons72 = listOf(
         teacher = "Корзунина",
         groupId = GroupIds.ID72.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.MONDAY,
@@ -1629,7 +1771,8 @@ val lessons72 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID72.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1640,7 +1783,8 @@ val lessons72 = listOf(
         teacher = "Прокопенко",
         groupId = GroupIds.ID72.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1651,7 +1795,8 @@ val lessons72 = listOf(
         teacher = "Абрамов",
         groupId = GroupIds.ID72.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.TUESDAY,
@@ -1662,7 +1807,8 @@ val lessons72 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID72.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1673,7 +1819,8 @@ val lessons72 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID72.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1684,7 +1831,8 @@ val lessons72 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID72.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.WEDNESDAY,
@@ -1695,7 +1843,8 @@ val lessons72 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID72.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1706,7 +1855,8 @@ val lessons72 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID72.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1717,7 +1867,8 @@ val lessons72 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID72.value,
         subGroup = "2",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.THURSDAY,
@@ -1728,7 +1879,8 @@ val lessons72 = listOf(
         teacher = "Золотухин",
         groupId = GroupIds.ID72.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1739,7 +1891,8 @@ val lessons72 = listOf(
         teacher = "Вернер",
         groupId = GroupIds.ID72.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1750,7 +1903,8 @@ val lessons72 = listOf(
         teacher = "Курченкова",
         groupId = GroupIds.ID72.value,
         subGroup = null,
-        frequency = null
+        frequency = null,
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.FRIDAY,
@@ -1761,7 +1915,8 @@ val lessons72 = listOf(
         teacher = "Есина",
         groupId = GroupIds.ID72.value,
         subGroup = "1",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1772,7 +1927,8 @@ val lessons72 = listOf(
         teacher = "Фролова",
         groupId = GroupIds.ID72.value,
         subGroup = "2",
-        frequency = "Числитель"
+        frequency = "Числитель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     ),
     LessonDTO(
         dayOfWeek = DayOfWeek.SATURDAY,
@@ -1783,7 +1939,8 @@ val lessons72 = listOf(
         teacher = "Серых",
         groupId = GroupIds.ID72.value,
         subGroup = "1",
-        frequency = "Знаменатель"
+        frequency = "Знаменатель",
+        linkToCourse = "https://edu.vsu.ru/login/index.php",
     )
 )
 
