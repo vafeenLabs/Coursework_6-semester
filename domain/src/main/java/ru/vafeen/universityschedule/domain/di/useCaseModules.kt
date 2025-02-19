@@ -31,6 +31,8 @@ import ru.vafeen.universityschedule.domain.usecase.notification.NotificationRemi
 import ru.vafeen.universityschedule.domain.usecase.scheduler.CancelJobUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.RebootingRemindersUseCase
 import ru.vafeen.universityschedule.domain.usecase.scheduler.ScheduleRepeatingJobUseCase
+import ru.vafeen.universityschedule.domain.usecase.scheduler.ShowNotificationAboutLessonUseCase
+import ru.vafeen.universityschedule.domain.usecase.scheduler.ShowNotificationBefore15MinutesLessonUseCas
 
 internal val useCaseModule = module {
     singleOf(::CatMeowUseCase)
@@ -39,7 +41,8 @@ internal val useCaseModule = module {
 internal val plannerUseCaseModule = module {
     singleOf(::ScheduleRepeatingJobUseCase)
     singleOf(::CancelJobUseCase)
-
+    singleOf(::ShowNotificationAboutLessonUseCase)
+    singleOf(::ShowNotificationBefore15MinutesLessonUseCas)
     singleOf(::RebootingRemindersUseCase)
 }
 
