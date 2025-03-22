@@ -1,4 +1,4 @@
-# Coursework 6 semester
+# Курсовая работа 6 семестр
 
 <div align="center">
 
