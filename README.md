@@ -1,5 +1,8 @@
 # Курсовая работа 6 семестр
 
+## [Отчет](https://github.com/vafeenLabs/coursework-report_6-semester)
+
+
 <div align="center">
 
 ## University Schedule
